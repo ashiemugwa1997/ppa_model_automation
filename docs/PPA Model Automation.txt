@@ -1,0 +1,15 @@
+PPA MODEL AUTOMATION
+VIEWS
+
+1. Introduction
+2. Upload Datasheet & Add Assumption :- Data & Date Checks 
+3. Results 
+- View Assumptions
+- View Estimated Cashflows
+- View Eligibility Tests
+- View GMM Contracts
+- View Groupings
+- View Group Analysis
+- View Group Summary
+- View Estimated Financial Statements
+
