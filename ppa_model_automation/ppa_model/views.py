@@ -4,9 +4,9 @@ from django.template import loader
 
 # Create your views here.
 def dashboard(request):
-    files_template = loader.get_template('ppa/dashboard.html')
-    return HttpResponse(files_template.render({}, request))
-    # return render(request, 'ppa/dashboard.html', {})
+    # files_template = loader.get_template('ppa/dashboard.html')
+    # return HttpResponse(files_template.render({}, request))
+    return render(request, 'ppa/dashboard.html', {})
 
 def get_dataset(request):
     render(request, 'ppa_model_app/upload_dataset.html')
