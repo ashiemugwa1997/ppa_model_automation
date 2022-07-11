@@ -220,29 +220,29 @@
                     </div>
                 </td>
               </tr>
-              <tr>
+              <tr class="bg-default">
                 <td class="assumptions-text" style="font-weight: bold;">Actions</td>
                 <td class="assumptions-text text-center">
                     <div class="input-group input-group-sm">
                     </div>
                 </td>
-                <td class="assumptions-text text-center">
-                    <div class="input-group input-group-sm">
-                    </div>
-                </td>
-                <td class="assumptions-text text-center">
-                    <div class="input-group input-group-sm">
-                    </div>
-                </td>
                 <td class="assumptions-text text-right">
-                    <div class="input-group input-group-sm">
-                        <button type="button" class="btn btn-primary"><i class="nc-icon nc-simple-add"></i> New Class</button>
+                    <span class="" style="font-weight: bold">Upload Datasheet</span>
+                </td>
+                <td class="assumptions-text text-left">
+                    <div class="">
+                        <input class="form-control text-info" type="file" id="formFile">
                     </div>
                 </td>
-                <td class="assumptions-text text-right">
-                    <div class="input-group input-group-sm">
-                        <button type="button" class="btn btn-primary">Submit</button>
-                    </div>
+                <td class="assumptions-text text-center" colspan="2">
+                    <button type="button" class="btn btn-primary btn-neutral mr-2" data-bs-toggle="modal" data-bs-target="#newClass">
+                        <i class="nc-icon nc-simple-add"></i> 
+                        New Class
+                    </button>
+                    <a type="button" href="/paa/results" class="btn btn-primary mr-2">
+                        <i class="nc-icon nc-send"></i> 
+                        Submit
+                    </a>
                 </td>
               </tr>
             </tbody>
@@ -251,5 +251,24 @@
       </div>
     </div>
   </div>
+</div>
+  
+<!-- New Class Modal -->
+<div class="modal fade" id="newClass" tabindex="-1" aria-labelledby="newClassLabel" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="newClassLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="nc-icon nc-simple-add"></i></button>
+    </div>
+    <div class="modal-body">
+        ...
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+    </div>
+    </div>
+</div>
 </div>
 {% endblock content %}
