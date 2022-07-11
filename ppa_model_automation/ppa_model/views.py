@@ -9,6 +9,9 @@ def dashboard(request):
 def add_assumptions(request):
     return render(request, 'ppa/add_assumptions.html', {})
 
+def calculation_results(request):
+    return render(request, 'ppa/results.html', {})
+
 def get_dataset(request):
     render(request, 'ppa_model_app/upload_dataset.html')
 
