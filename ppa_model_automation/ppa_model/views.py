@@ -12,17 +12,8 @@ def add_assumptions(request):
 def calculation_results(request):
     return render(request, 'ppa/results.html', {})
 
-def get_dataset(request):
-    render(request, 'ppa_model_app/upload_dataset.html')
-
-def get_results(request):
-    render(request, 'ppa_model_app/ppa_results.html')
-
-def get_assumptions(request):
-    render(request, 'ppa_model_app/ppa_assumptions.html')
-
 def get_estimated_cashflow(request):
-    render(request, 'ppa_model_app/ppa_estimated_cashflow.html')
+    return render(request, 'ppa/cashflow_estimations.html')
 
 def get_eligibility_test(request):
     render(request, 'ppa_model_app/ppa_elibility_test.html')
