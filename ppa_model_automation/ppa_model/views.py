@@ -36,7 +36,10 @@ def get_group_summary(request):
 def get_measurement_calculations(request):
     return render(request, 'ppa/measurement_calculation.html')
 
+def get_reinsurance(request):
+    return render(request, 'ppa/reinsurance_contracts_held.html')
+
 def get_estimated_financial_statements(request):
-    render(request, 'ppa_model_app/ppa_financial_statements')
+    return render(request, 'ppa/financial_statement.html')
 
 
