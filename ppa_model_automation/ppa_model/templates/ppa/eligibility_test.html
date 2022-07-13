@@ -3,14 +3,14 @@
 {% endblock styles %} {% block content %}
 <div class="row">
   <div class="col-12">
-    <div class="card" style="background: #CCCEDC;">
+    <div class="card" style="background: #cccedc">
       <div class="card-body">
-        <div class="fresh-table" style="background: #CCCEDC;">
+        <div class="fresh-table" style="background: #cccedc">
           <table id="fresh-table" class="table">
             <thead>
               <th data-field="class_of_business" data-sortable="true">
                 Class
-                of
+                of 
                 Business
               </th>
               <th data-field="Name_of_Policyholder" data-sortable="true">
@@ -54,6 +54,14 @@
               <th data-field="total_premium" data-sortable="true">
                 Total Premium
               </th>
+              <th
+                data-field="Reasonability_of_Total_Premium"
+                data-sortable="true"
+              >
+                Reasonability
+                of
+                Total Premium
+              </th>
               <th data-field="Duration_in_Months" data-sortable="true">
                 Duration
                 in
@@ -63,6 +71,11 @@
                 PV
                 of
                 Premiums
+              </th>
+              <th data-field="PV_of_claims" data-sortable="true">
+                PV
+                of
+                Claims
               </th>
               <th data-field="PV_of_Expenses" data-sortable="true">
                 PV
@@ -84,6 +97,8 @@
                 Automatic PAA
                 Eligibility Test
               </th>
+              <th data-field="#N/A" data-sortable="true">#N/A</th>
+              <th data-field="classes" data-sortable="true">Classes</th>
             </thead>
             <tbody>
               <tr>
@@ -1025,6 +1040,7 @@
 </div>
 {% endblock content %} {% block scripts %}
 <script src="https://unpkg.com/bootstrap-table/dist/bootstrap-table.js"></script>
+
 <script>
   var $table = $("#fresh-table");
 

@@ -15,20 +15,26 @@ def calculation_results(request):
 def get_estimated_cashflow(request):
     return render(request, 'ppa/cashflow_estimations.html')
 
-def get_eligibility_test(request):
-    render(request, 'ppa_model_app/ppa_elibility_test.html')
+def get_queries(request):
+    return render(request, 'ppa/queries.html')
 
-def get_ggm_contracts(request):
-    render(request, 'ppa_model_app/ppa_ggm_contracts.html')
+def get_eligibility_test(request):
+    return render(request, 'ppa/eligibility_test.html')
+
+def get_gmm_outputs(request):
+    return render(request, 'ppa/gmm_output.html')
 
 def get_groupings(request):
-    render(request, 'ppa_model_app/ppa_groupings.html')
+    return render(request, 'ppa/grouping.html')
 
-def get_groupings_analysis(request):
-    render(request, 'ppa_model_app/ppa_groupings_analysis.html')
+def get_group_analysis(request):
+    return render(request, 'ppa/analyse_groups.html')
 
 def get_group_summary(request):
-    render(request, 'ppa_model_app/ppa_group_summary.html')
+    return render(request, 'ppa/group_summary.html')
+
+def get_measurement_calculations(request):
+    return render(request, 'ppa/measurement_calculation.html')
 
 def get_estimated_financial_statements(request):
     render(request, 'ppa_model_app/ppa_financial_statements')
