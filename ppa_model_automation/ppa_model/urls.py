@@ -21,6 +21,7 @@ urlpatterns = [
     path('global-presentations', views.get_global_presentation, name="global-presentation"),
     path('disclosures', views.get_disclosures, name="disclosures"),
     path('checks', views.get_checks, name="checks"),
+    path('analysis-movement', views.get_analysis_movement, name="analysis-movement"),
 
     
 ]

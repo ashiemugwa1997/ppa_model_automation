@@ -54,5 +54,8 @@ def get_disclosures(request):
 def get_checks(request):
     return render(request, 'ppa/checks.html')
 
+def get_analysis_movement(request):
+    return render(request, 'ppa/analysis_of_movement.html')
+
 
 
