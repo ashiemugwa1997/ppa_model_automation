@@ -9,6 +9,9 @@ def dashboard(request):
 def add_assumptions(request):
     return render(request, 'ppa/add_assumptions.html', {})
 
+def aggregated_results(request):
+    return render(request, 'ppa/aggregated_results.html', {})
+
 def calculation_results(request):
     return render(request, 'ppa/results.html', {})
 
