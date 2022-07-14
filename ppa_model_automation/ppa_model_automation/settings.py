@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'ppa_model_automation.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'filemanager',
+        'NAME': 'claxon_actuaries',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost'

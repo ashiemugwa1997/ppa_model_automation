@@ -1,10 +1,10 @@
 {% extends "layout.html" %} {% block content %}
 <div class="row">
   <div class="col-12">
-    <div class="card">
+    <div class="card" style="background: #bbbbe9">
       <div class="card-header">
         <h5 class="card-title">Assumptions</h5>
-        <p class="card-category">
+        <p class="card-category text-dark">
           Upload dataset and add all relevant assumptions
         </p>
       </div>
@@ -220,12 +220,8 @@
                     </div>
                 </td>
               </tr>
-              <tr class="bg-default">
+              <tr class="" style="">
                 <td class="assumptions-text" style="font-weight: bold;">Actions</td>
-                <td class="assumptions-text text-center">
-                    <div class="input-group input-group-sm">
-                    </div>
-                </td>
                 <td class="assumptions-text text-right">
                     <span class="" style="font-weight: bold">Upload Datasheet</span>
                 </td>
@@ -235,14 +231,18 @@
                     </div>
                 </td>
                 <td class="assumptions-text text-center" colspan="2">
-                    <button type="button" class="btn btn-primary btn-neutral mr-2" data-bs-toggle="modal" data-bs-target="#newClass">
+                    <button type="button" class="btn btn-neutral mr-2" data-bs-toggle="modal" data-bs-target="#newClass">
                         <i class="nc-icon nc-simple-add"></i> 
                         New Class
                     </button>
-                    <a type="button" href="/paa/results" class="btn btn-primary mr-2">
+                    <a type="button" href="/paa/results" class="btn mr-2" style="background: #f99400">
                         <i class="nc-icon nc-send"></i> 
                         Submit
                     </a>
+                </td>
+                <td class="assumptions-text text-center">
+                    <div class="input-group input-group-sm">
+                    </div>
                 </td>
               </tr>
             </tbody>
