@@ -18,6 +18,7 @@ urlpatterns = [
     path('measurement-calculations', views.get_measurement_calculations, name="measurements"),
     path('reinsurance', views.get_reinsurance, name="reinsurance"),
     path('financial-statements', views.get_estimated_financial_statements, name="financial-statements"),
+    path('global-presentations', views.get_global_presentation, name="global-presentation"),
 
     
 ]
