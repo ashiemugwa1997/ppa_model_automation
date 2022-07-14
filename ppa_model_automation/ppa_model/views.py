@@ -44,8 +44,12 @@ def get_reinsurance(request):
 
 def get_estimated_financial_statements(request):
     return render(request, 'ppa/financial_statement.html')
+
 def get_global_presentation(request):
     return render(request, 'ppa/global_presentation.html')
+
+def get_disclosures(request):
+    return render(request, 'ppa/disclosures.html')
 
 
 
