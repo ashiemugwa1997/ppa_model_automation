@@ -20,6 +20,7 @@ urlpatterns = [
     path('financial-statements', views.get_estimated_financial_statements, name="financial-statements"),
     path('global-presentations', views.get_global_presentation, name="global-presentation"),
     path('disclosures', views.get_disclosures, name="disclosures"),
+    path('checks', views.get_checks, name="checks"),
 
     
 ]

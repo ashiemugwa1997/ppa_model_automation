@@ -51,5 +51,8 @@ def get_global_presentation(request):
 def get_disclosures(request):
     return render(request, 'ppa/disclosures.html')
 
+def get_checks(request):
+    return render(request, 'ppa/checks.html')
+
 
 
