@@ -6,62 +6,65 @@
     <div class="card" style="background: #bbbbe9">
       <div class="card-body">
         <div class="fresh-table" style="background: #bbbbe9">
-    <table id="fresh-table" class="table">
-      <thead>
-        <th> </th>
-        <th data-field="January" >January <br>(31 jan)</th>
-        <th data-field="February" >February <br>(28 feb)</th>
-        <th data-field="March" >March <br>(31 mar)</th>
-        <th data-field="April" >April <br>(30 apr)</th>
-        <th data-field="May" >May <br>(31 may)</th>
-        <th data-field="June" >June <br>(30 jun)</th>
-        <th data-field="July" >July <br>(31 jul)</th>
-        <th data-field="August" >August <br>(31 aug)</th>
-        <th data-field="September" >September <br>(30 sep)</th>
-        <th data-field="October" >October <br>(31 oct)</th>
-        <th data-field="November" >November <br>(30 nov)</th>
-        <th data-field="December" >December <br>(31 dec)</th>
+          <table id="fresh-table" class="table">
+            <tbody>
+              <tr>
+                  <td colspan="3"></td>
+                  <td class="assumptions-text" data-field="January">January 31 jan</td>
+                  <td class="assumptions-text" data-field="February">February (28 feb)</td>
+                  <td class="assumptions-text" data-field="March">March (31 mar)</td>
+                  <td class="assumptions-text" data-field="April">April (30 apr)</td>
+                  <td class="assumptions-text" data-field="May">May (31 may)</td>
+                  <td class="assumptions-text" data-field="June">June (30 jun)</td>
+                  <td class="assumptions-text" data-field="July">July (31 jul)</td>
+                  <td class="assumptions-text" data-field="August">August (31 aug)</td>
+                  <td class="assumptions-text" data-field="September">September (30 sep)</td>
+                  <td class="assumptions-text" data-field="October">October (31 oct)</td>
+                  <td class="assumptions-text" data-field="November">November (30 nov)</td>
+                  <td class="assumptions-text" data-field="December">December (31 dec)</td>
 
-      </thead>
+              </tr>
+              <tr>
+                <td colspan="3" class="assumptions-text">Opening Balance</td>
+              </tr>
+              <tr>
+                <td colspan="3" class="assumptions-text">
+                  + Premiums Received in tde Period
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3" class="assumptions-text">
+                  - Acquisition Costs (to premiums received in tde Period
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3" class="assumptions-text">+ Amortised Acquisition Costs</td>
+              </tr>
+              <tr>
+                <td colspan="3" class="assumptions-text">
+                  - Insurance Revenue for coverage provided
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3" class="assumptions-text">Closing Balance</td>
+              </tr>
+              <tr>
+                <td colspan="3" class="assumptions-text"></td>
+              </tr>
+              <tr>
+                <td colspan="3" class="assumptions-text"></td>
+              </tr>
 
-      <tbody>
-
-        <tr>
-          <td class="assumptions-text">Opening Balance</td>
-        </tr>
-        <tr>
-          <td class="assumptions-text">+ Premiums Received in the Period</td>
-        </tr>
-        <tr>
-          <td class="assumptions-text">- Acquisition Costs (to premiums received in the Period</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">+ Amortised Acquisition Costs</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">- Insurance Revenue for coverage provided</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Closing Balance</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text"></td>
-        </tr>
-        <tr>
-          <td class="assumptions-text"></td>
-        </tr>
-
-
-        <tr>
-            <td class="assumptions-text">GMM estimation after change in facts and circumstances</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text"> Loss Component</td>
-        </tr>
-
-
-      </tbody>
-    </table>
+              <tr>
+                <td colspan="3" class="assumptions-text">
+                  GMM estimation after change in facts and circumstances
+                </td>
+              </tr>
+              <tr>
+                <td colspan="3" class="assumptions-text">Loss Component</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
@@ -73,62 +76,9 @@
 <script>
   var $table = $("#fresh-table");
 
-  window.operateEvents = {
-    "click .like": function (e, value, row, index) {
-      alert("You click like icon, row: " + JSON.stringify(row));
-      console.log(value, row, index);
-    },
-    "click .edit": function (e, value, row, index) {
-      alert("You click edit icon, row: " + JSON.stringify(row));
-      console.log(value, row, index);
-    },
-    "click .remove": function (e, value, row, index) {
-      $table.bootstrapTable("remove", {
-        field: "id",
-        values: [row.id],
-      });
-    },
-  };
-
-  function operateFormatter(value, row, index) {
-    return [
-      '<a rel="tooltip" title="Like" class="table-action like" href="javascript:void(0)" title="Like">',
-      '<i class="fa fa-heart"></i>',
-      "</a>",
-      '<a rel="tooltip" title="Edit" class="table-action edit" href="javascript:void(0)" title="Edit">',
-      '<i class="fa fa-edit"></i>',
-      "</a>",
-      '<a rel="tooltip" title="Remove" class="table-action remove" href="javascript:void(0)" title="Remove">',
-      '<i class="fa fa-remove"></i>',
-      "</a>",
-    ].join("");
-  }
-
   $(function () {
     $table.bootstrapTable({
-      classes: "table table-hover table-striped",
-      toolbar: ".toolbar",
-
-      search: true,
-      pagination: true,
-      striped: true,
-      sortable: true,
-      height: $(window).height(),
-      pageSize: 50,
-      pageList: [25, 50, 100],
-
-      formatShowingRows: function (pageFrom, pageTo, totalRows) {
-        return "";
-      },
-      formatRecordsPerPage: function (pageNumber) {
-        return pageNumber + " rows visible";
-      },
-    });
-
-    $(window).resize(function () {
-      $table.bootstrapTable("resetView", {
-        height: $(window).height(),
-      });
+      classes: "table table-striped",
     });
   });
 </script>
