@@ -1,6 +1,4 @@
 import pandas as pd
-import streamlit as st
-
 
 class Results:
     def __init__(self, df):

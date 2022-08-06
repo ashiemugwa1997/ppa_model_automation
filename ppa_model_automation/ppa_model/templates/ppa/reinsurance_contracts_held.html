@@ -1,12 +1,12 @@
 {% extends "layout.html" %} {% block styles %}
-<link href="/static/assets/css/fresh-bootstrap-table.css" rel="stylesheet" />
+<link href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
 {% endblock styles %} {% block content %}
 <div class="row">
   <div class="col-12">
     <div class="card" style="background: #bbbbe9">
       <div class="card-body">
         <div class="fresh-table" style="background: #bbbbe9">
-          <table id="fresh-table" class="table">
+          <table id="fresh-table" class="table display nowrap" style="width:100%">
             <thead>
               <th></th>
               <th data-field="January">January <br />(31 jan)</th>
@@ -26,42 +26,162 @@
             <tbody>
               <tr>
                 <td class="assumptions-text">Opening Balance</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   + Premiums Received in the Period
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   - Acquisition Costs (to premiums received in the Period
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">+ Amortised Acquisition Costs</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   - Insurance Revenue for coverage provided
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">Closing Balance</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
 
               <tr>
                 <td class="assumptions-text">
                   GMM estimation after change in facts and circumstances
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">Loss Component</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
             </tbody>
           </table>
@@ -71,65 +191,17 @@
   </div>
 </div>
 {% endblock content %} {% block scripts %}
-<script src="https://unpkg.com/bootstrap-table/dist/bootstrap-table.js"></script>
+<script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
 <script>
-  var $table = $("#fresh-table");
-
-  window.operateEvents = {
-    "click .like": function (e, value, row, index) {
-      alert("You click like icon, row: " + JSON.stringify(row));
-      console.log(value, row, index);
-    },
-    "click .edit": function (e, value, row, index) {
-      alert("You click edit icon, row: " + JSON.stringify(row));
-      console.log(value, row, index);
-    },
-    "click .remove": function (e, value, row, index) {
-      $table.bootstrapTable("remove", {
-        field: "id",
-        values: [row.id],
-      });
-    },
-  };
-
-  function operateFormatter(value, row, index) {
-    return [
-      '<a rel="tooltip" title="Like" class="table-action like" href="javascript:void(0)" title="Like">',
-      '<i class="fa fa-heart"></i>',
-      "</a>",
-      '<a rel="tooltip" title="Edit" class="table-action edit" href="javascript:void(0)" title="Edit">',
-      '<i class="fa fa-edit"></i>',
-      "</a>",
-      '<a rel="tooltip" title="Remove" class="table-action remove" href="javascript:void(0)" title="Remove">',
-      '<i class="fa fa-remove"></i>',
-      "</a>",
-    ].join("");
-  }
-
-  $(function () {
-    $table.bootstrapTable({
-      classes: "table table-hover table-striped",
-      toolbar: ".toolbar",
-
-      striped: true,
-      sortable: true,
-      height: $(window).height(),
-
-      formatShowingRows: function (pageFrom, pageTo, totalRows) {
-        return "";
-      },
-      formatRecordsPerPage: function (pageNumber) {
-        return pageNumber + " rows visible";
-      },
+  $(document).ready( function () {
+    $('#fresh-table').DataTable({
+      scrollX: true,
+      "bInfo": false, //Dont display info e.g. "Showing 1 to 4 of 4 entries"
+      "paging": false,//Dont want paging                
+      "bPaginate": false,//Dont want paging 
     });
+} );
 
-    $(window).resize(function () {
-      $table.bootstrapTable("resetView", {
-        height: $(window).height(),
-      });
-    });
-  });
 </script>
-
 {%endblock scripts %}

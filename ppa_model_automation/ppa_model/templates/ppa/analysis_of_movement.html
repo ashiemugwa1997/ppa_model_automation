@@ -1,12 +1,12 @@
 {% extends "layout.html" %} {% block styles %}
-<link href="/static/assets/css/fresh-bootstrap-table.css" rel="stylesheet" />
+<link href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
 {% endblock styles %} {% block content %}
 <div class="row">
   <div class="col-12">
     <div class="card" style="background: #bbbbe9">
       <div class="card-body">
         <div class="fresh-table" style="background: #bbbbe9">
-          <table id="fresh-table" class="table">
+          <table id="fresh-table" class="table display nowrap" style="width:100%">
             <thead>
               <th></th>
               <th>Liability for Remaining Coverage Excl. LC</th>
@@ -21,111 +21,255 @@
                 <td class="assumptions-text">
                   Opening insurance contract assets
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   Opening insurance contract liabilities
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   Net opening position of insurance contracts
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">Insurance revenue</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">Insurance service expenses</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   - Incurred benefits and expenses
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   - Changes that relate to past service - adjustments to LIC
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   - Losses on onerous contracts and reversal of those losses
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   - Amortisation of insurance acquisition cash flows
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   - Impairment of acquisition cost asset
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   Insurance finance expenses through profit and loss
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   Insurance finance expenses through OCI
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   Net foreign exchange income or expense
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">Investment components</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   Total changes in statement of profit and loss and OCI
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">Premiums received</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">Claims paid</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   Directly attributable expenses paid
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">Acquisition cost paid</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">Total cash flows</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   Closing insurance contract assets
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   Closing insurance contract liabilities
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   Net closing position of insurance contracts
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
 
               <tr>
                 <td class="assumptions-text"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
             </tbody>
           </table>
           <hr class="mt-5 mb-5">
-          <table id="fresh-table" class="table">
+          <table id="fresh-table" class="table display nowrap" style="width:100%">
             <thead>
               <th>Notes</th>
               <th>Reporting Date</th>
@@ -141,120 +285,302 @@
                 <td class="assumptions-text">
                   Opening insurance contract assets
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   Opening insurance contract liabilities
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   Net opening position of insurance contracts
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   Changes related to current services
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   - CSM recognised in profit and loss
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   - Risk Adjustment recognised in profit and loss
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">- Experience adjustments</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   Changes related to future services
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   - Contracts innitaly recognised in the period
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   - Changes in estimates that adjust CSM
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   - Changes in estimates that result in onerous contracts or
                   reversal of losses
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   Changes that relate to past service
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   Changes that relate to past service - adjustments to LIC
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   Insurance finance expenses through profit and loss
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   Insurance finance expenses through OCI
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   Net foreign exchange income or expense
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   Total changes in statement of profit and loss and OCI
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">Premiums received</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">Claims paid</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   Directly attributable expenses paid
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">Acquisition cost paid</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">Total cash flows</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   Closing insurance contract assets
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   Closing insurance contract liabilities
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text">
                   Net closing position of insurance contracts
                 </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
               <tr>
                 <td class="assumptions-text"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </tr>
             </tbody>
           </table>
@@ -264,62 +590,17 @@
   </div>
 </div>
 {% endblock content %} {% block scripts %}
-<script src="https://unpkg.com/bootstrap-table/dist/bootstrap-table.js"></script>
+<script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
 <script>
-  var $table = $("#fresh-table");
-
-  window.operateEvents = {
-    "click .like": function (e, value, row, index) {
-      alert("You click like icon, row: " + JSON.stringify(row));
-      console.log(value, row, index);
-    },
-    "click .edit": function (e, value, row, index) {
-      alert("You click edit icon, row: " + JSON.stringify(row));
-      console.log(value, row, index);
-    },
-    "click .remove": function (e, value, row, index) {
-      $table.bootstrapTable("remove", {
-        field: "id",
-        values: [row.id],
-      });
-    },
-  };
-
-  function operateFormatter(value, row, index) {
-    return [
-      '<a rel="tooltip" title="Like" class="table-action like" href="javascript:void(0)" title="Like">',
-      '<i class="fa fa-heart"></i>',
-      "</a>",
-      '<a rel="tooltip" title="Edit" class="table-action edit" href="javascript:void(0)" title="Edit">',
-      '<i class="fa fa-edit"></i>',
-      "</a>",
-      '<a rel="tooltip" title="Remove" class="table-action remove" href="javascript:void(0)" title="Remove">',
-      '<i class="fa fa-remove"></i>',
-      "</a>",
-    ].join("");
-  }
-
-  $(function () {
-    $table.bootstrapTable({
-      classes: "table table-hover table-striped",
-      toolbar: ".toolbar",
-      striped: true,
-
-      formatShowingRows: function (pageFrom, pageTo, totalRows) {
-        return "";
-      },
-      formatRecordsPerPage: function (pageNumber) {
-        return pageNumber + " rows visible";
-      },
+  $(document).ready( function () {
+    $('#fresh-table').DataTable({
+      scrollX: true,
+      "bInfo": false, //Dont display info e.g. "Showing 1 to 4 of 4 entries"
+      "paging": false,//Dont want paging                
+      "bPaginate": false,//Dont want paging 
     });
+} );
 
-    $(window).resize(function () {
-      $table.bootstrapTable("resetView", {
-        height: $(window).height(),
-      });
-    });
-  });
 </script>
-
 {%endblock scripts %}

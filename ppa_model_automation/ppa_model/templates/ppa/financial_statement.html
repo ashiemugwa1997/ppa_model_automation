@@ -1,178 +1,296 @@
 {% extends "layout.html" %} {% block styles %}
-<link href="/static/assets/css/fresh-bootstrap-table.css" rel="stylesheet" />
+<link
+  href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"
+  rel="stylesheet"
+/>
 {% endblock styles %} {% block content %}
 <div class="row">
   <div class="col-12">
     <div class="card" style="background: #bbbbe9">
       <div class="card-body">
-    <table id="fresh-table" class="table">
+        <div class="fresh-table" style="background: #bbbbe9">
+          <table
+            id="fresh-table"
+            class="table display nowrap"
+            style="width: 100%"
+          >
+            <thead>
+              <th>Income Statement as at</th>
+              <th>31 jan</th>
+              <th>28 feb</th>
+              <th>31 mar</th>
+              <th>30 apr</th>
+              <th>31 may</th>
+              <th>30 jun</th>
+              <th>31 jul</th>
+              <th>31 aug</th>
+              <th>30 sep</th>
+              <th>31 oct</th>
+              <th>30 nov</th>
+              <th>31 dec</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="assumptions-text">Insurance Revenue</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Claims and Benefits incurred</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Loss on Onerous group of contracts
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Expenses Incurred</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Finance Income/ Expense (Discount unwind)
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Investment Income (assets matching insurance liabilities)
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Investment Income (free assets)
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Investment Results</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
 
-      <thead>
-
-      <th>Income Statement as at</th>
-
-      <th>31 jan</th>
-        <th>28 feb</th>
-        <th>31 mar</th>
-        <th>30 apr</th>
-        <th>31 may</th>
-        <th>30 jun</th>
-        <th>31 jul</th>
-        <th>31 aug</th>
-        <th>30 sep</th>
-        <th>31 oct</th>
-        <th>30 nov</th>
-        <th>31 dec</th>
-
-      </thead>
-      <tbody>
-        <tr>
-          <td class="assumptions-text">Insurance Revenue</td>
-        </tr>
-        <tr>
-          <td class="assumptions-text">Claims and Benefits incurred</td>
-        </tr>
-        <tr>
-          <td class="assumptions-text">Loss on Onerous group of contracts</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Expenses Incurred</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Finance Income/ Expense (Discount unwind)</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Investment Income (assets matching insurance liabilities)</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Investment Income (free assets)</td>
-        </tr>
-        <tr>
-          <td class="assumptions-text"> Investment Results</td>
-        </tr>
-        <tr>
-          <td class="assumptions-text"></td>
-        </tr>
-
-        <tr>
-            <td class="assumptions-text">Profit or Loss</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Other Comprehensive Income</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Total Comprehensive Income</td>
-        </tr>
-
-
-      </tbody>
-    </table>
-    <table id="fresh-table" class="table">
-
-      <thead>
-
-
-      <th>Balance Sheet at 30th June Mid Year 1</th>
-      <th>Amount</th>
-      <th>Assets</th>
-      <th>Amount</th>
-
-      </thead>
-      <tbody>
-      <tr>
-        <td class="assumptions-text">Liabilities</td>
-      </tr>
-      <tr>
-        <td class="assumptions-text">Equity</td>
-      </tr>
-      <tr>
-        <td class="assumptions-text"> Surplus</td>
-      </tr>
-      <tr>
-        <td class="assumptions-text">Insurance Contract Liability</td>
-      </tr>
-      <tr>
-        <td class="assumptions-text">.LFRC</td>
-      </tr>
-      <tr>
-        <td class="assumptions-text">.LFIC</td>
-      </tr>
-      <tr>
-        <td class="assumptions-text">Total Liabilities and Equity</td>
-      </tr>
-
-
-      </tbody>
-    </table>
+              <tr>
+                <td class="assumptions-text">Profit or Loss</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Other Comprehensive Income</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Total Comprehensive Income</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <table id="fresh-table" class="table">
+            <thead>
+              <th>Balance Sheet at 30th June Mid Year 1</th>
+              <th>Amount</th>
+              <th>Assets</th>
+              <th>Amount</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="assumptions-text">Liabilities</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Equity</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Surplus</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Insurance Contract Liability</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">.LFRC</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">.LFIC</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Total Liabilities and Equity</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-</div>
-</div>
-</div>
 {% endblock content %} {% block scripts %}
-<script src="https://unpkg.com/bootstrap-table/dist/bootstrap-table.js"></script>
+<script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
 <script>
-  var $table = $("#fresh-table");
-
-  window.operateEvents = {
-    "click .like": function (e, value, row, index) {
-      alert("You click like icon, row: " + JSON.stringify(row));
-      console.log(value, row, index);
-    },
-    "click .edit": function (e, value, row, index) {
-      alert("You click edit icon, row: " + JSON.stringify(row));
-      console.log(value, row, index);
-    },
-    "click .remove": function (e, value, row, index) {
-      $table.bootstrapTable("remove", {
-        field: "id",
-        values: [row.id],
-      });
-    },
-  };
-
-  function operateFormatter(value, row, index) {
-    return [
-      '<a rel="tooltip" title="Like" class="table-action like" href="javascript:void(0)" title="Like">',
-      '<i class="fa fa-heart"></i>',
-      "</a>",
-      '<a rel="tooltip" title="Edit" class="table-action edit" href="javascript:void(0)" title="Edit">',
-      '<i class="fa fa-edit"></i>',
-      "</a>",
-      '<a rel="tooltip" title="Remove" class="table-action remove" href="javascript:void(0)" title="Remove">',
-      '<i class="fa fa-remove"></i>',
-      "</a>",
-    ].join("");
-  }
-
-  $(function () {
-    $table.bootstrapTable({
-      classes: "table table-hover table-striped",
-      toolbar: ".toolbar",
-
-      search: true,
-      pagination: true,
-      striped: true,
-      sortable: true,
-      height: $(window).height(),
-      pageSize: 50,
-      pageList: [25, 50, 100],
-
-      formatShowingRows: function (pageFrom, pageTo, totalRows) {
-        return "";
-      },
-      formatRecordsPerPage: function (pageNumber) {
-        return pageNumber + " rows visible";
-      },
+  $(document).ready( function () {
+    $('#fresh-table').DataTable({
+      scrollX: true,
+      "bInfo": false, //Dont display info e.g. "Showing 1 to 4 of 4 entries"
+      "paging": false,//Dont want paging                
+      "bPaginate": false,//Dont want paging 
     });
+} );
 
-    $(window).resize(function () {
-      $table.bootstrapTable("resetView", {
-        height: $(window).height(),
-      });
-    });
-  });
 </script>
 
 {%endblock scripts %}

@@ -1,731 +1,1484 @@
 {% extends "layout.html" %} {% block styles %}
-<link href="/static/assets/css/fresh-bootstrap-table.css" rel="stylesheet" />
+<link href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
 {% endblock styles %} {% block content %}
 <div class="row">
-    <div class="col-12">
-        <div class="card" style="background: #bbbbe9">
-            <div class="card-body">
-                <div class="fresh-table" style="background: #bbbbe9">
-    <table id="fresh-table" class="table">
+  <div class="col-12">
+    <div class="card" style="background: #bbbbe9">
+      <div class="card-body">
+        <div class="fresh-table" style="background: #bbbbe9">
+            <div>
+          <table
+            id="fresh-table"
+            class="table display nowrap"
+            style="width: 100%"
+          >
+            <thead>
+              <th class="assumptions-text">Statement of profit or loss</th>
+              <th class="assumptions-text">Notes</th>
+              <th class="assumptions-text">End of Year 1</th>
+              <th class="assumptions-text">End of Year 2</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="assumptions-text">Insurance Revenue</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Insurance service expenses</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Net expenses from reinsurance contracts held
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Insurance service result</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Investment income</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Insurance finance expenses</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
 
-      <th class="assumptions-text">Statement of profit or loss</th>
-        <th class="assumptions-text">Notes</th>
-        <th class="assumptions-text">End of Year 1</th>
-        <th class="assumptions-text">End of Year 2</th>
+              <tr>
+                <td class="assumptions-text">Reinsurance finance income</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Financial insurance result</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Other income and expense</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Profit before tax</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Income tax</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
 
-      </thead>
-      <tbody>
+              <tr>
+                <td class="assumptions-text">Profit for the year</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+          <hr class="mt-5 mb-5" />
+          <div>
+          <table
+            id="fresh-table"
+            class="table display nowrap"
+            style="width: 100%"
+          >
+            <thead>
+              <th class="assumptions-text">
+                Statement of other comprehensive income
+              </th>
+              <th class="assumptions-text">Notes</th>
+              <th class="assumptions-text">End of Year 1</th>
+              <th class="assumptions-text">End of Year 2</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="assumptions-text">Profit for the year</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Change in fair value of financial assets
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Amount reclassified to profit or loss
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Debt instruments at fair value through other comprehensive
+                  income
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Insurance finance expenses</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Reinsurance finance income</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
 
+              <tr>
+                <td class="assumptions-text">Reinsurance finance income</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Net insurance financial result</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Total gross comprehensive income
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+          <hr class="mt-5 mb-5" />
+          <div>
+          <table
+            id="fresh-table"
+            class="table display nowrap"
+            style="width: 100%"
+          >
+            <thead>
+              <th class="assumptions-text">Statement of financial position</th>
+              <th class="assumptions-text">Notes</th>
+              <th class="assumptions-text">End of Year 1</th>
+              <th class="assumptions-text">End of Year 2</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="assumptions-text">Cash and cash equivalents</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Investment assets</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Insurance contract assets</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Reinsurance contract assets</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Other assets</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Deferred tax assets</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Total assets</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
 
+              <tr>
+                <td class="assumptions-text">Current tax liabilities</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Investment contract liabilities
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Insurance contract liabilities</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Reinsurance contract liabilities
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Other payables</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Deferred tax liabilities</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Total liabilities</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Share capital</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Fair value reserve</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Retained earnings</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Other comprehensive income</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Other reserves</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Total liabilities and equity</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    <hr class="mt-5 mb-5" />
+        <div>
+          <table
+            id="fresh-table"
+            class="table display nowrap"
+            style="width: 100%"
+          >
+            <thead>
+              <th class="assumptions-text">
+                Statement of changes in equity - current period
+              </th>
+              <th class="assumptions-text">Notes</th>
+              <th class="assumptions-text">Share capital</th>
+              <th class="assumptions-text">Fair value reserve</th>
+              <th class="assumptions-text">Retained earnings</th>
+              <th class="assumptions-text">Other reserves</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="assumptions-text">Reporting Date</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Opening equity</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Profit for the year</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Changes in Other comprehensive income for the year
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Other changes in equity</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Closing equity</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Comparative Date</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Opening equity</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Profit for the year</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Changes in Other comprehensive income for the year
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Other changes in equity</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Closing equity</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+          <hr class="mt-5 mb-5" />
+          <div>
+          <table
+            id="fresh-table"
+            class="table display nowrap"
+            style="width: 100%"
+          >
+            <thead>
+              <th class="assumptions-text">Insurance revenue</th>
+              <th class="assumptions-text">Notes</th>
+              <th class="assumptions-text">Reporting Date</th>
+              <th class="assumptions-text">Comparative Date</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="assumptions-text">
+                  Amounts relating to changes in LFRC
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Expected benefits incurred</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Expected expenses incurred</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Change in the risk adjustment</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">CSM recognised</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Recovery of acquisition cash flows
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Experience adjustments</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Contracts not measured under PAA
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Contracts measured under PAA</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Total insurance revenue</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Reporting Date</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Comparative Date</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Amounts relating to changes in LFRC
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Expected benefits incurred</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Expected expenses incurred</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Change in the risk adjustment</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">CSM recognised</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Recovery of acquisition cash flows
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Experience adjustments</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Contracts not measured under PAA
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Contracts measured under PAA</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Total insurance revenue</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+          <hr class="mt-5 mb-5" />
+          <div>
+          <table
+            id="fresh-table"
+            class="table display nowrap"
+            style="width: 100%"
+          >
+            <thead>
+              <th class="assumptions-text">Insurance service expense</th>
+              <th class="assumptions-text">Notes</th>
+              <th class="assumptions-text">Reporting Date</th>
+              <th class="assumptions-text">Comparative Date</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="assumptions-text">Incurred benefits</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Incurred directly attributable expenses
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Losses on onerous contracts and reversal of those losses
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Changes that relate to past service - adjustments to LIC
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Insurance acquisition costs</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Total insurance service expense
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+          <hr class="mt-5 mb-5" />
+            <div>
+          <table
+            id="fresh-table"
+            class="table display nowrap"
+            style="width: 100%"
+          >
+            <thead>
+              <th class="assumptions-text">
+                Net income or expense from reinsurance contracts held
+              </th>
+              <th class="assumptions-text">Notes</th>
+              <th class="assumptions-text">Reporting Date</th>
+              <th class="assumptions-text">Comparative Date</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="assumptions-text">
+                  Expected expenses for contracts not measured under PAA
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Expected recovery of claims and other expenses
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Change in the risk adjustment</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">CSM recognized</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Experience adjustments</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Expected expenses for contracts measured under PAA
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Allocation of reinsurer premium
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Amounts recovered for claims and other expenses
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Incurred directly attributable expenses
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Changes that relate to past service - recoverable claims and
+                  other expenses
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Changes in fulfilment cash flows that do not adjust underlying
+                  CSM
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Effect of changes in the risk of reinsurers non-performance
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Amounts recoverable from reinsurer and incurred expenses
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Net expense from reinsurance contracts held
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Reporting Date</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Comparative Date</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Expected expenses for contracts not measured under PAA
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Expected recovery of claims and other expenses
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Change in the risk adjustment</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">CSM recognized</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Experience adjustments</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Expected expenses for contracts measured under PAA
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Allocation of reinsurer premium
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Amounts recovered for claims and other expenses
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Incurred directly attributable expenses
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Changes that relate to past service - recoverable claims and
+                  other expenses
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Changes in fulfilment cash flows that do not adjust underlying
+                  CSM
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Effect of changes in the risk of reinsurers non-performance
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Amounts recoverable from reinsurer and incurred expenses
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Net expense from reinsurance contracts held
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+          <hr class="mt-5 mb-5" />
+          <div>
+          <table
+            id="fresh-table"
+            class="table display nowrap"
+            style="width: 100%"
+          >
+            <thead>
+              <th class="assumptions-text">Insurance finance expenses</th>
+              <th class="assumptions-text">Notes</th>
+              <th class="assumptions-text">Reporting Date</th>
+              <th class="assumptions-text">Comparative Date</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="assumptions-text">
+                  Interest accreted to insurance contracts
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Change in financial assumptions through P&L
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Change in financial assumptions through OCI
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Effect of unlocking CSM at locked-in rates and FCF at current
+                  rates
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Effect of risk mitigation on CSM for contracts measured under
+                  VFA
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Net foreign exchange income or expense
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Total insurance finance expense
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
 
+              <tr>
+                <td class="assumptions-text"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+          <hr class="mt-5 mb-5" />
+        <div>
+          <table
+            id="fresh-table"
+            class="table display nowrap"
+            style="width: 100%"
+          >
+            <thead>
+              <th class="assumptions-text">
+                Insurance contracts originated in a reporting period
+              </th>
+              <th class="assumptions-text">Notes</th>
+              <th class="assumptions-text">Reporting Date</th>
+              <th class="assumptions-text">Non-onerous contracts</th>
+              <th class="assumptions-text">Onerous contracts</th>
+              <th class="assumptions-text">Total</th>
+              <th class="assumptions-text"></th>
+              <th class="assumptions-text">Comparative Date</th>
+              <th class="assumptions-text">Non-onerous contracts</th>
+              <th class="assumptions-text">Onerous contracts</th>
+              <th class="assumptions-text">Total</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="assumptions-text">
+                  Present value of estimates of future cash inflows
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Present value of estimates of future cash outflows
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  - incl. claims and directly attributable expenses
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">- incl. acquisition cash flows</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Present value of cash flows</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Risk adjustment for non-financial risk
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Contractual service margin</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Insurance contract liabilities</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Reporting Date</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Comparative Date</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Present value of estimates of future cash inflows
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Present value of estimates of future cash outflows
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  - incl. claims and directly attributable expenses
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">- incl. acquisition cash flows</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Present value of cash flows</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Risk adjustment for non-financial risk
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Contractual service margin</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Insurance contract liabilities</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
 
+              <tr>
+                <td class="assumptions-text"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+          <hr class="mt-5 mb-5" />
+        <div>
+          <table
+            id="fresh-table"
+            class="table display nowrap"
+            style="width: 100%"
+          >
+            <thead>
+              <th class="assumptions-text">
+                Expected release of contractual service margin
+              </th>
+              <th class="assumptions-text">Notes</th>
+              <th class="assumptions-text">Insurance contracts</th>
+              <th class="assumptions-text">Reinsurance contracts</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="assumptions-text">Reporting Date</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Year 1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Year 2</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">
+                  Total Contractual Service Margin
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
 
+              <tr>
+                <td class="assumptions-text"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+          <hr class="mt-5 mb-5" />
+          <div>
+          <table
+            id="fresh-table"
+            class="table display nowrap"
+            style="width: 100%"
+          >
+            <thead>
+              <th class="assumptions-text">
+                Expected derecognition of insurance acquisition cost asset
+              </th>
+              <th class="assumptions-text">Notes</th>
+              <th class="assumptions-text">Reporting Date</th>
+              <th class="assumptions-text">Comparative Date</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="assumptions-text">Year 1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Year 2</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="assumptions-text">Total Acquisition cost asset</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
 
-      <tr>
-          <td class="assumptions-text">Insurance Revenue</td>
-        </tr>
-        <tr>
-          <td class="assumptions-text">Insurance service expenses</td>
-        </tr>
-        <tr>
-          <td class="assumptions-text">Net expenses from reinsurance contracts held</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Insurance service result</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text"></td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Investment income</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Insurance finance expenses</td>
-        <tr>
-            <td class="assumptions-text">Reinsurance finance income</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Financial insurance result</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text"></td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Other income and expense </td>
-        </tr>
-        <tr>
-          <td class="assumptions-text">Profit before tax</td>
-        </tr>
-    <tr>
-            <td class="assumptions-text"></td>
-        </tr>
-      <tr>
-          <td class="assumptions-text">Income tax</td>
-        </tr>
-
-        <tr>
-            <td class="assumptions-text">Profit for the year</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text"></td>
-        </tr>
-      </tbody>
-    </table>
-                    <hr class="mt-5 mb-5">
-    <table id="fresh-table" class="table">
-
-      <th class="assumptions-text">Statement of other comprehensive income</th>
-      <th class="assumptions-text">Notes</th>
-      <th class="assumptions-text">End of Year 1</th>
-      <th class="assumptions-text">End of Year 2</th>
-
-      </thead>
-      <tbody>
-      <tr>
-        <td class="assumptions-text">Profit for the year</td>
-      </tr>
-      <tr>
-        <td class="assumptions-text">Change in fair value of financial assets</td>
-      </tr>
-      <tr>
-        <td class="assumptions-text">Amount reclassified to profit or loss</td>
-      </tr>
-      <tr>
-        <td class="assumptions-text">Debt instruments at fair value through other comprehensive income</td>
-      </tr>
-      <tr>
-        <td class="assumptions-text"></td>
-      </tr>
-      <tr>
-        <td class="assumptions-text">Insurance finance expenses</td>
-      </tr>
-      <tr>
-        <td class="assumptions-text">Reinsurance finance income</td>
-      <tr>
-        <td class="assumptions-text">Reinsurance finance income</td>
-      </tr>
-      <tr>
-        <td class="assumptions-text">Net insurance financial result</td>
-      </tr>
-      <tr>
-        <td class="assumptions-text">Total gross comprehensive income</td>
-      </tr>
-      </tbody>
-    </table>
-                    <hr class="mt-5 mb-5">
-    <table id="fresh-table" class="table">
-
-      <th class="assumptions-text">Statement of financial position</th>
-      <th class="assumptions-text">Notes</th>
-      <th class="assumptions-text">End of Year 1</th>
-      <th class="assumptions-text">End of Year 2</th>
-
-      </thead>
-      <tbody>
-      <tr>
-        <td class="assumptions-text">Cash and cash equivalents</td>
-      </tr>
-        <tr>
-            <td class="assumptions-text">Investment assets</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Insurance contract assets</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Reinsurance contract assets</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Other assets</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Deferred tax assets</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Total assets</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text"></td>
-        </tr>
-
-        <tr>
-            <td class="assumptions-text">Current tax liabilities</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Investment contract liabilities</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Insurance contract liabilities</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Reinsurance contract liabilities</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Other payables</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Deferred tax liabilities</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Total liabilities</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text"></td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Share capital</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Fair value reserve</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Retained earnings</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Other comprehensive income</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Other reserves</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Total liabilities and equity</td>
-        </tr>
-
-      </tbody>
-    </table>
-    <table id="fresh-table" class="table">
-
-      <th class="assumptions-text">Statement of changes in equity - current period</th>
-      <th class="assumptions-text">Notes</th>
-      <th class="assumptions-text">Share capital</th>
-      <th class="assumptions-text">Fair value reserve</th>
-      <th class="assumptions-text">Retained earnings</th>
-      <th class="assumptions-text">Other reserves</th>
-
-      </thead>
-      <tbody>
-      <tr>
-        <td class="assumptions-text">Reporting Date</td>
-      </tr>
-        <tr>
-            <td class="assumptions-text">Opening equity</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Profit for the year</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Changes in Other comprehensive income for the year</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Other changes in equity</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Closing equity</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text"></td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Comparative Date</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Opening equity</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Profit for the year</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Changes in Other comprehensive income for the year</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Other changes in equity</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Closing equity</td>
-        </tr>
-
-
-      </tbody>
-    </table>
-                    <hr class="mt-5 mb-5">
-    <table id="fresh-table" class="table">
-
-      <th class="assumptions-text">Insurance revenue</th>
-      <th class="assumptions-text">Notes</th>
-        <th class="assumptions-text">Reporting Date</th>
-        <th class="assumptions-text">Comparative Date</th>
-      </thead>
-      <tbody>
-      <tr>
-        <td class="assumptions-text">Amounts relating to changes in LFRC</td>
-      </tr>
-        <tr>
-            <td class="assumptions-text">Expected benefits incurred</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Expected expenses incurred</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Change in the risk adjustment</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">CSM recognised</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Recovery of acquisition cash flows</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Experience adjustments</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Contracts not measured under PAA</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Contracts measured under PAA</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Total insurance revenue</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text"></td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Reporting Date</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Comparative Date</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Amounts relating to changes in LFRC</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Expected benefits incurred</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Expected expenses incurred</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Change in the risk adjustment</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">CSM recognised</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Recovery of acquisition cash flows</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Experience adjustments</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Contracts not measured under PAA</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Contracts measured under PAA</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Total insurance revenue</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text"></td>
-        </tr>
-
-
-
-      </tbody>
-    </table>
-                    <hr class="mt-5 mb-5">
-    <table id="fresh-table" class="table">
-
-      <th class="assumptions-text">Insurance service expense</th>
-      <th class="assumptions-text">Notes</th>
-      <th class="assumptions-text">Reporting Date</th>
-      <th class="assumptions-text">Comparative Date</th>
-      </thead>
-      <tbody>
-      <tr>
-        <td class="assumptions-text">Incurred benefits</td>
-      </tr>
-      <tr>
-        <td class="assumptions-text">Incurred directly attributable expenses</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Losses on onerous contracts and reversal of those losses</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Changes that relate to past service - adjustments to LIC</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Insurance acquisition costs</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Total insurance service expense</td>
-        </tr>
-      <tr>
-        <td class="assumptions-text"></td>
-      </tr>
-
-      </tbody>
-    </table>
-                    <hr class="mt-5 mb-5">
-
-    <table id="fresh-table" class="table">
-
-      <th class="assumptions-text">Net income or expense from reinsurance contracts held</th>
-      <th class="assumptions-text">Notes</th>
-      <th class="assumptions-text">Reporting Date</th>
-      <th class="assumptions-text">Comparative Date</th>
-      </thead>
-      <tbody>
-
-
-      <tr>
-        <td class="assumptions-text">Expected expenses for contracts not measured under PAA</td>
-      </tr>
-        <tr>
-            <td class="assumptions-text">Expected recovery of claims and other expenses</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Change in the risk adjustment</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">CSM recognized</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Experience adjustments</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Expected expenses for contracts measured under PAA</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Allocation of reinsurer premium</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Amounts recovered for claims and other expenses</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Incurred directly attributable expenses</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Changes that relate to past service - recoverable claims and other expenses</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Changes in fulfilment cash flows that do not adjust underlying CSM</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Effect of changes in the risk of reinsurers non-performance</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Amounts recoverable from reinsurer and incurred expenses</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Net expense from reinsurance contracts held</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text"></td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Reporting Date</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Comparative Date</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Expected expenses for contracts not measured under PAA</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Expected recovery of claims and other expenses</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Change in the risk adjustment</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">CSM recognized</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Experience adjustments</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Expected expenses for contracts measured under PAA</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Allocation of reinsurer premium</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Amounts recovered for claims and other expenses</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Incurred directly attributable expenses</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Changes that relate to past service - recoverable claims and other expenses</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Changes in fulfilment cash flows that do not adjust underlying CSM</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Effect of changes in the risk of reinsurers non-performance</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Amounts recoverable from reinsurer and incurred expenses</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Net expense from reinsurance contracts held</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text"></td>
-        </tr>
-
-      </tbody>
-    </table>
-                    <hr class="mt-5 mb-5">
-    <table id="fresh-table" class="table">
-
-      <th class="assumptions-text">Insurance finance expenses</th>
-      <th class="assumptions-text">Notes</th>
-      <th class="assumptions-text">Reporting Date</th>
-      <th class="assumptions-text">Comparative Date</th>
-      </thead>
-      <tbody>
-
-      <tr>
-        <td class="assumptions-text"> Interest accreted to insurance contracts</td>
-      </tr>
-        <tr>
-            <td class="assumptions-text">Change in financial assumptions through P&L</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Change in financial assumptions through OCI</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Effect of unlocking CSM at locked-in rates and FCF at current rates</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Effect of risk mitigation on CSM for contracts measured under VFA</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Net foreign exchange income or expense</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Total insurance finance expense</td>
-        </tr>
-
-      <tr>
-        <td class="assumptions-text"></td>
-      </tr>
-
-      </tbody>
-    </table>
-                    <hr class="mt-5 mb-5">
-
-    <table id="fresh-table" class="table">
-
-      <th class="assumptions-text">Insurance contracts originated in a reporting period</th>
-      <th class="assumptions-text">Notes</th>
-      <th class="assumptions-text">Reporting Date</th>
-      <th class="assumptions-text">Non-onerous contracts</th>
-        <th class="assumptions-text">Onerous contracts</th>
-        <th class="assumptions-text">Total</th>
-      <th class="assumptions-text"></th>
-      <th class="assumptions-text">Comparative Date</th>
-      <th class="assumptions-text">Non-onerous contracts</th>
-      <th class="assumptions-text">Onerous contracts</th>
-      <th class="assumptions-text">Total</th>
-
-
-      </thead>
-      <tbody>
-
-      <tr>
-        <td class="assumptions-text">Present value of estimates of future cash inflows</td>
-      </tr>
-        <tr>
-            <td class="assumptions-text">Present value of estimates of future cash outflows</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">- incl. claims and directly attributable expenses</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">- incl. acquisition cash flows</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Present value of cash flows</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Risk adjustment for non-financial risk</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Contractual service margin</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Insurance contract liabilities</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text"></td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Reporting Date</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Comparative Date</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Present value of estimates of future cash inflows</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Present value of estimates of future cash outflows</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">- incl. claims and directly attributable expenses</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">- incl. acquisition cash flows</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Present value of cash flows</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Risk adjustment for non-financial risk</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Contractual service margin</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Insurance contract liabilities</td>
-        </tr>
-
-
-      <tr>
-        <td class="assumptions-text"></td>
-      </tr>
-
-      </tbody>
-    </table>
-                    <hr class="mt-5 mb-5">
-
-    <table id="fresh-table" class="table">
-
-      <th class="assumptions-text">Expected release of contractual service margin</th>
-      <th class="assumptions-text">Notes</th>
-      <th class="assumptions-text">Insurance contracts</th>
-      <th class="assumptions-text">Reinsurance contracts</th>
-      </thead>
-      <tbody>
-      <tr>
-        <td class="assumptions-text">Reporting Date</td>
-      </tr>
-        <tr>
-            <td class="assumptions-text">Year 1</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Year 2</td>
-        </tr>
-        <tr>
-            <td class="assumptions-text">Total Contractual Service Margin</td>
-        </tr>
-
-
-      <tr>
-        <td class="assumptions-text"></td>
-      </tr>
-
-      </tbody>
-    </table>
-                    <hr class="mt-5 mb-5">
-    <table id="fresh-table" class="table">
-
-      <th class="assumptions-text"> Expected  derecognition of insurance acquisition cost asset</th>
-      <th class="assumptions-text">Notes</th>
-      <th class="assumptions-text">Reporting Date</th>
-        <th class="assumptions-text">Comparative Date</th>
-      </thead>
-      <tbody>
-
-      <tr>
-        <td class="assumptions-text">Year 1</td>
-      </tr>
-      <tr>
-        <td class="assumptions-text">Year 2</td>
-      </tr>
-        <tr>
-            <td class="assumptions-text">Total Acquisition cost asset</td>
-        </tr>
-
-
-
-      <tr>
-        <td class="assumptions-text"></td>
-      </tr>
-
-      </tbody>
-    </table>
+              <tr>
+                <td class="assumptions-text"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-</div>
-</div>
-</div>
 {% endblock content %} {% block scripts %}
-<script src="https://unpkg.com/bootstrap-table/dist/bootstrap-table.js"></script>
+<script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
 <script>
-    var $table = $("#fresh-table");
-
-    window.operateEvents = {
-        "click .like": function (e, value, row, index) {
-            alert("You click like icon, row: " + JSON.stringify(row));
-            console.log(value, row, index);
-        },
-        "click .edit": function (e, value, row, index) {
-            alert("You click edit icon, row: " + JSON.stringify(row));
-            console.log(value, row, index);
-        },
-        "click .remove": function (e, value, row, index) {
-            $table.bootstrapTable("remove", {
-                field: "id",
-                values: [row.id],
-            });
-        },
-    };
-
-    function operateFormatter(value, row, index) {
-        return [
-            '<a rel="tooltip" title="Like" class="table-action like" href="javascript:void(0)" title="Like">',
-            '<i class="fa fa-heart"></i>',
-            "</a>",
-            '<a rel="tooltip" title="Edit" class="table-action edit" href="javascript:void(0)" title="Edit">',
-            '<i class="fa fa-edit"></i>',
-            "</a>",
-            '<a rel="tooltip" title="Remove" class="table-action remove" href="javascript:void(0)" title="Remove">',
-            '<i class="fa fa-remove"></i>',
-            "</a>",
-        ].join("");
-    }
-
-    $(function () {
-        $table.bootstrapTable({
-            classes: "table table-hover table-striped",
-            toolbar: ".toolbar",
-
-            search: true,
-            pagination: true,
-            striped: true,
-            sortable: true,
-            height: $(window).height(),
-            pageSize: 50,
-            pageList: [25, 50, 100],
-
-            formatShowingRows: function (pageFrom, pageTo, totalRows) {
-                return "";
-            },
-            formatRecordsPerPage: function (pageNumber) {
-                return pageNumber + " rows visible";
-            },
-        });
-
-        $(window).resize(function () {
-            $table.bootstrapTable("resetView", {
-                height: $(window).height(),
-            });
-        });
+  $(document).ready( function () {
+    $('#fresh-table').DataTable({
+      scrollX: true,
+      "bInfo": false, //Dont display info e.g. "Showing 1 to 4 of 4 entries"
+      "paging": false,//Dont want paging                
+      "bPaginate": false,//Dont want paging 
     });
+} );
+
 </script>
 
 {%endblock scripts %}

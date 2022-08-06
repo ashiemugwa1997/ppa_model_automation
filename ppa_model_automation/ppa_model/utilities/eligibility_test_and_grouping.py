@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 
-
 class PAAEligibilityTestingAndGrouping:
     def __init__(self,df, loss_ratio_threshold):
         """

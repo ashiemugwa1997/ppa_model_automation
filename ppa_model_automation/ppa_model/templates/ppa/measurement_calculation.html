@@ -1,5 +1,4 @@
 {% extends "layout.html" %} {% block styles %}
-<link href="/static/assets/css/fresh-bootstrap-table.css" rel="stylesheet" />
 {% endblock styles %} {% block content %}
 <div class="row">
   <div class="col-12">
@@ -213,62 +212,6 @@
   </div>
 </div>
 {% endblock content %} {% block scripts %}
-<script src="https://unpkg.com/bootstrap-table/dist/bootstrap-table.js"></script>
 
-<script>
-  var $table = $("#fresh-table");
-  var $table2 = $("#fresh-table-2");
 
-  $(function () {
-    $table.bootstrapTable({
-      classes: "table table-striped",
-    });
-    $table2.bootstrapTable({
-      classes: "table table-striped",
-    });
-  });
-</script>
-
-{%endblock scripts %} {% comment %}
-<table id="fresh-table" class="table">
-  <thead>
-    <th></th>
-    <th data-field="2022_Jan_to_Aug" data-sortable="true">
-      2022 Jan<br />
-      to Aug
-    </th>
-    <th data-field="January_2022" data-sortable="true">January 2022</th>
-    <th data-field="February_2022" data-sortable="true">February 2022</th>
-    <th data-field="March_2022" data-sortable="true">March 2022</th>
-    <th data-field="April_2022" data-sortable="true">April 2022</th>
-    <th data-field="May_2022" data-sortable="true">May 2022</th>
-    <th data-field="June_2022" data-sortable="true">June 2022</th>
-    <th data-field="July_2022" data-sortable="true">July 2022</th>
-    <th data-field="August_2022" data-sortable="true">August 2022</th>
-  </thead>
-  <tbody>
-    <tr>
-      <td class="w-25 assumptions-text">Opening Balance</td>
-    </tr>
-    <tr>
-      <td class="w-25 assumptions-text">+ Premiums Received in the Period</td>
-    </tr>
-    <tr>
-      <td class="w-25 assumptions-text">
-        - Acquisition Costs (to premiums received in the Period
-      </td>
-    </tr>
-    <tr>
-      <td class="w-25 assumptions-text">+ Amortised Acquisition Costs</td>
-    </tr>
-    <tr>
-      <td class="w-25 assumptions-text">
-        - Insurance Revenue for coverage provided
-      </td>
-    </tr>
-    <tr>
-      <td class="w-25 assumptions-text">Closing Balance</td>
-    </tr>
-  </tbody>
-</table>
-{% endcomment %}
+{%endblock scripts %}

@@ -1,8 +1,6 @@
 from calendar import month
 import pandas as pd
 import numpy as np
-import streamlit as st
-
 
 class MonthlyResults:
     def __init__(self, df:pd.DataFrame, measurement_date: pd.Timestamp):
