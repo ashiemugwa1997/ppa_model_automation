@@ -1,6 +1,14 @@
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.db.migrations import serializer
 from django.shortcuts import render
+from .models import Upload_Doc
+import datetime as dt
+import pandas as pd
+import os
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
+# from .serializers import upload_doc_Serializer
 
 
 # class DashboardView(TemplateView):
@@ -107,3 +115,38 @@ def logout_view(request):
     logout(request)
     return render(request, 'registration/login.html')
     # Redirect to a success page.
+
+
+def Import_excel(request):
+    print('s')
+    # serializer = serializer.upload_doc_Serializer()
+    try:
+        if request.method == 'POST' and request.FILES['myfile']:
+
+            myfile = request.FILES['myfile']
+            fs = FileSystemStorage()
+            filename = fs.save(myfile.name, myfile)
+            uploaded_file_url = fs.url(filename)
+            excel_file = uploaded_file_url
+            print(excel_file)
+            client_exceldata = pd.read_excel("." + excel_file, encoding='utf-8')
+            print(type(client_exceldata))
+            dbframe = client_exceldata
+            for dbframe in dbframe.itertuples():
+                obj = Upload_Doc.objects.create(name_of_upload=uploaded_file_url, class_of_business=dbframe.Class_of_business,
+                                                name_of_policyholder=dbframe.Name_of_policyholder, surname=dbframe.Surname,
+                                                policy_number=dbframe.Policy_number, start_date=dbframe.Start_date, ending_date=dbframe.Ending_date,
+                                                expected_date_of_premium_payment=dbframe.Expected_date_of_premium_payment,
+                                                date_of_premium_payment=dbframe.Date_of_premium_payment, premium_installment=dbframe.Premium_installment,
+                                                payment_frequency=dbframe.Payment_frequency, total_premium=dbframe.Total_premium
+                                                )
+                print(type(obj))
+                obj.save()
+
+            return render(request, 'ppa/results.html', {
+                'uploaded_file_url': uploaded_file_url
+            })
+    except Exception as identifier:
+        print(identifier)
+
+    return render(request, 'ppa/results.html', {})
