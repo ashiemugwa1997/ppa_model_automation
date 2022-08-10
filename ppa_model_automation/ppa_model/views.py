@@ -15,6 +15,11 @@ def dashboard(request):
 
 @login_required(login_url='/login/')
 def add_assumptions(request):
+
+    if request.method == "POST":
+        print(request.POST)
+        return render(request, 'ppa/results.html', {})
+
     return render(request, 'ppa/add_assumptions.html', {})
 
 
