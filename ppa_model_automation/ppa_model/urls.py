@@ -23,6 +23,6 @@ urlpatterns = [
     path('disclosures', views.get_disclosures, name="disclosures"),
     path('checks', views.get_checks, name="checks"),
     path('analysis-movement', views.get_analysis_movement, name="analysis-movement"),
-    path('Import_excel', views.Import_excel, name="Import_excel"),
+    path('Import_excel', views.import_excel, name="Import_excel"),
 
 ]

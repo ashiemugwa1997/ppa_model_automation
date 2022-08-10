@@ -136,7 +136,7 @@ def logout_view(request):
     # Redirect to a success page.
 
 
-def Import_excel(request):
+def import_excel(request):
     print('s')
     # serializer = serializer.upload_doc_Serializer()
     try:
