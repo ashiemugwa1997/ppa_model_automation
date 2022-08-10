@@ -2,12 +2,15 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.db.migrations import serializer
 from django.shortcuts import render
+
+from ppa_model.datasheets.file_handler import save_file
 from .models import Upload_Doc
 import datetime as dt
 import pandas as pd
 import os
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
+from datetime import datetime
 # from .serializers import upload_doc_Serializer
 
 
@@ -25,7 +28,23 @@ def dashboard(request):
 def add_assumptions(request):
 
     if request.method == "POST":
-        print(request.POST)
+        datasheet = request.FILES['datasheet']
+        datasheet_path = 'ppa_model/datasheets/files/'+datetime.now().strftime("%Y%m%d%I%M%S%p")+datasheet.name
+        save_file(datasheet, datasheet_path)
+        # class_fields = request.POST['classFields']
+        # for field in class_fields:
+        #     assumption = Upload_Doc(
+        #         "user_id", 
+        #         "assumption_name",
+        #         field, # class name 
+        #         request.POST[field+'_discount_ratio'],
+        #         request.POST[field+'_expense_ratio'],
+        #         request.POST[field+'_loss_ratio'],
+        #         request.POST[field+'_risk_adjustment'],
+        #         request.POST[field+'_acquisition_costs'],
+        #         datetime.now().strftime("%Y%m%d%I%M%S%p"))
+
+              
         return render(request, 'ppa/results.html', {})
 
     return render(request, 'ppa/add_assumptions.html', {})

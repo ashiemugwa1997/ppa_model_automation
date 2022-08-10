@@ -948,6 +948,7 @@ class AddAssumptions extends React.Component {
                                 className="form-control text-info"
                                 type="file"
                                 id="formFile"
+                                accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                               />
                             </div>
                           </td>
