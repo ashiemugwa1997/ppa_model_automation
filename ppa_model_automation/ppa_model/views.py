@@ -1,10 +1,12 @@
+import random
+import string
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.db.migrations import serializer
 from django.shortcuts import render
 
 from ppa_model.datasheets.file_handler import save_file
-from .models import Upload_Doc
+from .models import Session, Assumptions
 import datetime as dt
 import pandas as pd
 import os
@@ -28,21 +30,48 @@ def dashboard(request):
 def add_assumptions(request):
 
     if request.method == "POST":
+        
+        class_fields = request.POST['classFields']
         datasheet = request.FILES['datasheet']
+
+        session_name = ""
+        if request.POST['session__name']:
+            session_name = request.POST['session__name']
+        else:
+            letters = string.ascii_uppercase
+            result_str = ''.join(random.choice(letters) for i in range(10))
+            session_name = result_str
+        
         datasheet_path = 'ppa_model/datasheets/files/'+datetime.now().strftime("%Y%m%d%I%M%S%p")+datasheet.name
+        user_id = request.user.id
         save_file(datasheet, datasheet_path)
-        # class_fields = request.POST['classFields']
-        # for field in class_fields:
-        #     assumption = Upload_Doc(
-        #         "user_id", 
-        #         "assumption_name",
-        #         field, # class name 
-        #         request.POST[field+'_discount_ratio'],
-        #         request.POST[field+'_expense_ratio'],
-        #         request.POST[field+'_loss_ratio'],
-        #         request.POST[field+'_risk_adjustment'],
-        #         request.POST[field+'_acquisition_costs'],
-        #         datetime.now().strftime("%Y%m%d%I%M%S%p"))
+
+        session = Session(None, session_name, user_id, datasheet_path)
+        session.save()
+        session_id = session.id
+        
+        class_fields_list = class_fields.split(",")
+        for field in class_fields_list:
+            class_name = str(field).lower()
+            discount_ratio = request.POST[class_name+'_discount_rate']
+            expense_ratio = request.POST[class_name+'_expense_ratio']
+            loss_ratio = request.POST[class_name+'_loss_ratio']
+            risk_adjustment = request.POST[class_name+'_risk_adjustment']
+            acquisition_costs = request.POST[class_name+'_acquisition_costs']
+
+            assumption = Assumptions(
+                None,
+                session_id, 
+                class_name, # class name 
+                discount_ratio,
+                expense_ratio,
+                loss_ratio,
+                risk_adjustment,
+                acquisition_costs,
+                datetime.now().strftime("%Y%m%d%I%M%S%p")
+                )
+            
+            assumption.save()
 
               
         return render(request, 'ppa/results.html', {})

@@ -1,5 +1,10 @@
 from django.db import models
 
+class Session(models.Model):
+    session_name = models.CharField(max_length=200)
+    session_user_id = models.CharField(max_length=200)
+    session_datasheet = models.CharField(max_length=400)
+    updated_at = models.DateTimeField(auto_now=True, blank=True)
 
 class Upload_Doc(models.Model):
     file = models.FileField(upload_to='ppa_model/uploads/')
@@ -22,21 +27,17 @@ class Upload_Doc(models.Model):
 
     objects = models.Manager()
 
-
-class assumptions(models.Model):
-    name_of_assumption = models.CharField(max_length=300)
-    updated = models.DateTimeField(auto_now=True, blank=True)
-    user = models.CharField(max_length=100)
+class Assumptions(models.Model):
+    session_id = models.CharField(max_length=300)
     class_of_business = models.CharField(max_length=100)
-    discount_rate = models.FloatField()
-    expense_ratio = models.FloatField()
-    loss_ratio = models.FloatField()
-    risk_adjustment = models.FloatField()
-    acquisition_costs = models.FloatField()
-    id = models.AutoField(primary_key=True)
-    objects = models.Manager()
+    discount_rate = models.CharField(max_length=100)
+    expense_ratio = models.CharField(max_length=100)
+    loss_ratio = models.CharField(max_length=100)
+    risk_adjustment = models.CharField(max_length=100)
+    acquisition_costs = models.CharField(max_length=100)
+    updated = models.DateTimeField(auto_now=True, blank=True)
 
     def __str__(self):
-        return self.name_of_assumption
+        return self.session_id
 
-    objects = models.Manager()
+    # objects = models.Manager()

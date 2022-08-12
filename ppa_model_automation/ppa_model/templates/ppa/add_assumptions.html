@@ -1,12 +1,15 @@
-{% extends "layout.html" %} {% block content %}
+{% extends "layout.html" %}
+{% block styles %}
+<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+{% endblock styles %}
+{% block content %}
 <form action="/paa/add_assumptions" encType="multipart/form-data" method="POST">
   {% csrf_token %}
 <div id="react-add-assumptions"></div>
 </form>
 {% endblock content %}
 {% block scripts %}
-<script type="text/babel" src="/static/assets/js/react/add_assumptions.js"></script>
-<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
-<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script src="/static/assets/js/add_assumptions.js"></script>
 {% endblock scripts %}
