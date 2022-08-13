@@ -10,82 +10,85 @@
         <div class="fresh-table" style="background: #bbbbe9;">
           <table id="fresh-table" class="table display nowrap" style="width:100%">
             <thead>
-              <th data-field="class_of_business" data-sortable="true">
-                Class
-                of
-                Business
-              </th>
-              <th data-field="Name_of_Policyholder" data-sortable="true">
-                Name
-                of
-                Policyholder
-              </th>
-              <th data-field="Surname" data-sortable="true">Surname</th>
-              <th data-field="Policy_Number" data-sortable="true">
-                Policy
-                Number
-              </th>
-              <th data-field="Start_Date" data-sortable="true">
-                Start Date
-              </th>
-              <th data-field="Ending_Date" data-sortable="true">
-                Ending Date
-              </th>
-              <th
-                data-field="Expected_Date_of_Premium_Payment"
-                data-sortable="true"
-              >
-                Expected
-                Date
-                of
-                Premium
-                Payment
-              </th>
-              <th data-field="Date_of_Premium_Payment" data-sortable="true">
-                Date
-                of
-                Premium
-                Payment
-              </th>
-              <th data-field="Premium" data-sortable="true">Premium</th>
-              <th data-field="Installment" data-sortable="true">Installment</th>
-              <th data-field="Payment_Frequency" data-sortable="true">
-                Payment
-                Frequency
-              </th>
-              <th data-field="total_premium" data-sortable="true">
-                Total Premium
-              </th>
-              <th data-field="Duration_in_Months" data-sortable="true">
-                Duration
-                in
-                Months
-              </th>
-              <th data-field="PV_of_Premiums" data-sortable="true">
-                PV
-                of
-                Premiums
-              </th>
-              <th data-field="PV_of_Expenses" data-sortable="true">
-                PV
-                of
-                Expenses
-              </th>
-              <th data-field="Risk_adjustment_FCFs" data-sortable="true">
-                Risk
-                adjustmentFCFs
-              </th>
-              <th data-field="Acquisition_Costs" data-sortable="true">
-                Acquisition
-                Costs
-              </th>
-              <th data-field="Combined_Loss_Ratio" data-sortable="true">
-                Combined Loss Ratio
-              </th>
-              <th data-field="Loss_Ratio" data-sortable="true">
-                Automatic PAA
-                Eligibility Test
-              </th>
+            {% for col in cfe.columns %}
+              <th data-field="{{col}}" data-sortable="true">{{col}}</th>
+              {% endfor %}
+<!--              <th data-field="class_of_business" data-sortable="true">-->
+<!--                Class-->
+<!--                of-->
+<!--                Business-->
+<!--              </th>-->
+<!--              <th data-field="Name_of_Policyholder" data-sortable="true">-->
+<!--                Name-->
+<!--                of-->
+<!--                Policyholder-->
+<!--              </th>-->
+<!--              <th data-field="Surname" data-sortable="true">Surname</th>-->
+<!--              <th data-field="Policy_Number" data-sortable="true">-->
+<!--                Policy-->
+<!--                Number-->
+<!--              </th>-->
+<!--              <th data-field="Start_Date" data-sortable="true">-->
+<!--                Start Date-->
+<!--              </th>-->
+<!--              <th data-field="Ending_Date" data-sortable="true">-->
+<!--                Ending Date-->
+<!--              </th>-->
+<!--              <th-->
+<!--                data-field="Expected_Date_of_Premium_Payment"-->
+<!--                data-sortable="true"-->
+<!--              >-->
+<!--                Expected-->
+<!--                Date-->
+<!--                of-->
+<!--                Premium-->
+<!--                Payment-->
+<!--              </th>-->
+<!--              <th data-field="Date_of_Premium_Payment" data-sortable="true">-->
+<!--                Date-->
+<!--                of-->
+<!--                Premium-->
+<!--                Payment-->
+<!--              </th>-->
+<!--              <th data-field="Premium" data-sortable="true">Premium</th>-->
+<!--              <th data-field="Installment" data-sortable="true">Installment</th>-->
+<!--              <th data-field="Payment_Frequency" data-sortable="true">-->
+<!--                Payment-->
+<!--                Frequency-->
+<!--              </th>-->
+<!--              <th data-field="total_premium" data-sortable="true">-->
+<!--                Total Premium-->
+<!--              </th>-->
+<!--              <th data-field="Duration_in_Months" data-sortable="true">-->
+<!--                Duration-->
+<!--                in-->
+<!--                Months-->
+<!--              </th>-->
+<!--              <th data-field="PV_of_Premiums" data-sortable="true">-->
+<!--                PV-->
+<!--                of-->
+<!--                Premiums-->
+<!--              </th>-->
+<!--              <th data-field="PV_of_Expenses" data-sortable="true">-->
+<!--                PV-->
+<!--                of-->
+<!--                Expenses-->
+<!--              </th>-->
+<!--              <th data-field="Risk_adjustment_FCFs" data-sortable="true">-->
+<!--                Risk-->
+<!--                adjustmentFCFs-->
+<!--              </th>-->
+<!--              <th data-field="Acquisition_Costs" data-sortable="true">-->
+<!--                Acquisition-->
+<!--                Costs-->
+<!--              </th>-->
+<!--              <th data-field="Combined_Loss_Ratio" data-sortable="true">-->
+<!--                Combined Loss Ratio-->
+<!--              </th>-->
+<!--              <th data-field="Loss_Ratio" data-sortable="true">-->
+<!--                Automatic PAA-->
+<!--                Eligibility Test-->
+<!--              </th>-->
             </thead>
             <tbody>
               <td class="assumptions-text">1</td>

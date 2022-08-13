@@ -1,4 +1,5 @@
 from django.db import models
+from .utilities import data_checks, cashflow_estimation
 
 class Session(models.Model):
     session_name = models.CharField(max_length=200)
@@ -9,6 +10,10 @@ class Session(models.Model):
     session_risk_adjustment = models.CharField(max_length=100)
     session_loss_ratio = models.CharField(max_length=100)
     updated_at = models.DateTimeField(auto_now=True, blank=True)
+
+    class Meta:
+        get_latest_by = 'updated_at'
+
 
 class Upload_Doc(models.Model):
     file = models.FileField(upload_to='ppa_model/uploads/')
@@ -30,6 +35,7 @@ class Upload_Doc(models.Model):
         return self.name_of_upload
 
     objects = models.Manager()
+
 
 class Assumptions(models.Model):
     session_id = models.CharField(max_length=300)
