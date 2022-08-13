@@ -1,15 +1,214 @@
 {% extends "layout.html" %}
 {% block styles %}
-<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+{% comment %} <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
-<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script> {% endcomment %}
 {% endblock styles %}
 {% block content %}
-<form action="/paa/add_assumptions" encType="multipart/form-data" method="POST">
+<form action="/paa/add_assumptions" enctype="multipart/form-data" method="POST">
   {% csrf_token %}
-<div id="react-add-assumptions"></div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card" style="background: #bbbbe9">
+        <div class="card-header">
+          <h5 class="card-title">Assumptions</h5>
+          <span class="card-category text-dark">
+            Upload dataset and add all relevant assumptions
+          </span>
+          <div class="d-flex mt-3">
+            <span class="card-category text-dark"></span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="text-dark"></thead>
+              <tbody>
+                <tr>
+                  <td class="assumptions-text" colspan="2">
+                    <div class="d-flex mt-3">
+                      <span class="" style="font-weight: bold">
+                        Session Name
+                      </span>
+                    </div>
+                  </td>
+                  <td
+                    class="assumptions-text"
+                    colspan="3"
+                  >
+                    <div class="">
+                        <input
+                          type="text"
+                          name="session__name"
+                          class="form-control"
+                          placeholder="Session Name"
+                        />
+                    </div>
+                  </td>
+                  <td class="assumptions-text text-center">
+                    <div class="input-group input-group-sm"></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="assumptions-text" colspan="2">
+                    <div class="d-flex mt-3">
+                      <span class="" style="font-weight: bold">
+                        Upload an Excel Spreadsheet with 3 sheets i.e
+                        SourceData, CombinedRatios and ClassOfBusiness
+                      </span>
+                    </div>
+                  </td>
+                  <td
+                    class="assumptions-text"
+                    colspan="3"
+                  >
+                  <div class="">
+                      <input
+                        name="datasheet"
+                        class="form-control text-info"
+                        type="file"
+                        id="formFile"
+                        accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                      />
+                    </div>
+                  </td>
+                  <td class="assumptions-text text-center">
+                  </td>
+                </tr>
+                <tr>
+                  <td class="assumptions-text" colspan="2">
+                    <div class="d-flex mt-3">
+                      <span class="" style="fontWeight: bold">
+                        Discount Rate
+                      </span>
+                    </div>
+                  </td>
+                  <td
+                    class="assumptions-text"
+                    colspan="3"
+                  >
+                    <div class="">
+                        <input
+                          type="text"
+                          name="discount_rate"
+                          class="form-control"
+                          placeholder="Discount Rate"
+                        />
+                    </div>
+                  </td>
+                  <td class="assumptions-text text-center">
+                    <div class="input-group input-group-sm"></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="assumptions-text" colspan="2">
+                    <div class="d-flex mt-3">
+                      <span class="" style="fontWeight: bold">
+                        Measurement Date
+                      </span>
+                    </div>
+                  </td>
+                  <td
+                    class="assumptions-text"
+                    colspan="3"
+                  >
+                    <div class="">
+                        <input
+                          type="text"
+                          name="measurement_date"
+                          class="form-control"
+                          placeholder="Measurement Date"
+                        />
+                    </div>
+                  </td>
+                  <td class="assumptions-text text-center">
+                    <div class="input-group input-group-sm"></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="assumptions-text" colspan="2">
+                    <div class="d-flex mt-3">
+                      <span class="" style="fontWeight: bold">
+                        Risk Adjustment
+                      </span>
+                    </div>
+                  </td>
+                  <td
+                    class="assumptions-text"
+                    colspan="3"
+                  >
+                    <div class="">
+                        <input
+                          type="text"
+                          name="risk_adjustment"
+                          class="form-control"
+                          placeholder="Risk Adjustment"
+                        />
+                    </div>
+                  </td>
+                  <td class="assumptions-text text-center">
+                    <div class="input-group input-group-sm"></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="assumptions-text" colspan="2">
+                    <div class="d-flex mt-3">
+                      <span class="" style="fontWeight: bold">
+                        Loss Ratio
+                      </span>
+                    </div>
+                  </td>
+                  <td
+                    class="assumptions-text"
+                    colspan="3"
+                  >
+                    <div class="">
+                        <input
+                          type="text"
+                          name="loss_ratio"
+                          class="form-control"
+                          placeholder="Loss Ratio"
+                        />
+                    </div>
+                  </td>
+                  <td class="assumptions-text text-center">
+                    <div class="input-group input-group-sm"></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="assumptions-text" colspan="2">
+                    <div class="d-flex mt-3">
+                      <span class="" style="fontWeight: bold">
+                        
+                      </span>
+                    </div>
+                  </td>
+                  <td
+                    class="assumptions-text"
+                    colspan="3"
+                  >
+                   <button
+                      type="submit"
+                      class="btn"
+                      style="background: #f99400"
+                    >
+                      <i class="nc-icon nc-send"></i>
+                      Submit
+                    </button>
+                  </td>
+                  <td class="assumptions-text text-center">
+                    <div class="input-group input-group-sm"></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </form>
 {% endblock content %}
 {% block scripts %}
-<script src="/static/assets/js/add_assumptions.js"></script>
+{% comment %} <script src="/static/assets/js/add_assumptions.js"></script> {% endcomment %}
 {% endblock scripts %}

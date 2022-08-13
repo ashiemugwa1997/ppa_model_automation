@@ -27,7 +27,7 @@ def dashboard(request):
 
 
 @login_required(login_url='/login/')
-def add_assumptions(request):
+def add_assumptions_copy(request):
 
     if request.method == "POST":
         
@@ -78,7 +78,34 @@ def add_assumptions(request):
 
     return render(request, 'ppa/add_assumptions.html', {})
 
+@login_required(login_url='/login/')
+def add_assumptions(request):
+    if request.method == "POST":
+        datasheet = request.FILES['datasheet']
+        discount_rate = request.POST['discount_rate']
+        measurement_date = request.POST['measurement_date']
+        risk_adjustment = request.POST['risk_adjustment']
+        loss_ratio = request.POST['loss_ratio']
 
+        session_name = ""
+        if request.POST['session__name']:
+            session_name = request.POST['session__name']
+        else:
+            letters = string.ascii_uppercase
+            result_str = ''.join(random.choice(letters) for i in range(10))
+            session_name = result_str
+
+        datasheet_path = 'ppa_model/datasheets/files/'+datetime.now().strftime("%Y%m%d%I%M%S%p")+datasheet.name
+        user_id = request.user.id
+        save_file(datasheet, datasheet_path)
+
+        session = Session(None, session_name, user_id, datasheet_path, discount_rate, measurement_date, risk_adjustment, loss_ratio)
+        session.save()
+
+        return render(request, 'ppa/results.html', {})
+
+
+    return render(request, 'ppa/add_assumptions.html', {})
 @login_required(login_url='/login/')
 def aggregated_results(request):
     return render(request, 'ppa/aggregated_results.html', {})

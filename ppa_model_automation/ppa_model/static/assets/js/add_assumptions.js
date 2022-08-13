@@ -23,12 +23,12 @@ var AddAssumptions = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (AddAssumptions.__proto__ || Object.getPrototypeOf(AddAssumptions)).call(this, props));
 
     _this.newClassModalOpen = function () {
-      var myModal = new bootstrap.Modal(document.getElementById('newClassModal'), {});
+      var myModal = new bootstrap.Modal(document.getElementById("newClassModal"), {});
       myModal.show();
     };
 
     _this.newClassModalClose = function () {
-      var myModal = new bootstrap.Modal(document.getElementById('newClassModal'), {});
+      var myModal = new bootstrap.Modal(document.getElementById("newClassModal"), {});
       myModal.hide();
     };
 
@@ -283,11 +283,6 @@ var AddAssumptions = function (_React$Component) {
           React.createElement(
             "div",
             { className: "col-12" },
-            React.createElement("input", {
-              type: "hidden",
-              name: "classFields",
-              value: this.state.businessClassFields
-            }),
             React.createElement(
               "div",
               { className: "card", style: { background: "#bbbbe9" } },
@@ -307,20 +302,7 @@ var AddAssumptions = function (_React$Component) {
                 React.createElement(
                   "div",
                   { className: "d-flex mt-3" },
-                  React.createElement("span", { className: "card-category text-dark" }),
-                  React.createElement(
-                    "div",
-                    {
-                      className: "input-group",
-                      style: { marginRight: "auto", width: "25%" }
-                    },
-                    React.createElement("input", {
-                      type: "text",
-                      name: "session__name",
-                      className: "form-control",
-                      placeholder: "Session Name"
-                    })
-                  )
+                  React.createElement("span", { className: "card-category text-dark" })
                 )
               ),
               React.createElement(
@@ -332,56 +314,7 @@ var AddAssumptions = function (_React$Component) {
                   React.createElement(
                     "table",
                     { className: "table" },
-                    React.createElement(
-                      "thead",
-                      { className: "text-dark" },
-                      React.createElement(
-                        "tr",
-                        null,
-                        React.createElement(
-                          "th",
-                          null,
-                          "Business ",
-                          React.createElement("br", null),
-                          "Class"
-                        ),
-                        React.createElement(
-                          "th",
-                          null,
-                          "Discount ",
-                          React.createElement("br", null),
-                          "Rate"
-                        ),
-                        React.createElement(
-                          "th",
-                          null,
-                          "Expense ",
-                          React.createElement("br", null),
-                          "Ratio"
-                        ),
-                        React.createElement(
-                          "th",
-                          null,
-                          "Loss ",
-                          React.createElement("br", null),
-                          "Ratio"
-                        ),
-                        React.createElement(
-                          "th",
-                          null,
-                          "Risk ",
-                          React.createElement("br", null),
-                          "Adjustment"
-                        ),
-                        React.createElement(
-                          "th",
-                          null,
-                          "Acquisistion ",
-                          React.createElement("br", null),
-                          "costs (Commissions)"
-                        )
-                      )
-                    ),
+                    React.createElement("thead", { className: "text-dark" }),
                     React.createElement(
                       "tbody",
                       null,
@@ -390,911 +323,40 @@ var AddAssumptions = function (_React$Component) {
                         null,
                         React.createElement(
                           "td",
-                          { className: "assumptions-text" },
-                          "Accident"
-                        ),
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text text-center" },
+                          { className: "assumptions-text", colSpan: "2" },
                           React.createElement(
                             "div",
-                            { className: "input-group input-group-sm" },
-                            React.createElement("input", {
-                              type: "number",
-                              name: "accident_discount_rate",
-                              className: "form-control",
-                              placeholder: "e.g 0.5",
-                              "aria-label": "",
-                              "aria-describedby": ""
-                            }),
+                            { className: "d-flex mt-3" },
                             React.createElement(
                               "span",
-                              {
-                                className: "input-group-text",
-                                id: "inputGroup-sizing-sm"
-                              },
-                              "%"
+                              { className: "", style: { fontWeight: "bold" } },
+                              "Session Name"
                             )
                           )
                         ),
                         React.createElement(
                           "td",
-                          { className: "assumptions-text text-center" },
+                          {
+                            className: "assumptions-text",
+                            colSpan: "3"
+                          },
                           React.createElement(
                             "div",
-                            { className: "input-group input-group-sm" },
+                            { className: "" },
                             React.createElement("input", {
-                              type: "number",
-                              name: "accident_expense_ratio",
+                              type: "text",
+                              name: "session__name",
                               className: "form-control",
-                              placeholder: "e.g 0.5",
-                              "aria-label": "",
-                              "aria-describedby": ""
-                            }),
-                            React.createElement(
-                              "span",
-                              {
-                                className: "input-group-text",
-                                id: "inputGroup-sizing-sm"
-                              },
-                              "%"
-                            )
+                              placeholder: "Session Name"
+                            })
                           )
                         ),
                         React.createElement(
                           "td",
                           { className: "assumptions-text text-center" },
-                          React.createElement(
-                            "div",
-                            { className: "input-group input-group-sm" },
-                            React.createElement("input", {
-                              type: "number",
-                              name: "accident_loss_ratio",
-                              className: "form-control",
-                              placeholder: "e.g 0.5",
-                              "aria-label": "",
-                              "aria-describedby": ""
-                            }),
-                            React.createElement(
-                              "span",
-                              {
-                                className: "input-group-text",
-                                id: "inputGroup-sizing-sm"
-                              },
-                              "%"
-                            )
-                          )
-                        ),
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text text-center" },
-                          React.createElement(
-                            "div",
-                            { className: "input-group input-group-sm" },
-                            React.createElement("input", {
-                              type: "number",
-                              name: "accident_risk_adjustment",
-                              className: "form-control",
-                              placeholder: "e.g 0.5",
-                              "aria-label": "",
-                              "aria-describedby": ""
-                            }),
-                            React.createElement(
-                              "span",
-                              {
-                                className: "input-group-text",
-                                id: "inputGroup-sizing-sm"
-                              },
-                              "%"
-                            )
-                          )
-                        ),
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text text-center" },
-                          React.createElement(
-                            "div",
-                            { className: "input-group input-group-sm" },
-                            React.createElement("input", {
-                              type: "number",
-                              name: "accident_acquisition_costs",
-                              className: "form-control",
-                              placeholder: "e.g 0.5",
-                              "aria-label": "",
-                              "aria-describedby": ""
-                            }),
-                            React.createElement(
-                              "span",
-                              {
-                                className: "input-group-text",
-                                id: "inputGroup-sizing-sm"
-                              },
-                              "%"
-                            )
-                          )
+                          React.createElement("div", { className: "input-group input-group-sm" })
                         )
                       ),
-                      React.createElement(
-                        "tr",
-                        null,
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text" },
-                          "Engineering"
-                        ),
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text text-center" },
-                          React.createElement(
-                            "div",
-                            { className: "input-group input-group-sm" },
-                            React.createElement("input", {
-                              type: "number",
-                              name: "engineering_discount_rate",
-                              className: "form-control",
-                              placeholder: "e.g 0.5",
-                              "aria-label": "",
-                              "aria-describedby": ""
-                            }),
-                            React.createElement(
-                              "span",
-                              {
-                                className: "input-group-text",
-                                id: "inputGroup-sizing-sm"
-                              },
-                              "%"
-                            )
-                          )
-                        ),
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text text-center" },
-                          React.createElement(
-                            "div",
-                            { className: "input-group input-group-sm" },
-                            React.createElement("input", {
-                              type: "number",
-                              name: "engineering_expense_ratio",
-                              className: "form-control",
-                              placeholder: "e.g 0.5",
-                              "aria-label": "",
-                              "aria-describedby": ""
-                            }),
-                            React.createElement(
-                              "span",
-                              {
-                                className: "input-group-text",
-                                id: "inputGroup-sizing-sm"
-                              },
-                              "%"
-                            )
-                          )
-                        ),
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text text-center" },
-                          React.createElement(
-                            "div",
-                            { className: "input-group input-group-sm" },
-                            React.createElement("input", {
-                              type: "number",
-                              name: "engineering_loss_ratio",
-                              className: "form-control",
-                              placeholder: "e.g 0.5",
-                              "aria-label": "",
-                              "aria-describedby": ""
-                            }),
-                            React.createElement(
-                              "span",
-                              {
-                                className: "input-group-text",
-                                id: "inputGroup-sizing-sm"
-                              },
-                              "%"
-                            )
-                          )
-                        ),
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text text-center" },
-                          React.createElement(
-                            "div",
-                            { className: "input-group input-group-sm" },
-                            React.createElement("input", {
-                              type: "number",
-                              name: "engineering_risk_adjustment",
-                              className: "form-control",
-                              placeholder: "e.g 0.5",
-                              "aria-label": "",
-                              "aria-describedby": ""
-                            }),
-                            React.createElement(
-                              "span",
-                              {
-                                className: "input-group-text",
-                                id: "inputGroup-sizing-sm"
-                              },
-                              "%"
-                            )
-                          )
-                        ),
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text text-center" },
-                          React.createElement(
-                            "div",
-                            { className: "input-group input-group-sm" },
-                            React.createElement("input", {
-                              type: "number",
-                              name: "engineering_acquisition_costs",
-                              className: "form-control",
-                              placeholder: "e.g 0.5",
-                              "aria-label": "",
-                              "aria-describedby": ""
-                            }),
-                            React.createElement(
-                              "span",
-                              {
-                                className: "input-group-text",
-                                id: "inputGroup-sizing-sm"
-                              },
-                              "%"
-                            )
-                          )
-                        )
-                      ),
-                      React.createElement(
-                        "tr",
-                        null,
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text" },
-                          "Fire"
-                        ),
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text text-center" },
-                          React.createElement(
-                            "div",
-                            { className: "input-group input-group-sm" },
-                            React.createElement("input", {
-                              type: "number",
-                              name: "fire_discount_rate",
-                              className: "form-control",
-                              placeholder: "e.g 0.5",
-                              "aria-label": "",
-                              "aria-describedby": ""
-                            }),
-                            React.createElement(
-                              "span",
-                              {
-                                className: "input-group-text",
-                                id: "inputGroup-sizing-sm"
-                              },
-                              "%"
-                            )
-                          )
-                        ),
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text text-center" },
-                          React.createElement(
-                            "div",
-                            { className: "input-group input-group-sm" },
-                            React.createElement("input", {
-                              type: "number",
-                              name: "fire_expense_ratio",
-                              className: "form-control",
-                              placeholder: "e.g 0.5",
-                              "aria-label": "",
-                              "aria-describedby": ""
-                            }),
-                            React.createElement(
-                              "span",
-                              {
-                                className: "input-group-text",
-                                id: "inputGroup-sizing-sm"
-                              },
-                              "%"
-                            )
-                          )
-                        ),
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text text-center" },
-                          React.createElement(
-                            "div",
-                            { className: "input-group input-group-sm" },
-                            React.createElement("input", {
-                              type: "number",
-                              name: "fire_loss_ratio",
-                              className: "form-control",
-                              placeholder: "e.g 0.5",
-                              "aria-label": "",
-                              "aria-describedby": ""
-                            }),
-                            React.createElement(
-                              "span",
-                              {
-                                className: "input-group-text",
-                                id: "inputGroup-sizing-sm"
-                              },
-                              "%"
-                            )
-                          )
-                        ),
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text text-center" },
-                          React.createElement(
-                            "div",
-                            { className: "input-group input-group-sm" },
-                            React.createElement("input", {
-                              type: "number",
-                              name: "fire_risk_adjustment",
-                              className: "form-control",
-                              placeholder: "e.g 0.5",
-                              "aria-label": "",
-                              "aria-describedby": ""
-                            }),
-                            React.createElement(
-                              "span",
-                              {
-                                className: "input-group-text",
-                                id: "inputGroup-sizing-sm"
-                              },
-                              "%"
-                            )
-                          )
-                        ),
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text text-center" },
-                          React.createElement(
-                            "div",
-                            { className: "input-group input-group-sm" },
-                            React.createElement("input", {
-                              type: "number",
-                              name: "fire_acquisition_costs",
-                              className: "form-control",
-                              placeholder: "e.g 0.5",
-                              "aria-label": "",
-                              "aria-describedby": ""
-                            }),
-                            React.createElement(
-                              "span",
-                              {
-                                className: "input-group-text",
-                                id: "inputGroup-sizing-sm"
-                              },
-                              "%"
-                            )
-                          )
-                        )
-                      ),
-                      React.createElement(
-                        "tr",
-                        null,
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text" },
-                          "Motor"
-                        ),
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text text-center" },
-                          React.createElement(
-                            "div",
-                            { className: "input-group input-group-sm" },
-                            React.createElement("input", {
-                              type: "number",
-                              name: "motor_discount_rate",
-                              className: "form-control",
-                              placeholder: "e.g 0.5",
-                              "aria-label": "",
-                              "aria-describedby": ""
-                            }),
-                            React.createElement(
-                              "span",
-                              {
-                                className: "input-group-text",
-                                id: "inputGroup-sizing-sm"
-                              },
-                              "%"
-                            )
-                          )
-                        ),
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text text-center" },
-                          React.createElement(
-                            "div",
-                            { className: "input-group input-group-sm" },
-                            React.createElement("input", {
-                              type: "number",
-                              name: "motor_expense_ratio",
-                              className: "form-control",
-                              placeholder: "e.g 0.5",
-                              "aria-label": "",
-                              "aria-describedby": ""
-                            }),
-                            React.createElement(
-                              "span",
-                              {
-                                className: "input-group-text",
-                                id: "inputGroup-sizing-sm"
-                              },
-                              "%"
-                            )
-                          )
-                        ),
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text text-center" },
-                          React.createElement(
-                            "div",
-                            { className: "input-group input-group-sm" },
-                            React.createElement("input", {
-                              type: "number",
-                              name: "motor_loss_ratio",
-                              className: "form-control",
-                              placeholder: "e.g 0.5",
-                              "aria-label": "",
-                              "aria-describedby": ""
-                            }),
-                            React.createElement(
-                              "span",
-                              {
-                                className: "input-group-text",
-                                id: "inputGroup-sizing-sm"
-                              },
-                              "%"
-                            )
-                          )
-                        ),
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text text-center" },
-                          React.createElement(
-                            "div",
-                            { className: "input-group input-group-sm" },
-                            React.createElement("input", {
-                              type: "number",
-                              name: "motor_risk_adjustment",
-                              className: "form-control",
-                              placeholder: "e.g 0.5",
-                              "aria-label": "",
-                              "aria-describedby": ""
-                            }),
-                            React.createElement(
-                              "span",
-                              {
-                                className: "input-group-text",
-                                id: "inputGroup-sizing-sm"
-                              },
-                              "%"
-                            )
-                          )
-                        ),
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text text-center" },
-                          React.createElement(
-                            "div",
-                            { className: "input-group input-group-sm" },
-                            React.createElement("input", {
-                              type: "number",
-                              name: "motor_acquisition_costs",
-                              className: "form-control",
-                              placeholder: "e.g 0.5",
-                              "aria-label": "",
-                              "aria-describedby": ""
-                            }),
-                            React.createElement(
-                              "span",
-                              {
-                                className: "input-group-text",
-                                id: "inputGroup-sizing-sm"
-                              },
-                              "%"
-                            )
-                          )
-                        )
-                      ),
-                      React.createElement(
-                        "tr",
-                        null,
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text" },
-                          "Drugs"
-                        ),
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text text-center" },
-                          React.createElement(
-                            "div",
-                            { className: "input-group input-group-sm" },
-                            React.createElement("input", {
-                              type: "number",
-                              name: "drugs_discount_rate",
-                              className: "form-control",
-                              placeholder: "e.g 0.5",
-                              "aria-label": "",
-                              "aria-describedby": ""
-                            }),
-                            React.createElement(
-                              "span",
-                              {
-                                className: "input-group-text",
-                                id: "inputGroup-sizing-sm"
-                              },
-                              "%"
-                            )
-                          )
-                        ),
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text text-center" },
-                          React.createElement(
-                            "div",
-                            { className: "input-group input-group-sm" },
-                            React.createElement("input", {
-                              type: "number",
-                              name: "drugs_expense_ratio",
-                              className: "form-control",
-                              placeholder: "e.g 0.5",
-                              "aria-label": "",
-                              "aria-describedby": ""
-                            }),
-                            React.createElement(
-                              "span",
-                              {
-                                className: "input-group-text",
-                                id: "inputGroup-sizing-sm"
-                              },
-                              "%"
-                            )
-                          )
-                        ),
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text text-center" },
-                          React.createElement(
-                            "div",
-                            { className: "input-group input-group-sm" },
-                            React.createElement("input", {
-                              type: "number",
-                              name: "drugs_loss_ratio",
-                              className: "form-control",
-                              placeholder: "e.g 0.5",
-                              "aria-label": "",
-                              "aria-describedby": ""
-                            }),
-                            React.createElement(
-                              "span",
-                              {
-                                className: "input-group-text",
-                                id: "inputGroup-sizing-sm"
-                              },
-                              "%"
-                            )
-                          )
-                        ),
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text text-center" },
-                          React.createElement(
-                            "div",
-                            { className: "input-group input-group-sm" },
-                            React.createElement("input", {
-                              type: "number",
-                              name: "drugs_risk_adjustment",
-                              className: "form-control",
-                              placeholder: "e.g 0.5",
-                              "aria-label": "",
-                              "aria-describedby": ""
-                            }),
-                            React.createElement(
-                              "span",
-                              {
-                                className: "input-group-text",
-                                id: "inputGroup-sizing-sm"
-                              },
-                              "%"
-                            )
-                          )
-                        ),
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text text-center" },
-                          React.createElement(
-                            "div",
-                            { className: "input-group input-group-sm" },
-                            React.createElement("input", {
-                              type: "number",
-                              name: "drugs_acquisition_costs",
-                              className: "form-control",
-                              placeholder: "e.g 0.5",
-                              "aria-label": "",
-                              "aria-describedby": ""
-                            }),
-                            React.createElement(
-                              "span",
-                              {
-                                className: "input-group-text",
-                                id: "inputGroup-sizing-sm"
-                              },
-                              "%"
-                            )
-                          )
-                        )
-                      ),
-                      React.createElement(
-                        "tr",
-                        null,
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text" },
-                          "Aviation"
-                        ),
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text text-center" },
-                          React.createElement(
-                            "div",
-                            { className: "input-group input-group-sm" },
-                            React.createElement("input", {
-                              type: "number",
-                              name: "aviation_discount_rate",
-                              className: "form-control",
-                              placeholder: "e.g 0.5",
-                              "aria-label": "",
-                              "aria-describedby": ""
-                            }),
-                            React.createElement(
-                              "span",
-                              {
-                                className: "input-group-text",
-                                id: "inputGroup-sizing-sm"
-                              },
-                              "%"
-                            )
-                          )
-                        ),
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text text-center" },
-                          React.createElement(
-                            "div",
-                            { className: "input-group input-group-sm" },
-                            React.createElement("input", {
-                              type: "number",
-                              name: "aviation_expense_ratio",
-                              className: "form-control",
-                              placeholder: "e.g 0.5",
-                              "aria-label": "",
-                              "aria-describedby": ""
-                            }),
-                            React.createElement(
-                              "span",
-                              {
-                                className: "input-group-text",
-                                id: "inputGroup-sizing-sm"
-                              },
-                              "%"
-                            )
-                          )
-                        ),
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text text-center" },
-                          React.createElement(
-                            "div",
-                            { className: "input-group input-group-sm" },
-                            React.createElement("input", {
-                              type: "number",
-                              name: "aviation_loss_ratio",
-                              className: "form-control",
-                              placeholder: "e.g 0.5",
-                              "aria-label": "",
-                              "aria-describedby": ""
-                            }),
-                            React.createElement(
-                              "span",
-                              {
-                                className: "input-group-text",
-                                id: "inputGroup-sizing-sm"
-                              },
-                              "%"
-                            )
-                          )
-                        ),
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text text-center" },
-                          React.createElement(
-                            "div",
-                            { className: "input-group input-group-sm" },
-                            React.createElement("input", {
-                              type: "number",
-                              name: "aviation_risk_adjustment",
-                              className: "form-control",
-                              placeholder: "e.g 0.5",
-                              "aria-label": "",
-                              "aria-describedby": ""
-                            }),
-                            React.createElement(
-                              "span",
-                              {
-                                className: "input-group-text",
-                                id: "inputGroup-sizing-sm"
-                              },
-                              "%"
-                            )
-                          )
-                        ),
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text text-center" },
-                          React.createElement(
-                            "div",
-                            { className: "input-group input-group-sm" },
-                            React.createElement("input", {
-                              type: "number",
-                              name: "aviation_acquisition_costs",
-                              className: "form-control",
-                              placeholder: "e.g 0.5",
-                              "aria-label": "",
-                              "aria-describedby": ""
-                            }),
-                            React.createElement(
-                              "span",
-                              {
-                                className: "input-group-text",
-                                id: "inputGroup-sizing-sm"
-                              },
-                              "%"
-                            )
-                          )
-                        )
-                      ),
-                      displayBusinessClassList.length !== 0 ? displayBusinessClassList.map(function (element) {
-                        return React.createElement(
-                          "tr",
-                          null,
-                          React.createElement(
-                            "td",
-                            { className: "assumptions-text" },
-                            element.businessClassName
-                          ),
-                          React.createElement(
-                            "td",
-                            { className: "assumptions-text text-center" },
-                            React.createElement(
-                              "div",
-                              { className: "input-group input-group-sm" },
-                              React.createElement("input", {
-                                type: "number",
-                                name: element.businessClassName.replace(/\s/g, "").toLowerCase() + "_discount_rate",
-                                value: element.discountRate,
-                                className: "form-control",
-                                placeholder: "e.g 0.5",
-                                "aria-label": "",
-                                "aria-describedby": ""
-                              }),
-                              React.createElement(
-                                "span",
-                                {
-                                  className: "input-group-text",
-                                  id: "inputGroup-sizing-sm"
-                                },
-                                "%"
-                              )
-                            )
-                          ),
-                          React.createElement(
-                            "td",
-                            { className: "assumptions-text text-center" },
-                            React.createElement(
-                              "div",
-                              { className: "input-group input-group-sm" },
-                              React.createElement("input", {
-                                type: "number",
-                                name: element.businessClassName.replace(/\s/g, "").toLowerCase() + "_expense_ratio",
-                                value: element.expenseRatio,
-                                className: "form-control",
-                                placeholder: "e.g 0.5",
-                                "aria-label": "",
-                                "aria-describedby": ""
-                              }),
-                              React.createElement(
-                                "span",
-                                {
-                                  className: "input-group-text",
-                                  id: "inputGroup-sizing-sm"
-                                },
-                                "%"
-                              )
-                            )
-                          ),
-                          React.createElement(
-                            "td",
-                            { className: "assumptions-text text-center" },
-                            React.createElement(
-                              "div",
-                              { className: "input-group input-group-sm" },
-                              React.createElement("input", {
-                                type: "number",
-                                name: element.businessClassName.replace(/\s/g, "").toLowerCase() + "_loss_ratio",
-                                value: element.lossRatio,
-                                className: "form-control",
-                                placeholder: "e.g 0.5",
-                                "aria-label": "",
-                                "aria-describedby": ""
-                              }),
-                              React.createElement(
-                                "span",
-                                {
-                                  className: "input-group-text",
-                                  id: "inputGroup-sizing-sm"
-                                },
-                                "%"
-                              )
-                            )
-                          ),
-                          React.createElement(
-                            "td",
-                            { className: "assumptions-text text-center" },
-                            React.createElement(
-                              "div",
-                              { className: "input-group input-group-sm" },
-                              React.createElement("input", {
-                                type: "number",
-                                name: element.businessClassName.replace(/\s/g, "").toLowerCase() + "_risk_adjustment",
-                                value: element.riskAdjustment,
-                                className: "form-control",
-                                placeholder: "e.g 0.5",
-                                "aria-label": "",
-                                "aria-describedby": ""
-                              }),
-                              React.createElement(
-                                "span",
-                                {
-                                  className: "input-group-text",
-                                  id: "inputGroup-sizing-sm"
-                                },
-                                "%"
-                              )
-                            )
-                          ),
-                          React.createElement(
-                            "td",
-                            { className: "assumptions-text text-center" },
-                            React.createElement(
-                              "div",
-                              { className: "input-group input-group-sm" },
-                              React.createElement("input", {
-                                type: "number",
-                                name: element.businessClassName.replace(/\s/g, "").toLowerCase() + "_acquisition_costs",
-                                value: element.acquisitionCosts,
-                                className: "form-control",
-                                placeholder: "e.g 0.5",
-                                "aria-label": "",
-                                "aria-describedby": ""
-                              }),
-                              React.createElement(
-                                "span",
-                                {
-                                  className: "input-group-text",
-                                  id: "inputGroup-sizing-sm"
-                                },
-                                "%"
-                              )
-                            )
-                          )
-                        );
-                      }) : null,
                       React.createElement(
                         "tr",
                         null,
@@ -1302,46 +364,21 @@ var AddAssumptions = function (_React$Component) {
                           "td",
                           { className: "assumptions-text", colSpan: "2" },
                           React.createElement(
-                            "button",
-                            {
-                              type: "button",
-                              className: "btn btn-neutral mr-2",
-                              onClick: this.newClassModalOpen,
-                              databstoggle: "modal",
-                              databstarget: "#newClassModal"
-                            },
-                            React.createElement("i", { className: "nc-icon nc-simple-add" }),
-                            "New Class"
+                            "div",
+                            { className: "d-flex mt-3" },
+                            React.createElement(
+                              "span",
+                              { className: "", style: { fontWeight: "bold" } },
+                              "Upload an Excel Spreadsheet with 3 sheets i.e SourceData, CombinedRatios and ClassOfBusiness"
+                            )
                           )
                         ),
-                        React.createElement("td", { className: "assumptions-text text-center" }),
-                        React.createElement("td", { className: "assumptions-text text-center" }),
-                        React.createElement("td", { className: "assumptions-text text-center" }),
-                        React.createElement("td", { className: "assumptions-text text-center" })
-                      ),
-                      React.createElement(
-                        "tr",
-                        null,
                         React.createElement(
                           "td",
                           {
                             className: "assumptions-text",
-                            style: { fontWeight: "bold" }
+                            colSpan: "3"
                           },
-                          "Actions"
-                        ),
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text text-right" },
-                          React.createElement(
-                            "span",
-                            { className: "", style: { fontWeight: "bold" } },
-                            "Upload Datasheet"
-                          )
-                        ),
-                        React.createElement(
-                          "td",
-                          { className: "assumptions-text text-left" },
                           React.createElement(
                             "div",
                             { className: "" },
@@ -1354,17 +391,187 @@ var AddAssumptions = function (_React$Component) {
                             })
                           )
                         ),
+                        React.createElement("td", { className: "assumptions-text text-center" })
+                      ),
+                      React.createElement(
+                        "tr",
+                        null,
+                        React.createElement(
+                          "td",
+                          { className: "assumptions-text", colSpan: "2" },
+                          React.createElement(
+                            "div",
+                            { className: "d-flex mt-3" },
+                            React.createElement(
+                              "span",
+                              { className: "", style: { fontWeight: "bold" } },
+                              "Discount Rate"
+                            )
+                          )
+                        ),
                         React.createElement(
                           "td",
                           {
-                            className: "assumptions-text text-center",
-                            colSpan: "2"
+                            className: "assumptions-text",
+                            colSpan: "3"
+                          },
+                          React.createElement(
+                            "div",
+                            { className: "" },
+                            React.createElement("input", {
+                              type: "text",
+                              name: "discount_rate",
+                              className: "form-control",
+                              placeholder: "Discount Rate"
+                            })
+                          )
+                        ),
+                        React.createElement(
+                          "td",
+                          { className: "assumptions-text text-center" },
+                          React.createElement("div", { className: "input-group input-group-sm" })
+                        )
+                      ),
+                      React.createElement(
+                        "tr",
+                        null,
+                        React.createElement(
+                          "td",
+                          { className: "assumptions-text", colSpan: "2" },
+                          React.createElement(
+                            "div",
+                            { className: "d-flex mt-3" },
+                            React.createElement(
+                              "span",
+                              { className: "", style: { fontWeight: "bold" } },
+                              "Measurement Date"
+                            )
+                          )
+                        ),
+                        React.createElement(
+                          "td",
+                          {
+                            className: "assumptions-text",
+                            colSpan: "3"
+                          },
+                          React.createElement(
+                            "div",
+                            { className: "" },
+                            React.createElement("input", {
+                              type: "text",
+                              name: "measurement_date",
+                              className: "form-control",
+                              placeholder: "Measurement Date"
+                            })
+                          )
+                        ),
+                        React.createElement(
+                          "td",
+                          { className: "assumptions-text text-center" },
+                          React.createElement("div", { className: "input-group input-group-sm" })
+                        )
+                      ),
+                      React.createElement(
+                        "tr",
+                        null,
+                        React.createElement(
+                          "td",
+                          { className: "assumptions-text", colSpan: "2" },
+                          React.createElement(
+                            "div",
+                            { className: "d-flex mt-3" },
+                            React.createElement(
+                              "span",
+                              { className: "", style: { fontWeight: "bold" } },
+                              "Risk Adjustment"
+                            )
+                          )
+                        ),
+                        React.createElement(
+                          "td",
+                          {
+                            className: "assumptions-text",
+                            colSpan: "3"
+                          },
+                          React.createElement(
+                            "div",
+                            { className: "" },
+                            React.createElement("input", {
+                              type: "text",
+                              name: "risk_adjustment",
+                              className: "form-control",
+                              placeholder: "Risk Adjustment"
+                            })
+                          )
+                        ),
+                        React.createElement(
+                          "td",
+                          { className: "assumptions-text text-center" },
+                          React.createElement("div", { className: "input-group input-group-sm" })
+                        )
+                      ),
+                      React.createElement(
+                        "tr",
+                        null,
+                        React.createElement(
+                          "td",
+                          { className: "assumptions-text", colSpan: "2" },
+                          React.createElement(
+                            "div",
+                            { className: "d-flex mt-3" },
+                            React.createElement(
+                              "span",
+                              { className: "", style: { fontWeight: "bold" } },
+                              "Loss Ratio"
+                            )
+                          )
+                        ),
+                        React.createElement(
+                          "td",
+                          {
+                            className: "assumptions-text",
+                            colSpan: "3"
+                          },
+                          React.createElement(
+                            "div",
+                            { className: "" },
+                            React.createElement("input", {
+                              type: "text",
+                              name: "loss_ratio",
+                              className: "form-control",
+                              placeholder: "Loss Ratio"
+                            })
+                          )
+                        ),
+                        React.createElement(
+                          "td",
+                          { className: "assumptions-text text-center" },
+                          React.createElement("div", { className: "input-group input-group-sm" })
+                        )
+                      ),
+                      React.createElement(
+                        "tr",
+                        null,
+                        React.createElement(
+                          "td",
+                          { className: "assumptions-text", colSpan: "2" },
+                          React.createElement(
+                            "div",
+                            { className: "d-flex mt-3" },
+                            React.createElement("span", { className: "", style: { fontWeight: "bold" } })
+                          )
+                        ),
+                        React.createElement(
+                          "td",
+                          {
+                            className: "assumptions-text",
+                            colSpan: "3"
                           },
                           React.createElement(
                             "button",
                             {
                               type: "submit",
-                              className: "btn mr-2",
+                              className: "btn",
                               style: { background: "#f99400" }
                             },
                             React.createElement("i", { className: "nc-icon nc-send" }),

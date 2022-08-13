@@ -1,0 +1,730 @@
+                      <tr>
+                        <td className="assumptions-text">Accident</td>
+                        <td className="assumptions-text text-center">
+                          <div className="input-group input-group-sm">
+                            <input
+                              type="number"
+                              name="accident_discount_rate"
+                              className="form-control"
+                              placeholder="e.g 0.5"
+                              aria-label=""
+                              aria-describedby=""
+                            />
+                            <span
+                              className="input-group-text"
+                              id="inputGroup-sizing-sm"
+                            >
+                              %
+                            </span>
+                          </div>
+                        </td>
+                        <td className="assumptions-text text-center">
+                          <div className="input-group input-group-sm">
+                            <input
+                              type="number"
+                              name="accident_expense_ratio"
+                              className="form-control"
+                              placeholder="e.g 0.5"
+                              aria-label=""
+                              aria-describedby=""
+                            />
+                            <span
+                              className="input-group-text"
+                              id="inputGroup-sizing-sm"
+                            >
+                              %
+                            </span>
+                          </div>
+                        </td>
+                        <td className="assumptions-text text-center">
+                          <div className="input-group input-group-sm">
+                            <input
+                              type="number"
+                              name="accident_loss_ratio"
+                              className="form-control"
+                              placeholder="e.g 0.5"
+                              aria-label=""
+                              aria-describedby=""
+                            />
+                            <span
+                              className="input-group-text"
+                              id="inputGroup-sizing-sm"
+                            >
+                              %
+                            </span>
+                          </div>
+                        </td>
+                        <td className="assumptions-text text-center">
+                          <div className="input-group input-group-sm">
+                            <input
+                              type="number"
+                              name="accident_risk_adjustment"
+                              className="form-control"
+                              placeholder="e.g 0.5"
+                              aria-label=""
+                              aria-describedby=""
+                            />
+                            <span
+                              className="input-group-text"
+                              id="inputGroup-sizing-sm"
+                            >
+                              %
+                            </span>
+                          </div>
+                        </td>
+                        <td className="assumptions-text text-center">
+                          <div className="input-group input-group-sm">
+                            <input
+                              type="number"
+                              name="accident_acquisition_costs"
+                              className="form-control"
+                              placeholder="e.g 0.5"
+                              aria-label=""
+                              aria-describedby=""
+                            />
+                            <span
+                              className="input-group-text"
+                              id="inputGroup-sizing-sm"
+                            >
+                              %
+                            </span>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="assumptions-text">Engineering</td>
+                        <td className="assumptions-text text-center">
+                          <div className="input-group input-group-sm">
+                            <input
+                              type="number"
+                              name="engineering_discount_rate"
+                              className="form-control"
+                              placeholder="e.g 0.5"
+                              aria-label=""
+                              aria-describedby=""
+                            />
+                            <span
+                              className="input-group-text"
+                              id="inputGroup-sizing-sm"
+                            >
+                              %
+                            </span>
+                          </div>
+                        </td>
+                        <td className="assumptions-text text-center">
+                          <div className="input-group input-group-sm">
+                            <input
+                              type="number"
+                              name="engineering_expense_ratio"
+                              className="form-control"
+                              placeholder="e.g 0.5"
+                              aria-label=""
+                              aria-describedby=""
+                            />
+                            <span
+                              className="input-group-text"
+                              id="inputGroup-sizing-sm"
+                            >
+                              %
+                            </span>
+                          </div>
+                        </td>
+                        <td className="assumptions-text text-center">
+                          <div className="input-group input-group-sm">
+                            <input
+                              type="number"
+                              name="engineering_loss_ratio"
+                              className="form-control"
+                              placeholder="e.g 0.5"
+                              aria-label=""
+                              aria-describedby=""
+                            />
+                            <span
+                              className="input-group-text"
+                              id="inputGroup-sizing-sm"
+                            >
+                              %
+                            </span>
+                          </div>
+                        </td>
+                        <td className="assumptions-text text-center">
+                          <div className="input-group input-group-sm">
+                            <input
+                              type="number"
+                              name="engineering_risk_adjustment"
+                              className="form-control"
+                              placeholder="e.g 0.5"
+                              aria-label=""
+                              aria-describedby=""
+                            />
+                            <span
+                              className="input-group-text"
+                              id="inputGroup-sizing-sm"
+                            >
+                              %
+                            </span>
+                          </div>
+                        </td>
+                        <td className="assumptions-text text-center">
+                          <div className="input-group input-group-sm">
+                            <input
+                              type="number"
+                              name="engineering_acquisition_costs"
+                              className="form-control"
+                              placeholder="e.g 0.5"
+                              aria-label=""
+                              aria-describedby=""
+                            />
+                            <span
+                              className="input-group-text"
+                              id="inputGroup-sizing-sm"
+                            >
+                              %
+                            </span>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="assumptions-text">Fire</td>
+                        <td className="assumptions-text text-center">
+                          <div className="input-group input-group-sm">
+                            <input
+                              type="number"
+                              name="fire_discount_rate"
+                              className="form-control"
+                              placeholder="e.g 0.5"
+                              aria-label=""
+                              aria-describedby=""
+                            />
+                            <span
+                              className="input-group-text"
+                              id="inputGroup-sizing-sm"
+                            >
+                              %
+                            </span>
+                          </div>
+                        </td>
+                        <td className="assumptions-text text-center">
+                          <div className="input-group input-group-sm">
+                            <input
+                              type="number"
+                              name="fire_expense_ratio"
+                              className="form-control"
+                              placeholder="e.g 0.5"
+                              aria-label=""
+                              aria-describedby=""
+                            />
+                            <span
+                              className="input-group-text"
+                              id="inputGroup-sizing-sm"
+                            >
+                              %
+                            </span>
+                          </div>
+                        </td>
+                        <td className="assumptions-text text-center">
+                          <div className="input-group input-group-sm">
+                            <input
+                              type="number"
+                              name="fire_loss_ratio"
+                              className="form-control"
+                              placeholder="e.g 0.5"
+                              aria-label=""
+                              aria-describedby=""
+                            />
+                            <span
+                              className="input-group-text"
+                              id="inputGroup-sizing-sm"
+                            >
+                              %
+                            </span>
+                          </div>
+                        </td>
+                        <td className="assumptions-text text-center">
+                          <div className="input-group input-group-sm">
+                            <input
+                              type="number"
+                              name="fire_risk_adjustment"
+                              className="form-control"
+                              placeholder="e.g 0.5"
+                              aria-label=""
+                              aria-describedby=""
+                            />
+                            <span
+                              className="input-group-text"
+                              id="inputGroup-sizing-sm"
+                            >
+                              %
+                            </span>
+                          </div>
+                        </td>
+                        <td className="assumptions-text text-center">
+                          <div className="input-group input-group-sm">
+                            <input
+                              type="number"
+                              name="fire_acquisition_costs"
+                              className="form-control"
+                              placeholder="e.g 0.5"
+                              aria-label=""
+                              aria-describedby=""
+                            />
+                            <span
+                              className="input-group-text"
+                              id="inputGroup-sizing-sm"
+                            >
+                              %
+                            </span>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="assumptions-text">Motor</td>
+                        <td className="assumptions-text text-center">
+                          <div className="input-group input-group-sm">
+                            <input
+                              type="number"
+                              name="motor_discount_rate"
+                              className="form-control"
+                              placeholder="e.g 0.5"
+                              aria-label=""
+                              aria-describedby=""
+                            />
+                            <span
+                              className="input-group-text"
+                              id="inputGroup-sizing-sm"
+                            >
+                              %
+                            </span>
+                          </div>
+                        </td>
+                        <td className="assumptions-text text-center">
+                          <div className="input-group input-group-sm">
+                            <input
+                              type="number"
+                              name="motor_expense_ratio"
+                              className="form-control"
+                              placeholder="e.g 0.5"
+                              aria-label=""
+                              aria-describedby=""
+                            />
+                            <span
+                              className="input-group-text"
+                              id="inputGroup-sizing-sm"
+                            >
+                              %
+                            </span>
+                          </div>
+                        </td>
+                        <td className="assumptions-text text-center">
+                          <div className="input-group input-group-sm">
+                            <input
+                              type="number"
+                              name="motor_loss_ratio"
+                              className="form-control"
+                              placeholder="e.g 0.5"
+                              aria-label=""
+                              aria-describedby=""
+                            />
+                            <span
+                              className="input-group-text"
+                              id="inputGroup-sizing-sm"
+                            >
+                              %
+                            </span>
+                          </div>
+                        </td>
+                        <td className="assumptions-text text-center">
+                          <div className="input-group input-group-sm">
+                            <input
+                              type="number"
+                              name="motor_risk_adjustment"
+                              className="form-control"
+                              placeholder="e.g 0.5"
+                              aria-label=""
+                              aria-describedby=""
+                            />
+                            <span
+                              className="input-group-text"
+                              id="inputGroup-sizing-sm"
+                            >
+                              %
+                            </span>
+                          </div>
+                        </td>
+                        <td className="assumptions-text text-center">
+                          <div className="input-group input-group-sm">
+                            <input
+                              type="number"
+                              name="motor_acquisition_costs"
+                              className="form-control"
+                              placeholder="e.g 0.5"
+                              aria-label=""
+                              aria-describedby=""
+                            />
+                            <span
+                              className="input-group-text"
+                              id="inputGroup-sizing-sm"
+                            >
+                              %
+                            </span>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="assumptions-text">Drugs</td>
+                        <td className="assumptions-text text-center">
+                          <div className="input-group input-group-sm">
+                            <input
+                              type="number"
+                              name="drugs_discount_rate"
+                              className="form-control"
+                              placeholder="e.g 0.5"
+                              aria-label=""
+                              aria-describedby=""
+                            />
+                            <span
+                              className="input-group-text"
+                              id="inputGroup-sizing-sm"
+                            >
+                              %
+                            </span>
+                          </div>
+                        </td>
+                        <td className="assumptions-text text-center">
+                          <div className="input-group input-group-sm">
+                            <input
+                              type="number"
+                              name="drugs_expense_ratio"
+                              className="form-control"
+                              placeholder="e.g 0.5"
+                              aria-label=""
+                              aria-describedby=""
+                            />
+                            <span
+                              className="input-group-text"
+                              id="inputGroup-sizing-sm"
+                            >
+                              %
+                            </span>
+                          </div>
+                        </td>
+                        <td className="assumptions-text text-center">
+                          <div className="input-group input-group-sm">
+                            <input
+                              type="number"
+                              name="drugs_loss_ratio"
+                              className="form-control"
+                              placeholder="e.g 0.5"
+                              aria-label=""
+                              aria-describedby=""
+                            />
+                            <span
+                              className="input-group-text"
+                              id="inputGroup-sizing-sm"
+                            >
+                              %
+                            </span>
+                          </div>
+                        </td>
+                        <td className="assumptions-text text-center">
+                          <div className="input-group input-group-sm">
+                            <input
+                              type="number"
+                              name="drugs_risk_adjustment"
+                              className="form-control"
+                              placeholder="e.g 0.5"
+                              aria-label=""
+                              aria-describedby=""
+                            />
+                            <span
+                              className="input-group-text"
+                              id="inputGroup-sizing-sm"
+                            >
+                              %
+                            </span>
+                          </div>
+                        </td>
+                        <td className="assumptions-text text-center">
+                          <div className="input-group input-group-sm">
+                            <input
+                              type="number"
+                              name="drugs_acquisition_costs"
+                              className="form-control"
+                              placeholder="e.g 0.5"
+                              aria-label=""
+                              aria-describedby=""
+                            />
+                            <span
+                              className="input-group-text"
+                              id="inputGroup-sizing-sm"
+                            >
+                              %
+                            </span>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="assumptions-text">Aviation</td>
+                        <td className="assumptions-text text-center">
+                          <div className="input-group input-group-sm">
+                            <input
+                              type="number"
+                              name="aviation_discount_rate"
+                              className="form-control"
+                              placeholder="e.g 0.5"
+                              aria-label=""
+                              aria-describedby=""
+                            />
+                            <span
+                              className="input-group-text"
+                              id="inputGroup-sizing-sm"
+                            >
+                              %
+                            </span>
+                          </div>
+                        </td>
+                        <td className="assumptions-text text-center">
+                          <div className="input-group input-group-sm">
+                            <input
+                              type="number"
+                              name="aviation_expense_ratio"
+                              className="form-control"
+                              placeholder="e.g 0.5"
+                              aria-label=""
+                              aria-describedby=""
+                            />
+                            <span
+                              className="input-group-text"
+                              id="inputGroup-sizing-sm"
+                            >
+                              %
+                            </span>
+                          </div>
+                        </td>
+                        <td className="assumptions-text text-center">
+                          <div className="input-group input-group-sm">
+                            <input
+                              type="number"
+                              name="aviation_loss_ratio"
+                              className="form-control"
+                              placeholder="e.g 0.5"
+                              aria-label=""
+                              aria-describedby=""
+                            />
+                            <span
+                              className="input-group-text"
+                              id="inputGroup-sizing-sm"
+                            >
+                              %
+                            </span>
+                          </div>
+                        </td>
+                        <td className="assumptions-text text-center">
+                          <div className="input-group input-group-sm">
+                            <input
+                              type="number"
+                              name="aviation_risk_adjustment"
+                              className="form-control"
+                              placeholder="e.g 0.5"
+                              aria-label=""
+                              aria-describedby=""
+                            />
+                            <span
+                              className="input-group-text"
+                              id="inputGroup-sizing-sm"
+                            >
+                              %
+                            </span>
+                          </div>
+                        </td>
+                        <td className="assumptions-text text-center">
+                          <div className="input-group input-group-sm">
+                            <input
+                              type="number"
+                              name="aviation_acquisition_costs"
+                              className="form-control"
+                              placeholder="e.g 0.5"
+                              aria-label=""
+                              aria-describedby=""
+                            />
+                            <span
+                              className="input-group-text"
+                              id="inputGroup-sizing-sm"
+                            >
+                              %
+                            </span>
+                          </div>
+                        </td>
+                      </tr>
+                      {displayBusinessClassList.length !== 0
+                        ? displayBusinessClassList.map((element) => {
+                            return (
+                              <tr>
+                                <td className="assumptions-text">
+                                  {element.businessClassName}
+                                </td>
+                                <td className="assumptions-text text-center">
+                                  <div className="input-group input-group-sm">
+                                    <input
+                                      type="number"
+                                      name={
+                                        element.businessClassName
+                                          .replace(/\s/g, "")
+                                          .toLowerCase() + "_discount_rate"
+                                      }
+                                      value={element.discountRate}
+                                      className="form-control"
+                                      placeholder="e.g 0.5"
+                                      aria-label=""
+                                      aria-describedby=""
+                                    />
+                                    <span
+                                      className="input-group-text"
+                                      id="inputGroup-sizing-sm"
+                                    >
+                                      %
+                                    </span>
+                                  </div>
+                                </td>
+                                <td className="assumptions-text text-center">
+                                  <div className="input-group input-group-sm">
+                                    <input
+                                      type="number"
+                                      name={
+                                        element.businessClassName
+                                          .replace(/\s/g, "")
+                                          .toLowerCase() + "_expense_ratio"
+                                      }
+                                      value={element.expenseRatio}
+                                      className="form-control"
+                                      placeholder="e.g 0.5"
+                                      aria-label=""
+                                      aria-describedby=""
+                                    />
+                                    <span
+                                      className="input-group-text"
+                                      id="inputGroup-sizing-sm"
+                                    >
+                                      %
+                                    </span>
+                                  </div>
+                                </td>
+                                <td className="assumptions-text text-center">
+                                  <div className="input-group input-group-sm">
+                                    <input
+                                      type="number"
+                                      name={
+                                        element.businessClassName
+                                          .replace(/\s/g, "")
+                                          .toLowerCase() + "_loss_ratio"
+                                      }
+                                      value={element.lossRatio}
+                                      className="form-control"
+                                      placeholder="e.g 0.5"
+                                      aria-label=""
+                                      aria-describedby=""
+                                    />
+                                    <span
+                                      className="input-group-text"
+                                      id="inputGroup-sizing-sm"
+                                    >
+                                      %
+                                    </span>
+                                  </div>
+                                </td>
+                                <td className="assumptions-text text-center">
+                                  <div className="input-group input-group-sm">
+                                    <input
+                                      type="number"
+                                      name={
+                                        element.businessClassName
+                                          .replace(/\s/g, "")
+                                          .toLowerCase() + "_risk_adjustment"
+                                      }
+                                      value={element.riskAdjustment}
+                                      className="form-control"
+                                      placeholder="e.g 0.5"
+                                      aria-label=""
+                                      aria-describedby=""
+                                    />
+                                    <span
+                                      className="input-group-text"
+                                      id="inputGroup-sizing-sm"
+                                    >
+                                      %
+                                    </span>
+                                  </div>
+                                </td>
+                                <td className="assumptions-text text-center">
+                                  <div className="input-group input-group-sm">
+                                    <input
+                                      type="number"
+                                      name={
+                                        element.businessClassName
+                                          .replace(/\s/g, "")
+                                          .toLowerCase() + "_acquisition_costs"
+                                      }
+                                      value={element.acquisitionCosts}
+                                      className="form-control"
+                                      placeholder="e.g 0.5"
+                                      aria-label=""
+                                      aria-describedby=""
+                                    />
+                                    <span
+                                      className="input-group-text"
+                                      id="inputGroup-sizing-sm"
+                                    >
+                                      %
+                                    </span>
+                                  </div>
+                                </td>
+                              </tr>
+                            );
+                          })
+                        : null}
+                      <tr>
+                        <td className="assumptions-text" colSpan="2">
+                          <button
+                            type="button"
+                            className="btn btn-neutral mr-2"
+                            onClick={this.newClassModalOpen}
+                            databstoggle="modal"
+                            databstarget="#newClassModal"
+                          >
+                            <i className="nc-icon nc-simple-add"></i>
+                            New Class
+                          </button>
+                        </td>
+                        <td className="assumptions-text text-center"></td>
+                        <td className="assumptions-text text-center"></td>
+                        <td className="assumptions-text text-center"></td>
+                        <td className="assumptions-text text-center"></td>
+                      </tr>
+
+
+                      <tr>
+                        <th>
+                          Business <br />
+                          Class
+                        </th>
+                        <th>
+                          Discount <br />
+                          Rate
+                        </th>
+                        <th>
+                          Expense <br />
+                          Ratio
+                        </th>
+                        <th>
+                          Loss <br />
+                          Ratio
+                        </th>
+                        <th>
+                          Risk <br />
+                          Adjustment
+                        </th>
+                        <th>
+                          Acquisistion <br />
+                          costs (Commissions)
+                        </th>
+                      </tr>

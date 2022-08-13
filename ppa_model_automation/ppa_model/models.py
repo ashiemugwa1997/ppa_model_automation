@@ -4,6 +4,10 @@ class Session(models.Model):
     session_name = models.CharField(max_length=200)
     session_user_id = models.CharField(max_length=200)
     session_datasheet = models.CharField(max_length=400)
+    session_discount_rate = models.CharField(max_length=100)
+    session_measurement_date = models.CharField(max_length=100)
+    session_risk_adjustment = models.CharField(max_length=100)
+    session_loss_ratio = models.CharField(max_length=100)
     updated_at = models.DateTimeField(auto_now=True, blank=True)
 
 class Upload_Doc(models.Model):
