@@ -5,11 +5,10 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.migrations import serializer
 from django.shortcuts import render
-from . import data_checks
 
 from ppa_model.datasheets.file_handler import save_file
 from .models import Session, Assumptions
-from .utilities import cashflow_estimation
+from .utilities import cashflow_estimation, data_checks
 import datetime as dt
 import pandas as pd
 import os
@@ -164,12 +163,15 @@ def get_estimated_cashflow(request):
                                                     floats, ints)
     class_of_business_checks.data_check_report(request)
 
-    cashflow_estimation_df = cashflow_estimation.CashFlowEstimation(source_data_checks.df, session.discount_rate, combined_ratio_checks.df,
-                                             class_of_business_checks.df, session.risk_adjustment)
+    cashflow_estimation_df = cashflow_estimation.CashFlowEstimation(source_data_checks.df, session.session_discount_rate, combined_ratio_checks.df,
+                                             class_of_business_checks.df, session.session_risk_adjustment)
     
     cashflow_estimation_df.estimate_cashflows()
-
-    return render(request, 'ppa/cashflow_estimations.html')
+    import json
+    d = cashflow_estimation_df.df.to_json(orient='records')
+    j = json.dumps(d)
+    print(j)
+    return render(request, 'ppa/cashflow_estimations.html', { "context": j })
 
 
 @login_required(login_url='/login/')

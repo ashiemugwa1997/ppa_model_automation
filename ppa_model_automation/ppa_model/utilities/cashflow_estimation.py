@@ -22,7 +22,7 @@ class CashFlowEstimation:
         self.df = df
         self.df.columns = self.df.columns.str.strip()
 
-        self.discount = discount
+        self.discount = float(discount)
 
         self.combined_ratios = combined_ratios
         self.combined_ratios.columns = self.combined_ratios.columns.str.strip()
@@ -30,7 +30,7 @@ class CashFlowEstimation:
         self.class_of_business = class_of_business
         self.class_of_business.columns = self.class_of_business.columns.str.strip()
 
-        self.risk_adjustment = risk_adjustment
+        self.risk_adjustment = float(risk_adjustment)
 
     def _merge_data(self):
         """
