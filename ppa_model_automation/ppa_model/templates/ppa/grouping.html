@@ -8,14 +8,14 @@
         <div class="fresh-table" style="background: #bbbbe9">
           <table id="fresh-table" class="table display nowrap" style="width:100%">
             <thead>
-              <th data-field="class_of_business" data-sortable="true">
+              <th data-field="Class of Business" data-sortable="true">
                 Class of Business
               </th>
-              <th data-field="Name_of_Policyholder" data-sortable="true">
+              <th data-field="Name of Policyholder" data-sortable="true">
                 Name of Policyholder
               </th>
               <th data-field="Surname" data-sortable="true">Surname</th>
-              <th data-field="Policy_Number" data-sortable="true">
+              <th data-field="Policy Number" data-sortable="true">
                 Policy Number
               </th>
               <th data-field="Start_Date" data-sortable="true">Start Date</th>
@@ -26,99 +26,55 @@
               >
                 Expected Date of Premium Payment
               </th>
-              <th data-field="Date_of_Premium_Payment" data-sortable="true">
+              <th data-field="Date of Premium_Payment" data-sortable="true">
                 Date of Premium Payment
               </th>
               <th data-field="Premium" data-sortable="true">Premium</th>
               <th data-field="Installment" data-sortable="true">Installment</th>
-              <th data-field="Payment_Frequency" data-sortable="true">
+              <th data-field="Payment Frequency" data-sortable="true">
                 Payment Frequency
               </th>
-              <th data-field="total_premium" data-sortable="true">
+              <th data-field="Total Premium" data-sortable="true">
                 Total Premium
               </th>
-              <th data-field="Duration_in_Months" data-sortable="true">
-                Duration in Months
+              <th data-field="Claims Ratio" data-sortable="true">
+                Claims Ratio
               </th>
-              <th data-field="PV_of_Premiums" data-sortable="true">
-                PV of Premiums
+              <th data-field="Expense Ratio" data-sortable="true">
+                Expense Ratio
               </th>
-              <th data-field="PV_of_claims" data-sortable="true">
-                PV of Claims
+              <th data-field="Acquisistion costs (Commissions)" data-sortable="true">
+                Acquisistion costs (Commissions)
               </th>
-              <th data-field="PV_of_Expenses" data-sortable="true">
-                PV of Expenses
+              <th data-field="Portfolio ID" data-sortable="true">
+                Portfolio ID
               </th>
-              <th data-field="Risk_adjustment_FCFs" data-sortable="true">
-                Risk adjustment
+              <th data-field="duration" data-sortable="true">
+                duration
               </th>
-              <th data-field="FCFs" data-sortable="true">FCFs</th>
-              <th data-field="Acquisition_Costs" data-sortable="true">
-                Acquisition Costs
+              <th data-field="PV Premiums" data-sortable="true">PV Premiums</th>
+              <th data-field="PV Claims" data-sortable="true">
+                PV Claims
               </th>
-              <th data-field="Combined_Loss_Ratio" data-sortable="true">
-                Combined Loss Ratio
+              <th data-field="PV Expenses" data-sortable="true">
+                PV Expenses
               </th>
-              <th data-field="Loss_Ratio" data-sortable="true">
-                Automatic PAA Eligibility Test
+              <th data-field="Risk Adjustment" data-sortable="true">
+                Risk Adjustment
               </th>
-              <th data-field="#N/A" data-sortable="true">#N/A</th>
-              <th data-field="classes" data-sortable="true">
-                Results of tests
+              <th data-field="FCFs" data-sortable="true">
+                FCFs
               </th>
               <th></th>
-              <th data-field="class_of_business" data-sortable="true">
-                Class of Business
+              <th data-field="Acquisition Costs" data-sortable="true">
+                Acquisition Costs
               </th>
-              <th data-field="Policy_Number" data-sortable="true">
-                Policy Number
-              </th>
-              <th data-field="Start_Date" data-sortable="true">Start Date</th>
-              <th data-field="Ending_Date" data-sortable="true">Ending Date</th>
-              <th data-field="Combined_Loss_Ratio" data-sortable="true">
+              <th data-field="Combined Loss Ratio" data-sortable="true">
                 Combined Loss Ratio
-              </th>
-              <th data-field="Loss_Ratio" data-sortable="true">
-                Automatic PAA Eligibility Test
-              </th>
-              <th data-field="Final_Groups_of_Contracts" data-sortable="true">
-                FinalGroups of Contracts
               </th>
             </thead>
             <tbody>
-              <tr>
-                <td class="assumptions-text">1</td>
-                <td class="assumptions-text">Dakota Rice</td>
-                <td class="assumptions-text">$36,738</td>
-                <td class="assumptions-text">Niger</td>
-                <td class="assumptions-text">Oud-Turnhout</td>
-                <td class="assumptions-text"></td>
-                <td class="assumptions-text">1</td>
-                <td class="assumptions-text">Dakota Rice</td>
-                <td class="assumptions-text">$36,738</td>
-                <td class="assumptions-text">Niger</td>
-                <td class="assumptions-text">Oud-Turnhout</td>
-                <td class="assumptions-text"></td>
-                <td class="assumptions-text">1</td>
-                <td class="assumptions-text">Dakota Rice</td>
-                <td class="assumptions-text">$36,738</td>
-                <td class="assumptions-text">Niger</td>
-                <td class="assumptions-text">Oud-Turnhout</td>
-                <td class="assumptions-text"></td>
-                <td class="assumptions-text">1</td>
-                <td class="assumptions-text">$36,738</td>
-                <td class="assumptions-text">Niger</td>
-                <td class="assumptions-text">Oud-Turnhout</td>
-                <td class="assumptions-text"></td>
-                <td class="assumptions-text">1</td>
-                <td class="assumptions-text">Dakota Rice</td>
-                <td class="assumptions-text">$36,738</td>
-                <td class="assumptions-text">Niger</td>
-                <td class="assumptions-text">Oud-Turnhout</td>
-                <td class="assumptions-text">1</td>
-                <td class="assumptions-text">Oud-Turnhout</td>
-                <td class="assumptions-text">1</td>
-              </tr>
+
             </tbody>
           </table>
         </div>
@@ -129,13 +85,53 @@
 {% endblock content %} {% block scripts %}
 <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
+<!--<script>-->
+<!--  $(document).ready( function () {-->
+<!--    $('#fresh-table').DataTable({-->
+<!--      scrollX: true,-->
+<!--    });-->
+<!--} );-->
+
+<!--</script>-->
 <script>
   $(document).ready( function () {
+    let data = JSON.parse("{{context|escapejs}}")
+    let newJson = JSON.parse(data)
+    console.log(newJson)
     $('#fresh-table').DataTable({
       scrollX: true,
+      data: newJson,
+      columns: [
+        { data: 'Class of Business' },
+        { data: 'Name of Policyholder' },
+        { data: 'Surname' },
+        { data: 'Policy Number' },
+        { data: 'Start Date' },
+        { data: 'Ending Date' },
+        { data: 'Expected Date of Premium Payment' },
+        { data: 'Date of Premium Payment' },
+        { data: 'Premium Installment' },
+        { data: 'Payment Frequency' },
+        { data: 'Total Premium' },
+        { data: 'Claims Ratio' },
+        { data: 'Expense Ratio' },
+        { data: 'Acquisistion costs (Commissions)' },
+        { data: 'Portfolio ID' },
+        { data: 'duration' },
+        { data: 'PV Premiums' },
+        { data: 'PV Claims' },
+        { data: 'PV Expenses' },
+        { data: 'Risk Adjustment' },
+        { data: 'FCFs' },
+        { data: 'Acquisition Costs' },
+        { data: 'Combined Loss Ratio' },
+
+      ],
+
     });
-} );
+  } );
 
 </script>
+
 
 {%endblock scripts %}

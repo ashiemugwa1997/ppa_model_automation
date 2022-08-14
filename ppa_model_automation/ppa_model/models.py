@@ -1,6 +1,7 @@
 from django.db import models
 from .utilities import data_checks, cashflow_estimation
 
+
 class Session(models.Model):
     session_name = models.CharField(max_length=200)
     session_user_id = models.CharField(max_length=200)
