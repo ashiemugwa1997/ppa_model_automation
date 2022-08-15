@@ -11,15 +11,6 @@
               <th data-field="groups" data-sortable="true">Groups</th>
               <th data-field="Start_Date" data-sortable="true">Start Date</th>
               <th data-field="Ending_Date" data-sortable="true">Ending Date</th>
-              <th
-                data-field="Expected_Date_of_Premium_Payment"
-                data-sortable="true"
-              >
-                Expected Date of Premium Payment
-              </th>
-              <th data-field="Date_of_Premium_Payment" data-sortable="true">
-                Date of Premium Payment
-              </th>
               <th data-field="Premium_installment" data-sortable="true">
                 PremiumInstallment
               </th>
@@ -27,7 +18,7 @@
                 data-field="number_of_contracts_in_group"
                 data-sortable="true"
               >
-                Numberof Contract in group
+                Number of Contract in group
               </th>
               <th data-field="total_premium" data-sortable="true">
                 Total Premium
@@ -51,25 +42,11 @@
               <th data-field="Acquisition_Costs" data-sortable="true">
                 Acquisition Costs
               </th>
+              <th data-field="" data-sortable="true">
+                Combined Loss Ratio
+              </th>
             </thead>
             <tbody>
-              <tr>
-                <td class="assumptions-text">1</td>
-                <td class="assumptions-text">Dakota Rice</td>
-                <td class="assumptions-text">$36,738</td>
-                <td class="assumptions-text">Niger</td>
-                <td class="assumptions-text">Oud-Turnhout</td>
-                <td class="assumptions-text"></td>
-                <td class="assumptions-text">1</td>
-                <td class="assumptions-text">Dakota Rice</td>
-                <td class="assumptions-text">$36,738</td>
-                <td class="assumptions-text">Niger</td>
-                <td class="assumptions-text">Oud-Turnhout</td>
-                <td class="assumptions-text"></td>
-                <td class="assumptions-text">1</td>
-                <td class="assumptions-text">Dakota Rice</td>
-                <td class="assumptions-text">Dakota Rice</td>
-              </tr>
             </tbody>
           </table>
         </div>
@@ -82,10 +59,32 @@
 
 <script>
   $(document).ready( function () {
+    let data = JSON.parse("{{context|escapejs}}")
+    let newJson = JSON.parse(data)
+    console.log(newJson)
     $('#fresh-table').DataTable({
       scrollX: true,
+      data: newJson,
+      columns: [
+        { data: 'Final Groups of Contracts' },
+        { data: 'Start Date' },
+        { data: 'Ending Date' },
+        { data: 'Premium Installment' },
+        { data: 'Number of Contract in group' },
+        { data: 'Total Premium' },
+        { data: 'DurationinMonths' },
+        { data: 'PV Premiums' },
+        { data: 'PV Claims' },
+        { data: 'PV Expenses' },
+        { data: 'Risk Adjustment' },
+        { data: 'FCFs' },
+        { data: 'Acquisition Costs' },
+        { data: 'combined_loss_ratio' },
+
+      ],
+
     });
-} );
+  } );
 
 </script>
 
