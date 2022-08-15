@@ -256,9 +256,29 @@ def get_groupings(request):
     # etag - eligibility test and grouping object
     etag.test_and_group()
 
-    etag.analyze_groups()
+    # etag.analyze_groups()
+    # if messages.button("Cashflow Estimation"):
+    #     messages.subheader("Cashflow Estimates")
+    #     messages.write(etag.data)
+    #
+    # if messages.button("Group Data"):
+    #     messages.subheader('Grouped Data')
+    #     messages.write(etag.auto_paa)
+    #
+    # if messages.button('Get Group Summaries'):
+    #     messages.subheader('Summary of Groups')
+    #     messages.write(etag.groups_stats)
+    #
+    # if messages.button('Number of Contracts per Group'):
+    #     messages.subheader('Number of Contracts in each Group')
+    #     messages.write(etag.groups)
+    #
+    #     messages.subheader('Results')
+    # messages.subheader('Grouped Data')
+    # st.write(etag.auto_paa)
+    etag2 = etag.auto_paa
     import json
-    de = etag.df.to_json(orient='records')
+    de = etag2.to_json(orient='records')
     je = json.dumps(de)
     print(je)
     return render(request, 'ppa/grouping.html', {"context": je})
