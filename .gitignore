@@ -127,3 +127,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+/ppa_model_automation/ppa_model/datasheets/files/

@@ -272,8 +272,10 @@ def get_groupings(request):
     # Contracts per group
     print(etag.groups)
 
+    etag2 = etag.auto_paa
+
     import json
-    de = etag.df.to_json(orient='records')
+    de = etag2.to_json(orient='records')
     je = json.dumps(de)
     
     return render(request, 'ppa/grouping.html', {"context": je})

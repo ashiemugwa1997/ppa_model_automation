@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from IPython.display import display
 
+
 class CashFlowEstimation:
     """
         Used to estimate the cashflows for insurance contracts 
