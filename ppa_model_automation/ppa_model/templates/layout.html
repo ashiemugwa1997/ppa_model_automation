@@ -1,10 +1,12 @@
 <!doctype html>
 <html lang="en">
-
+{% load static %}
 <head>
+  <link rel="icon" type="image/png" href="{%  static 'favicon.ico' %}">
+
   <meta charset="utf-8" />
-  {% comment %} <link rel="apple-touch-icon" sizes="76x76" href="/static/assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="/static/assets/img/favicon.png"> {% endcomment %}
+  {% comment %} <link rel="apple-touch-icon" sizes="76x76" href="{%  static 'favicon.ico' %}">
+  <link rel="icon" type="image/png" href="{%  static 'favicon.ico' %}"> {% endcomment %}
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     Claxon Actuaries
@@ -80,9 +82,9 @@
         </a>
         <a href="#" class="simple-text logo-normal">
           Claxon Actuaries
-          <!-- <div class="logo-image-big">
-            <img src="../assets/img/logo-big.png">
-          </div> -->
+          <div class="logo-image-big">
+            <img src="{%  static 'assets/img/Claxon Actuaries.bmp' %}">
+          </div>
         </a>
       </div>
       <div class="sidebar-wrapper" style="overflow-x: hidden">
