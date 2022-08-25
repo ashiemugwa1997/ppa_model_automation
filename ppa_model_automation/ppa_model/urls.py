@@ -8,6 +8,7 @@ urlpatterns = [
     path('dashboard', views.dashboard, name='dashboard'),
     path('add_assumptions', views.add_assumptions, name='add_assumptions'),
     path('sessions', views.user_sessions, name='user_sessions'),
+    path('sessions/session', views.get_session, name="get_session"),
     path('sessions/datasheet', views.download_datasheet, name='download_datasheet'),
     path('aggregated-results', views.aggregated_results, name='aggregated_results'),
     path('results', views.calculation_results, name='results'),

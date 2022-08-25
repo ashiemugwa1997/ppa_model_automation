@@ -144,15 +144,33 @@ def download_datasheet(request):
 def aggregated_results(request):
     return render(request, 'ppa/aggregated_results.html', {})
 
+@login_required(login_url='/login/')
+def get_session(request):
+
+    session_id = request.GET['i']
+    request.session['selected_session'] = session_id
+    request.session['session_selected'] = True
+
+    return redirect('/paa/results')
 
 @login_required(login_url='/login/')
 def calculation_results(request):
+
     return render(request, 'ppa/results.html', {})
 
 
 @login_required(login_url='/login/')
 def get_estimated_cashflow(request):
-    session = Session.objects.latest('updated_at')
+
+    session = None
+    if request.session.get('session_selected', True):
+        session_id = request.session['selected_session']
+        session = Session.objects.get(id=session_id)
+    else:
+        session = Session.objects.latest('updated_at')
+
+    print(session)
+
     print("session: ", session.session_name)
     xls = pd.ExcelFile(session.session_datasheet)
     source_data_df = pd.read_excel(xls, 'SourceData')

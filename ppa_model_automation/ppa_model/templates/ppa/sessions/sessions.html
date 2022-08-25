@@ -73,7 +73,17 @@
         data: null,
         render: (data, type, row, meta) => meta.row + 1
       },
-      { data: 'session_name' },
+            {
+        data: null,
+        render: function (data, type, row, meta) {
+
+          return `<div class="btn-group">
+            <a type="" href=${"/paa/sessions/session?i="+row.session_id} class="" style="color: #00003C; font-weight: 500; text-decoration: none">
+              ${row.session_name}
+            </a>
+          </div>`;
+        },
+      },
       { data: 'session_discount_rate' },
       { data: 'session_measurement_date' },
       { data: 'session_risk_adjustment' },
