@@ -12,7 +12,7 @@ from django.http import HttpResponse, FileResponse
 from django.conf import settings
 
 from ppa_model.datasheets.file_handler import save_file
-from .models import Session, Assumptions
+from .models import Session, Assumptions, Upload_Doc
 from .utilities import cashflow_estimation, data_checks, eligibility_test_and_grouping
 import datetime as dt
 import pandas as pd
@@ -20,7 +20,6 @@ import os
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from datetime import datetime
-
 
 # from .serializers import upload_doc_Serializer
 
@@ -31,6 +30,9 @@ from datetime import datetime
 #     template_name = 'ppa/dashboard.html'
 
 # Create your views here.
+from .utilities.monthly_results import MonthlyResults
+
+
 def dashboard(request):
     return render(request, 'ppa/dashboard.html', {})
 
@@ -142,6 +144,84 @@ def download_datasheet(request):
 
 @login_required(login_url='/login/')
 def aggregated_results(request):
+    if request.method == "POST":
+        selected_group = request.POST['selected_group']
+    else:
+        selected_group = '2021.101.0'
+
+    session = Session.objects.latest('updated_at')
+    print("session: ", session.session_name)
+    xls = pd.ExcelFile(session.session_datasheet)
+    source_data_df = pd.read_excel(xls, 'SourceData')
+    combined_ratio_df = pd.read_excel(xls, 'CombinedRatios')
+    class_of_business_df = pd.read_excel(xls, 'ClassOfBusiness')
+
+    # Source Data Checks
+    floats = ['Premium Installment', 'Total Premium']
+    ints = ['Payment Frequency']
+
+    required_source_data_columns = ['Class of Business', 'Name of Policyholder',
+                                    'Surname', 'Policy Number', 'Start Date',
+                                    'Ending Date', 'Expected Date of Premium Payment',
+                                    'Date of Premium Payment', 'Premium Installment',
+                                    'Payment Frequency', 'Total Premium']
+
+    source_data_checks = data_checks.DataChecks(source_data_df, required_source_data_columns, 'SourceData', floats,
+                                                ints)
+    source_data_checks.data_check_report(request)
+
+    # Combined Ratio Data Checks
+    floats = ['Claims Ratio', 'Expense Ratio', 'Acquisistion costs (Commissions)']
+    ints = []
+
+    required_combined_ratio_columns = ['Class of Business', 'Claims Ratio', 'Expense Ratio',
+                                       'Acquisition costs (Commissions)']
+
+    combined_ratio_checks = data_checks.DataChecks(combined_ratio_df, required_combined_ratio_columns, 'SourceData',
+                                                   floats,
+                                                   ints)
+    combined_ratio_checks.data_check_report(request)
+
+    # Class of Business Data Checks
+    floats = []
+    ints = ['Portfolio ID']
+
+    required_class_of_business_columns = ['Class of Business', 'Portfolio ID']
+
+    class_of_business_checks = data_checks.DataChecks(class_of_business_df, required_class_of_business_columns,
+                                                      'SourceData',
+                                                      floats, ints)
+    class_of_business_checks.data_check_report(request)
+
+    cashflow_estimation_df = cashflow_estimation.CashFlowEstimation(source_data_checks.df,
+                                                                    session.session_discount_rate,
+                                                                    combined_ratio_checks.df,
+                                                                    class_of_business_checks.df,
+                                                                    session.session_risk_adjustment)
+
+    cashflow_estimation_df.estimate_cashflows()
+    loss_ratio_threshold = float(session.session_loss_ratio)
+    etag = eligibility_test_and_grouping.PAAEligibilityTestingAndGrouping(cashflow_estimation_df.data,
+                                                                          loss_ratio_threshold)
+    # print(cashflow_estimation_df.data)
+    etag.test_and_group()
+    etag.analyze_groups()
+    etag.groups.index.tolist()
+
+    measurement_date1 = session.session_measurement_date
+    measurement_date = pd.Timestamp(measurement_date1)
+
+    print(selected_group)
+    monthly_df = MonthlyResults(etag.auto_paa, measurement_date).results(selected_group)
+    # for i in etag.groups.index.tolist():
+    #     print(MonthlyResults(etag.auto_paa, measurement_date).results(i))
+    print(monthly_df)
+    import json
+    d = monthly_df.to_json(orient='records')
+    j = json.dumps(d)
+    print(j)
+    # "context": j
+
     return render(request, 'ppa/aggregated_results.html', {})
 
 @login_required(login_url='/login/')
@@ -235,8 +315,6 @@ def get_queries(request):
 
 @login_required(login_url='/login/')
 def get_eligibility_test(request):
-
-
     return render(request, 'ppa/eligibility_test.html')
 
 
@@ -308,13 +386,13 @@ def get_groupings(request):
     etag.analyze_groups()
 
     # Cashflow Estimation
-    #print(cashflow_estimation_df.data)
+    # print(cashflow_estimation_df.data)
 
     # Grouped Data
-    #print(etag.auto_paa) # Groupings
+    # print(etag.auto_paa) # Groupings
 
     # Summary of groupings
-    #print(etag.groups_stats) # Summarized Groups
+    # print(etag.groups_stats) # Summarized Groups
 
     # Contracts per group
     print(etag.groups)
@@ -324,7 +402,7 @@ def get_groupings(request):
     import json
     de = etag2.to_json(orient='records')
     je = json.dumps(de)
-    
+
     return render(request, 'ppa/grouping.html', {"context": je})
 
 
@@ -396,23 +474,23 @@ def get_group_summary(request):
     etag.analyze_groups()
 
     # Cashflow Estimation
-    #print(cashflow_estimation_df.data)
+    # print(cashflow_estimation_df.data)
 
     # Grouped Data
-    #print(etag.auto_paa) # Groupings
+    # print(etag.auto_paa) # Groupings
 
     # Summary of groupings
-    print(etag.groups_stats.columns) # Summarized Groups
+    print(etag.groups_stats.columns)  # Summarized Groups
 
     # Contracts per group
-    #print(etag.groups)
+    # print(etag.groups)
 
     import json
     de = etag.groups_stats.to_json(orient='records')
     print(de)
     je = json.dumps(de)
-    
-    return render(request, 'ppa/group_summary.html', { "context": je })
+
+    return render(request, 'ppa/group_summary.html', {"context": je})
 
 @login_required(login_url='/login/')
 def get_measurement_calculations(request):
