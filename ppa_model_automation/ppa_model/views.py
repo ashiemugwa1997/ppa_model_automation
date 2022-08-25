@@ -115,11 +115,11 @@ def add_assumptions(request):
 
 @login_required(login_url='/login/')
 def aggregated_results(request):
-    return render(request, 'ppa/aggregated_results.html', {})
+    if request.method == "POST":
+        selected_group = request.POST['selected_group']
+    else:
+        selected_group = '2021.101.0'
 
-
-@login_required(login_url='/login/')
-def calculation_results(request):
     session = Session.objects.latest('updated_at')
     print("session: ", session.session_name)
     xls = pd.ExcelFile(session.session_datasheet)
@@ -174,14 +174,30 @@ def calculation_results(request):
     loss_ratio_threshold = float(session.session_loss_ratio)
     etag = eligibility_test_and_grouping.PAAEligibilityTestingAndGrouping(cashflow_estimation_df.data,
                                                                           loss_ratio_threshold)
+    # print(cashflow_estimation_df.data)
+    etag.test_and_group()
     etag.analyze_groups()
     etag.groups.index.tolist()
-    etag.test_and_group()
 
-    measurement_date = session.session_measurement_date
+    measurement_date1 = session.session_measurement_date
+    measurement_date = pd.Timestamp(measurement_date1)
 
+    print(selected_group)
     monthly_df = MonthlyResults(etag.auto_paa, measurement_date).results(selected_group)
+    # for i in etag.groups.index.tolist():
+    #     print(MonthlyResults(etag.auto_paa, measurement_date).results(i))
+    print(monthly_df)
+    import json
+    d = monthly_df.to_json(orient='records')
+    j = json.dumps(d)
+    print(j)
+    # "context": j
 
+    return render(request, 'ppa/aggregated_results.html', {})
+
+
+@login_required(login_url='/login/')
+def calculation_results(request):
     return render(request, 'ppa/results.html', {})
 
 

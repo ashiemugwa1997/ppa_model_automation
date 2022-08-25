@@ -1,224 +1,301 @@
-{% extends "layout.html" %} {% block styles %}
+{% extends "layout.html" %}
+{% block styles %}
 <link
   href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"
   rel="stylesheet"
 />
-{% endblock styles %} {% block content %}
+{% comment %} <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script src="/static/assets/js/aggregate_result.js"></script>
+{% endcomment %}
+{% endblock styles %}
+{% block content %}
 <div class="row">
   <div class="col-12">
     <div class="card" style="background: #bbbbe9">
+      <div class="card-header">
+        <h5 class="card-title">Results</h5>
+        <span class="card-category text-dark">
+            Choose group you want to see
+          </span>
+        <div class="d-flex mt-3">
+          <span class="card-category text-dark"></span>
+        </div>
+      </div>
       <div class="card-body">
-        <div class="fresh-table" style="background: #bbbbe9">
-          <table
-            id="fresh-table"
-            class="table display nowrap"
-            style="width: 100%"
-          >
-            <thead>
-              <th>Liablity of Remaining Coverage</th>
-              <th></th>
-            </thead>
+        <div class="table-responsive">
+          <table >
+            <form action="/paa/aggregated-results" enctype="multipart/form-data" method="POST">
+              {% csrf_token %}
             <tbody>
-              <tr>
-                <td class="assumptions-text">Opening Balance</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td class="assumptions-text">
-                  Premiums Received in the period
-                </td>
-                <td></td>
-              </tr>
-              <tr>
-                <td class="assumptions-text">
-                  Insurance Acquisition Costs at that date
-                </td>
-                <td></td>
-              </tr>
-              <tr>
-                <td class="assumptions-text">
-                  Amortisation of Insurance Acquisition Cash flows
-                </td>
-                <td></td>
-              </tr>
-              <tr>
-                <td class="assumptions-text">
-                  Adjustment to Financing components
-                </td>
-                <td></td>
-              </tr>
-              <tr>
-                <td class="assumptions-text">
-                  Insurance Revenue for Coverage Provided
-                </td>
-                <td></td>
-              </tr>
-              <tr>
-                <td class="assumptions-text">
-                  Investment component transferred to the LIC
-                </td>
-                <td></td>
-              </tr>
-              <tr>
-                <td class="assumptions-text">Closing Balance</td>
-                <td></td>
-              </tr>
+            <tr>
+              <td class="assumptions-text" colspan="2">
+                <div class="d-flex mt-3">
+                      <span class="" style="fontWeight: bold">
+                        Selected Group
+                      </span>
+                </div>
+              </td>
 
-              <tr>
-                <td class="assumptions-text"></td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
-          <table
-            id="fresh-table"
-            class="table display nowrap"
-            style="width: 100%"
-          >
-            <thead>
-              <th>Liability of Incurred Claims</th>
-              <th></th>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="assumptions-text">Opening Balance</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td class="assumptions-text">Expected Losses</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td class="assumptions-text">Paid Claims</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td class="assumptions-text">Closing Balance</td>
-                <td></td>
-              </tr>
+              <td>
+                <div class="">
+                  <select class="form-control" name="selected_group" id="selected_group">
+                    <option value="">--Please choose an option--</option>
+                    <option value="1">1</option>
+                  </select>
+                </div>
+              </td>
+              <td class="assumptions-text text-center">
+                <div class="input-group input-group-sm"></div>
+              </td>
+            </tr>
+            <tr>
+              <td class="assumptions-text" colspan="2">
+                <div class="d-flex mt-3">
+                      <span class="" style="fontWeight: bold">
 
-              <tr>
-                <td class="assumptions-text"></td>
-                <td></td>
-              </tr>
+                      </span>
+                </div>
+              </td>
+              <td
+                      class="assumptions-text"
+                      colspan="3"
+              >
+                <button
+                        type="submit"
+                        class="btn"
+                        style="background: #f99400"
+                >
+                  <i class="nc-icon nc-send"></i>
+                  Submit
+                </button>
+              </td>
+              <td class="assumptions-text text-center">
+                <div class="input-group input-group-sm"></div>
+              </td>
+            </tr>
             </tbody>
-          </table>
-          <table
-            id="fresh-table"
-            class="table display nowrap"
-            style="width: 100%"
-          >
-            <thead>
-              <th>Assumptions</th>
-              <th></th>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="assumptions-text">
-                  Premiums received at beginning of TERM
-                </td>
-                <td></td>
-              </tr>
-              <tr>
-                <td class="assumptions-text">Assumptions</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td class="assumptions-text">
-                  Insurance Acquisition Costs match Premium timing
-                </td>
-                <td></td>
-              </tr>
-              <tr>
-                <td class="assumptions-text">Expenses spread over the year</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td class="assumptions-text">
-                  Claims paid evenly throughout the year
-                </td>
-                <td></td>
-              </tr>
-              <tr>
-                <td class="assumptions-text">
-                  Assume 60% of claims paid in Year incurred and 40% in 2nd year
-                  (Run-Off period is 2 years)
-                </td>
-                <td></td>
-              </tr>
-
-              <tr>
-                <td class="assumptions-text"></td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
-          <table
-            id="fresh-table"
-            class="table display nowrap"
-            style="width: 100%"
-          >
-            <thead>
-              <th>Assumptions Made (Initial Measurement)</th>
-              <th></th>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="assumptions-text">
-                  Premiums and Acquisition costs are received at the beginning
-                  of the year
-                </td>
-                <td></td>
-              </tr>
-              <tr>
-                <td class="assumptions-text">
-                  Amount paid at the beginning and at subsequent payments=
-                  (Total Premium/ Payment Frequency)
-                </td>
-                <td></td>
-              </tr>
-              <tr>
-                <td class="assumptions-text">
-                  All contracts start after 1 January 2020, 1st subsequent
-                  measurement in demo is 31/12/2020 and 2nd is 2021
-                </td>
-                <td></td>
-              </tr>
-
-              <tr>
-                <td class="assumptions-text"></td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
-          <table
-            id="fresh-table"
-            class="table display nowrap"
-            style="width: 100%"
-          >
-            <thead>
-              <th>Assumptions (Subsequent Measurement)</th>
-              <th></th>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="assumptions-text">
-                  For premium renewals due after 1 year
-                </td>
-                <td></td>
-              </tr>
-              <tr>
-                <td class="assumptions-text"></td>
-                <td></td>
-              </tr>
-            </tbody>
+            </form>
           </table>
         </div>
       </div>
     </div>
+
+<!--    <div class="card" style="background: #bbbbe9">-->
+<!--      <div class="card-body">-->
+<!--        <div class="fresh-table" style="background: #bbbbe9">-->
+<!--          <table-->
+<!--            id="fresh-table"-->
+<!--            class="table display nowrap"-->
+<!--            style="width: 100%"-->
+<!--          >-->
+<!--            <thead>-->
+<!--              <th>Liablity of Remaining Coverage</th>-->
+<!--              <th></th>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--              <tr>-->
+<!--                <td class="assumptions-text">Opening Balance</td>-->
+<!--                <td></td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td class="assumptions-text">-->
+<!--                  Premiums Received in the period-->
+<!--                </td>-->
+<!--                <td></td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td class="assumptions-text">-->
+<!--                  Insurance Acquisition Costs at that date-->
+<!--                </td>-->
+<!--                <td></td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td class="assumptions-text">-->
+<!--                  Amortisation of Insurance Acquisition Cash flows-->
+<!--                </td>-->
+<!--                <td></td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td class="assumptions-text">-->
+<!--                  Adjustment to Financing components-->
+<!--                </td>-->
+<!--                <td></td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td class="assumptions-text">-->
+<!--                  Insurance Revenue for Coverage Provided-->
+<!--                </td>-->
+<!--                <td></td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td class="assumptions-text">-->
+<!--                  Investment component transferred to the LIC-->
+<!--                </td>-->
+<!--                <td></td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td class="assumptions-text">Closing Balance</td>-->
+<!--                <td></td>-->
+<!--              </tr>-->
+
+<!--              <tr>-->
+<!--                <td class="assumptions-text"></td>-->
+<!--                <td></td>-->
+<!--              </tr>-->
+<!--            </tbody>-->
+<!--          </table>-->
+<!--          <table-->
+<!--            id="fresh-table"-->
+<!--            class="table display nowrap"-->
+<!--            style="width: 100%"-->
+<!--          >-->
+<!--            <thead>-->
+<!--              <th>Liability of Incurred Claims</th>-->
+<!--              <th></th>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--              <tr>-->
+<!--                <td class="assumptions-text">Opening Balance</td>-->
+<!--                <td></td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td class="assumptions-text">Expected Losses</td>-->
+<!--                <td></td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td class="assumptions-text">Paid Claims</td>-->
+<!--                <td></td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td class="assumptions-text">Closing Balance</td>-->
+<!--                <td></td>-->
+<!--              </tr>-->
+
+<!--              <tr>-->
+<!--                <td class="assumptions-text"></td>-->
+<!--                <td></td>-->
+<!--              </tr>-->
+<!--            </tbody>-->
+<!--          </table>-->
+<!--          <table-->
+<!--            id="fresh-table"-->
+<!--            class="table display nowrap"-->
+<!--            style="width: 100%"-->
+<!--          >-->
+<!--            <thead>-->
+<!--              <th>Assumptions</th>-->
+<!--              <th></th>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--              <tr>-->
+<!--                <td class="assumptions-text">-->
+<!--                  Premiums received at beginning of TERM-->
+<!--                </td>-->
+<!--                <td></td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td class="assumptions-text">Assumptions</td>-->
+<!--                <td></td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td class="assumptions-text">-->
+<!--                  Insurance Acquisition Costs match Premium timing-->
+<!--                </td>-->
+<!--                <td></td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td class="assumptions-text">Expenses spread over the year</td>-->
+<!--                <td></td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td class="assumptions-text">-->
+<!--                  Claims paid evenly throughout the year-->
+<!--                </td>-->
+<!--                <td></td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td class="assumptions-text">-->
+<!--                  Assume 60% of claims paid in Year incurred and 40% in 2nd year-->
+<!--                  (Run-Off period is 2 years)-->
+<!--                </td>-->
+<!--                <td></td>-->
+<!--              </tr>-->
+
+<!--              <tr>-->
+<!--                <td class="assumptions-text"></td>-->
+<!--                <td></td>-->
+<!--              </tr>-->
+<!--            </tbody>-->
+<!--          </table>-->
+<!--          <table-->
+<!--            id="fresh-table"-->
+<!--            class="table display nowrap"-->
+<!--            style="width: 100%"-->
+<!--          >-->
+<!--            <thead>-->
+<!--              <th>Assumptions Made (Initial Measurement)</th>-->
+<!--              <th></th>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--              <tr>-->
+<!--                <td class="assumptions-text">-->
+<!--                  Premiums and Acquisition costs are received at the beginning-->
+<!--                  of the year-->
+<!--                </td>-->
+<!--                <td></td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td class="assumptions-text">-->
+<!--                  Amount paid at the beginning and at subsequent payments=-->
+<!--                  (Total Premium/ Payment Frequency)-->
+<!--                </td>-->
+<!--                <td></td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td class="assumptions-text">-->
+<!--                  All contracts start after 1 January 2020, 1st subsequent-->
+<!--                  measurement in demo is 31/12/2020 and 2nd is 2021-->
+<!--                </td>-->
+<!--                <td></td>-->
+<!--              </tr>-->
+
+<!--              <tr>-->
+<!--                <td class="assumptions-text"></td>-->
+<!--                <td></td>-->
+<!--              </tr>-->
+<!--            </tbody>-->
+<!--          </table>-->
+<!--          <table-->
+<!--            id="fresh-table"-->
+<!--            class="table display nowrap"-->
+<!--            style="width: 100%"-->
+<!--          >-->
+<!--            <thead>-->
+<!--              <th>Assumptions (Subsequent Measurement)</th>-->
+<!--              <th></th>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--              <tr>-->
+<!--                <td class="assumptions-text">-->
+<!--                  For premium renewals due after 1 year-->
+<!--                </td>-->
+<!--                <td></td>-->
+<!--              </tr>-->
+<!--              <tr>-->
+<!--                <td class="assumptions-text"></td>-->
+<!--                <td></td>-->
+<!--              </tr>-->
+<!--            </tbody>-->
+<!--          </table>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
   </div>
 </div>
-{% endblock content %} {% block scripts %}
+{% endblock content %}
+{% block scripts %}
 <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
 <script>
@@ -232,5 +309,44 @@
 } );
 
 </script>
+<script>
+  $(document).ready( function () {
+    let data = JSON.parse("{{context|escapejs}}")
+    let newJson = JSON.parse(data)
+    console.log(newJson)
+    $('#fresh-table').DataTable({
+      scrollX: true,
+      data: newJson,
+      columns: [
+        { data: 'January 2021' },
+        { data: 'February 2021' },
+        { data: 'March 2021' },
+        { data: 'April 2021' },
+        { data: 'May 2021' },
+        { data: 'June 2021' },
+        { data: 'July 2021' },
+        { data: 'August 2021' },
+        { data: 'September 2021' },
+        { data: 'October 2021' },
+        { data: 'November 2021' },
+        {data: 'December 2021'},
+        {data: 'January 2021'},
+        {data: 'February 2021'},
+        {data: 'March 2021'},
+        {data: 'April 2021'},
+        {data: 'May 2021'},
+        {data: 'June 2021'},
+        {data: 'July 2021'},
+        {data: 'August 2021'},
+        {data: 'September 2021'},
+        {data: 'October 2021'},
 
+
+      ],
+
+    });
+  } );
+
+</script>
+{% comment %} {% endcomment %}
 {%endblock scripts %}

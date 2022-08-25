@@ -1,6 +1,7 @@
 from calendar import month
 import pandas as pd
 import numpy as np
+from django.contrib import messages
 
 class MonthlyResults:
     def __init__(self, df:pd.DataFrame, measurement_date: pd.Timestamp):
@@ -8,6 +9,7 @@ class MonthlyResults:
         self.measurement_date = measurement_date
 
     def _initial_measurement_date(self, group_name):
+        # print(self.df.groupby('Final Groups of Contracts')['Start Date'].min())
         return self.df.groupby('Final Groups of Contracts')['Start Date'].min()[group_name]
 
     def _group_end_date(self,group_name):
@@ -99,17 +101,17 @@ class MonthlyResults:
 
 
     def results(self,group_name):
-        st.markdown(f'#### {group_name}')
+        # st.markdown(f'#### {group_name}')
         tables = []
 
         period = self.measurement_date.to_period('M') - self._initial_measurement_date(group_name=group_name).to_period('M')
         for i in range(period.n + 1):
-            if self._initial_measurement_date(group_name=group_name) > self.measurement_date:
-                st.warning(f'The measurement Date is less than the group start date. No Liability for group {group_name}')
-                break
-            if self._group_end_date(group_name = group_name).year < self.measurement_date.year:
-                st.warning(f'The group end year is less than the measurent year. The group {group_name} has been derecognised')
-                break
+            # if self._initial_measurement_date(group_name=group_name) > self.measurement_date:
+            #     messages.warning(request,f'The measurement Date is less than the group start date. No Liability for group {group_name}')
+            #     break
+            # if self._group_end_date(group_name = group_name).year < self.measurement_date.year:
+            #     messages.warning(request,f'The group end year is less than the measurent year. The group {group_name} has been derecognised')
+            #     break
             tables.append(self.compute_month_results(group_name=group_name,month_and_year= pd.Period(self._initial_measurement_date(group_name=group_name),'M') + i))
         if len(tables) != 0:
             results = pd.concat(tables,axis = 1)
