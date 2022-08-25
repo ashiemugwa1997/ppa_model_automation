@@ -1,0 +1,104 @@
+{% extends "layout.html" %} {% block styles %}
+{% comment %} <link href="/static/assets/css/fresh-bootstrap-table.css" rel="stylesheet" /> {% endcomment %}
+<link href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+{% endblock styles %}
+{% block content %}
+<div class="row">
+  <div class="col-12">
+    <div class="card" style="background: #bbbbe9;">
+      <div class="card-body">
+        <div class="fresh-table" style="background: #bbbbe9;">
+          <table id="fresh-table" class="table display nowrap" style="width:100%">
+            <thead>
+                <th>ID</th>
+             <th>
+                Session Name
+             </th>
+             <th>
+               Discount Rate
+             </th>
+             <th>
+               Measurement Date
+             </th>
+             <th>
+                Risk Adjustment
+             </th>
+             <th>
+               Loss Ratio
+             </th>
+             <th>
+                Date
+             </th>
+             <th>
+                Session Datasheet
+             </th>
+            </thead>
+            <tbody>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %} {% block scripts %}
+<script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script>
+  $(document).ready( function () {
+    let data = JSON.parse("{{context|escapejs}}")
+
+    let list = [];
+    data.forEach((element, index) => {
+      let o = {
+        session_id: element.pk,
+        session_name: element.fields.session_name,
+        session_discount_rate: element.fields.session_discount_rate || "0",
+        session_measurement_date: element.fields.session_measurement_date,
+        session_risk_adjustment: element.fields.session_risk_adjustment || "0",
+        session_loss_ratio: element.fields.session_loss_ratio || "0",
+        updated_at: element.fields.updated_at,
+        session_datasheet: element.fields.session_datasheet
+      };
+  
+      list.push(o);
+    });
+
+    $('#fresh-table').DataTable({
+      scrollX: true,
+      data: list,
+      columns: [
+      {
+        title: 'id',
+        data: null,
+        render: (data, type, row, meta) => meta.row + 1
+      },
+      { data: 'session_name' },
+      { data: 'session_discount_rate' },
+      { data: 'session_measurement_date' },
+      { data: 'session_risk_adjustment' },
+      { data: 'session_loss_ratio' },
+      { data: 'updated_at' },
+      {
+        data: null,
+        render: function (data, type, row, meta) {
+          let path = row.session_datasheet
+
+          return `<div class="btn-group">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              Datasheet
+            </button>
+            <ul class="dropdown-menu">
+              ${ path? '<li><a class="dropdown-item" href="/paa/sessions/datasheet?i='+row.session_id+'">Download</a></li>': "" }
+            </ul>
+          </div>`;
+        },
+      },
+      
+  ],
+
+    });
+} );
+
+</script>
+{%endblock scripts %}

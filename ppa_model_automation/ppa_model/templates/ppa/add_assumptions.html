@@ -1,9 +1,7 @@
 {% extends "layout.html" %}
 {% load static %}
 {% block styles %}
-{% comment %} <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
-<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script> {% endcomment %}
+
 {% endblock styles %}
 {% block content %}
 <form action="/paa/add_assumptions" enctype="multipart/form-data" method="POST">
@@ -28,7 +26,7 @@
                 <tr>
                   <td class="assumptions-text" colspan="2">
                     <div class="d-flex mt-3">
-                      <span class="" style="font-weight: bold">
+                      <span class="" style="">
                         Session Name
                       </span>
                     </div>
@@ -53,7 +51,7 @@
                 <tr>
                   <td class="assumptions-text" colspan="2">
                     <div class="d-flex mt-3">
-                      <span class="" style="font-weight: bold">
+                      <span class="" style="">
                         Upload an Excel Spreadsheet with 3 sheets i.e
                         SourceData, CombinedRatios and ClassOfBusiness
                       </span>
@@ -211,5 +209,5 @@
 </form>
 {% endblock content %}
 {% block scripts %}
-{% comment %} <script src="/static/assets/js/add_assumptions.js"></script> {% endcomment %}
+
 {% endblock scripts %}

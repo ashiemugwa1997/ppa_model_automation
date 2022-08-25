@@ -1,3 +1,4 @@
+import mimetypes
 import random
 import string
 from django.contrib.auth import logout
@@ -5,6 +6,10 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.migrations import serializer
 from django.shortcuts import render, redirect
+from django.core import serializers
+from django.http import HttpResponse, FileResponse
+
+from django.conf import settings
 
 from ppa_model.datasheets.file_handler import save_file
 from .models import Session, Assumptions
@@ -28,7 +33,6 @@ from datetime import datetime
 # Create your views here.
 def dashboard(request):
     return render(request, 'ppa/dashboard.html', {})
-
 
 @login_required(login_url='/login/')
 def add_assumptions_copy(request):
@@ -80,7 +84,6 @@ def add_assumptions_copy(request):
 
     return render(request, 'ppa/add_assumptions.html', {})
 
-
 @login_required(login_url='/login/')
 def add_assumptions(request):
     if request.method == "POST":
@@ -110,6 +113,32 @@ def add_assumptions(request):
 
     return render(request, 'ppa/add_assumptions.html', {})
 
+# Sessions Menu
+# All sessions
+@login_required(login_url='/login/')
+def user_sessions(request):
+
+    documents = Session.objects.order_by('-updated_at').all()
+    context = serializers.serialize('json', documents)
+    return render(request, 'ppa/sessions/sessions.html', { "context": context})
+
+@login_required(login_url='/login/')
+def download_datasheet(request):
+
+    id = request.GET['i']
+    session = Session.objects.get(id=id)
+
+    session_datasheet = session.session_datasheet
+
+    try:
+        filepath = os.path.join(settings.BASE_DIR, session_datasheet)
+        print("file path", filepath)
+        return FileResponse(open(filepath, 'rb'), content_type='application/vnd. ms-excel')
+        
+    except FileNotFoundError:
+        print("File not found")
+    
+    return redirect('/paa/sessions')
 
 @login_required(login_url='/login/')
 def aggregated_results(request):
@@ -367,16 +396,13 @@ def get_group_summary(request):
     
     return render(request, 'ppa/group_summary.html', { "context": je })
 
-
 @login_required(login_url='/login/')
 def get_measurement_calculations(request):
     return render(request, 'ppa/measurement_calculation.html')
 
-
 @login_required(login_url='/login/')
 def get_reinsurance(request):
     return render(request, 'ppa/reinsurance_contracts_held.html')
-
 
 @login_required(login_url='/login/')
 def get_estimated_financial_statements(request):
