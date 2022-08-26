@@ -1,36 +1,39 @@
-import mimetypes
+import random
+import os
 import random
 import string
-from django.contrib.auth import logout
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-from django.db.migrations import serializer
-from django.shortcuts import render, redirect
-from django.core import serializers
-from django.http import HttpResponse, FileResponse
-
-from django.conf import settings
-
-from ppa_model.datasheets.file_handler import save_file
-from .models import Session, Assumptions, Upload_Doc
-from .utilities import cashflow_estimation, data_checks, eligibility_test_and_grouping
-import datetime as dt
-import pandas as pd
-import os
-from django.conf import settings
-from django.core.files.storage import FileSystemStorage
+from json import JSONEncoder
+import  json
 from datetime import datetime
 
+import numpy
+import pandas as pd
+from django.conf import settings
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+from django.core import serializers
+from django.core.files.storage import FileSystemStorage
+from django.http import FileResponse
+from django.shortcuts import render, redirect
+from ppa_model.datasheets.file_handler import save_file
+
+from .models import Session, Assumptions, Upload_Doc
+from .utilities import cashflow_estimation, data_checks, eligibility_test_and_grouping
+# Create your views here.
+from .utilities.monthly_results import MonthlyResults
+
+
 # from .serializers import upload_doc_Serializer
-
-
 # class DashboardView(TemplateView):
 #     # add permission to check if user is authenticated
 #     permission_classes = [permissions.IsAuthenticated]
 #     template_name = 'ppa/dashboard.html'
 
-# Create your views here.
-from .utilities.monthly_results import MonthlyResults
+class NumpyArrayEncoder(JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, numpy.ndarray):
+            return obj.tolist()
+        return JSONEncoder.default(self, obj)
 
 @login_required(login_url='/login/')
 def dashboard(request):
@@ -75,11 +78,10 @@ def user_sessions(request):
     current_user_id = current_user.id
     documents = Session.objects.filter(session_user_id=current_user_id).order_by('-updated_at').all()
     context = serializers.serialize('json', documents)
-    return render(request, 'ppa/sessions/sessions.html', { "context": context})
+    return render(request, 'ppa/sessions/sessions.html', {"context": context})
 
 @login_required(login_url='/login/')
 def download_datasheet(request):
-
     id = request.GET['i']
     session = Session.objects.get(id=id)
 
@@ -89,19 +91,105 @@ def download_datasheet(request):
         filepath = os.path.join(settings.BASE_DIR, session_datasheet)
         print("file path", filepath)
         return FileResponse(open(filepath, 'rb'), content_type='application/vnd. ms-excel')
-        
+
     except FileNotFoundError:
         print("File not found")
-    
+
     return redirect('/paa/sessions')
+
 
 @login_required(login_url='/login/')
 def calculation_results(request):
     return render(request, 'ppa/results.html', {})
 
+def aggregated_results(request):
+    if request.method == "POST":
+        selected_group = request.POST['selected_group']
+    else:
+        selected_group = '2021.101.0'
+
+    session = Session.objects.latest('updated_at')
+    print("session: ", session.session_name)
+    xls = pd.ExcelFile(session.session_datasheet)
+    source_data_df = pd.read_excel(xls, 'SourceData')
+    combined_ratio_df = pd.read_excel(xls, 'CombinedRatios')
+    class_of_business_df = pd.read_excel(xls, 'ClassOfBusiness')
+
+    # Source Data Checks
+    floats = ['Premium Installment', 'Total Premium']
+    ints = ['Payment Frequency']
+
+    required_source_data_columns = ['Class of Business', 'Name of Policyholder',
+                                    'Surname', 'Policy Number', 'Start Date',
+                                    'Ending Date', 'Expected Date of Premium Payment',
+                                    'Date of Premium Payment', 'Premium Installment',
+                                    'Payment Frequency', 'Total Premium']
+
+    source_data_checks = data_checks.DataChecks(source_data_df, required_source_data_columns, 'SourceData', floats,
+                                                ints)
+    source_data_checks.data_check_report(request)
+
+    # Combined Ratio Data Checks
+    floats = ['Claims Ratio', 'Expense Ratio', 'Acquisistion costs (Commissions)']
+    ints = []
+
+    required_combined_ratio_columns = ['Class of Business', 'Claims Ratio', 'Expense Ratio',
+                                       'Acquisition costs (Commissions)']
+
+    combined_ratio_checks = data_checks.DataChecks(combined_ratio_df, required_combined_ratio_columns, 'SourceData',
+                                                   floats,
+                                                   ints)
+    combined_ratio_checks.data_check_report(request)
+
+    # Class of Business Data Checks
+    floats = []
+    ints = ['Portfolio ID']
+
+    required_class_of_business_columns = ['Class of Business', 'Portfolio ID']
+
+    class_of_business_checks = data_checks.DataChecks(class_of_business_df, required_class_of_business_columns,
+                                                      'SourceData',
+                                                      floats, ints)
+    class_of_business_checks.data_check_report(request)
+
+    cashflow_estimation_df = cashflow_estimation.CashFlowEstimation(source_data_checks.df,
+                                                                    session.session_discount_rate,
+                                                                    combined_ratio_checks.df,
+                                                                    class_of_business_checks.df,
+                                                                    session.session_risk_adjustment)
+
+    cashflow_estimation_df.estimate_cashflows()
+    loss_ratio_threshold = float(session.session_loss_ratio)
+    etag = eligibility_test_and_grouping.PAAEligibilityTestingAndGrouping(cashflow_estimation_df.data,
+                                                                          loss_ratio_threshold)
+    # print(cashflow_estimation_df.data)
+    etag.test_and_group()
+    etag.analyze_groups()
+    etag.groups.index.tolist()
+
+    measurement_date1 = session.session_measurement_date
+    measurement_date = pd.Timestamp(measurement_date1)
+
+    print(selected_group)
+    monthly_df = MonthlyResults(etag.auto_paa, measurement_date).results(selected_group)
+    # for i in etag.groups.index.tolist():
+    #     print(MonthlyResults(etag.auto_paa, measurement_date).results(i))
+    # print(monthly_df)
+
+    monthly_columns = monthly_df.columns.values.tolist()
+    import json
+    d = monthly_df.to_json(orient='records')
+    # e = monthly_columns.JSONEncoder(orient='records2')
+    j = json.dumps(d)
+    k = json.dumps(monthly_columns, cls=NumpyArrayEncoder)
+    print(j)
+    print(k)
+    # , {"context2": k}
+
+    return render(request, 'ppa/aggregated_results.html', {"context": j, "columns": k})
+
 @login_required(login_url='/login/')
 def get_session(request):
-
     session_id = request.GET['i']
     request.session['selected_session'] = session_id
     request.session['session_selected'] = True
@@ -110,7 +198,6 @@ def get_session(request):
 
 @login_required(login_url='/login/')
 def get_estimated_cashflow(request):
-
     session = None
     if request.session.get('session_selected', True):
         session_id = request.session['selected_session']
@@ -350,6 +437,7 @@ def get_group_summary(request):
 
     return render(request, 'ppa/group_summary.html', {"context": je})
 
+
 @login_required(login_url='/login/')
 def aggregated_results(request):
 
@@ -431,14 +519,21 @@ def aggregated_results(request):
 
     print(selected_group)
     monthly_df = MonthlyResults(etag.auto_paa, measurement_date).results(selected_group)
+    # for i in etag.groups.index.tolist():
+    #     print(MonthlyResults(etag.auto_paa, measurement_date).results(i))
+    # print(monthly_df)
 
+    monthly_columns = monthly_df.columns.values.tolist()
     import json
-    groups_df_json = etag.groups.to_json(orient='records')
-    groups_json = json.dumps(groups_df_json)
     d = monthly_df.to_json(orient='records')
+    # e = monthly_columns.JSONEncoder(orient='records2')
     j = json.dumps(d)
+    k = json.dumps(monthly_columns, cls=NumpyArrayEncoder)
+    print(j)
+    print(k)
+    # , {"context2": k}
 
-    return render(request, 'ppa/aggregated_results.html', {})
+    return render(request, 'ppa/aggregated_results.html', {"context": j, "columns": k})
 
 @login_required(login_url='/login/')
 def get_group_analysis(request):
@@ -460,9 +555,11 @@ def get_gmm_outputs(request):
 def get_measurement_calculations(request):
     return render(request, 'ppa/measurement_calculation.html')
 
+
 @login_required(login_url='/login/')
 def get_reinsurance(request):
     return render(request, 'ppa/reinsurance_contracts_held.html')
+
 
 @login_required(login_url='/login/')
 def get_estimated_financial_statements(request):
