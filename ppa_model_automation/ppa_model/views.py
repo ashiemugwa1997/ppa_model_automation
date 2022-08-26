@@ -118,8 +118,6 @@ def get_estimated_cashflow(request):
     else:
         session = Session.objects.latest('updated_at')
 
-    print(session)
-
     print("session: ", session.session_name)
     xls = pd.ExcelFile(session.session_datasheet)
     source_data_df = pd.read_excel(xls, 'SourceData')
@@ -178,7 +176,13 @@ def get_estimated_cashflow(request):
 
 @login_required(login_url='/login/')
 def get_groupings(request):
-    session = Session.objects.latest('updated_at')
+    session = None
+    if request.session.get('session_selected', True):
+        session_id = request.session['selected_session']
+        session = Session.objects.get(id=session_id)
+    else:
+        session = Session.objects.latest('updated_at')
+
     print("session: ", session.session_name)
     xls = pd.ExcelFile(session.session_datasheet)
     source_data_df = pd.read_excel(xls, 'SourceData')
@@ -260,7 +264,14 @@ def get_groupings(request):
 
 @login_required(login_url='/login/')
 def get_group_summary(request):
-    session = Session.objects.latest('updated_at')
+    
+    session = None
+    if request.session.get('session_selected', True):
+        session_id = request.session['selected_session']
+        session = Session.objects.get(id=session_id)
+    else:
+        session = Session.objects.latest('updated_at')
+
     print("session: ", session.session_name)
     xls = pd.ExcelFile(session.session_datasheet)
     source_data_df = pd.read_excel(xls, 'SourceData')
@@ -341,6 +352,14 @@ def get_group_summary(request):
 
 @login_required(login_url='/login/')
 def aggregated_results(request):
+
+    session = None
+    if request.session.get('session_selected', True):
+        session_id = request.session['selected_session']
+        session = Session.objects.get(id=session_id)
+    else:
+        session = Session.objects.latest('updated_at')
+
     if request.method == "POST":
         selected_group = request.POST['selected_group']
     else:
