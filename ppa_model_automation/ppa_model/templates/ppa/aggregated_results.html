@@ -4,10 +4,13 @@
   href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"
   rel="stylesheet"
 />
-{% comment %} <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+{% comment %} <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>{% endcomment %}
 <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 <script src="/static/assets/js/aggregate_result.js"></script>
+{% comment %} <link href="/static/assets/css/fresh-bootstrap-table.css" rel="stylesheet" /> {% endcomment %}
+{% comment %}
+<link href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
 {% endcomment %}
 {% endblock styles %}
 {% block content %}
@@ -298,48 +301,49 @@
 {% block scripts %}
 <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 
-<script>
-  $(document).ready( function () {
-    $('#fresh-table').DataTable({
-      scrollX: true,
-      "bInfo": false, //Dont display info e.g. "Showing 1 to 4 of 4 entries"
-      "paging": false,//Dont want paging                
-      "bPaginate": false,//Dont want paging 
-    });
-} );
+<!--<script>-->
+<!--  $(document).ready( function () {-->
+<!--    $('#fresh-table').DataTable({-->
+<!--      scrollX: true,-->
+<!--      "bInfo": false, //Dont display info e.g. "Showing 1 to 4 of 4 entries"-->
+<!--      "paging": false,//Dont want paging                -->
+<!--      "bPaginate": false,//Dont want paging -->
+<!--    });-->
+<!--} );-->
 
-</script>
+<!--</script>-->
 <script>
   $(document).ready( function () {
     let data = JSON.parse("{{context|escapejs}}")
+    let columns = JSON.parse["{{context2|escapejs}}"]
     let newJson = JSON.parse(data)
     console.log(newJson)
     $('#fresh-table').DataTable({
       scrollX: true,
       data: newJson,
       columns: [
-        { data: 'January 2021' },
-        { data: 'February 2021' },
-        { data: 'March 2021' },
-        { data: 'April 2021' },
-        { data: 'May 2021' },
-        { data: 'June 2021' },
-        { data: 'July 2021' },
-        { data: 'August 2021' },
-        { data: 'September 2021' },
-        { data: 'October 2021' },
-        { data: 'November 2021' },
-        {data: 'December 2021'},
-        {data: 'January 2021'},
-        {data: 'February 2021'},
-        {data: 'March 2021'},
-        {data: 'April 2021'},
-        {data: 'May 2021'},
-        {data: 'June 2021'},
-        {data: 'July 2021'},
-        {data: 'August 2021'},
-        {data: 'September 2021'},
-        {data: 'October 2021'},
+        // { data: 'January 2021' },
+        // { data: 'February 2021' },
+        // { data: 'March 2021' },
+        // { data: 'April 2021' },
+        // { data: 'May 2021' },
+        // { data: 'June 2021' },
+        // { data: 'July 2021' },
+        // { data: 'August 2021' },
+        // { data: 'September 2021' },
+        // { data: 'October 2021' },
+        // { data: 'November 2021' },
+        // {data: 'December 2021'},
+        // {data: 'January 2021'},
+        // {data: 'February 2021'},
+        // {data: 'March 2021'},
+        // {data: 'April 2021'},
+        // {data: 'May 2021'},
+        // {data: 'June 2021'},
+        // {data: 'July 2021'},
+        // {data: 'August 2021'},
+        // {data: 'September 2021'},
+        // {data: 'October 2021'},
 
 
       ],

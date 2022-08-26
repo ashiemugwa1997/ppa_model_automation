@@ -1,40 +1,44 @@
-import mimetypes
+import random
+import os
 import random
 import string
-from django.contrib.auth import logout
-from django.contrib import messages
-from django.contrib.auth.decorators import login_required
-from django.db.migrations import serializer
-from django.shortcuts import render, redirect
-from django.core import serializers
-from django.http import HttpResponse, FileResponse
-
-from django.conf import settings
-
-from ppa_model.datasheets.file_handler import save_file
-from .models import Session, Assumptions, Upload_Doc
-from .utilities import cashflow_estimation, data_checks, eligibility_test_and_grouping
-import datetime as dt
-import pandas as pd
-import os
-from django.conf import settings
-from django.core.files.storage import FileSystemStorage
+from json import JSONEncoder
+import  json
 from datetime import datetime
 
+import numpy
+import pandas as pd
+from django.conf import settings
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+from django.core import serializers
+from django.core.files.storage import FileSystemStorage
+from django.http import FileResponse
+from django.shortcuts import render, redirect
+from ppa_model.datasheets.file_handler import save_file
+
+from .models import Session, Assumptions, Upload_Doc
+from .utilities import cashflow_estimation, data_checks, eligibility_test_and_grouping
+# Create your views here.
+from .utilities.monthly_results import MonthlyResults
+
+
 # from .serializers import upload_doc_Serializer
-
-
 # class DashboardView(TemplateView):
 #     # add permission to check if user is authenticated
 #     permission_classes = [permissions.IsAuthenticated]
 #     template_name = 'ppa/dashboard.html'
 
-# Create your views here.
-from .utilities.monthly_results import MonthlyResults
+class NumpyArrayEncoder(JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, numpy.ndarray):
+            return obj.tolist()
+        return JSONEncoder.default(self, obj)
 
 
 def dashboard(request):
     return render(request, 'ppa/dashboard.html', {})
+
 
 @login_required(login_url='/login/')
 def add_assumptions_copy(request):
@@ -86,6 +90,7 @@ def add_assumptions_copy(request):
 
     return render(request, 'ppa/add_assumptions.html', {})
 
+
 @login_required(login_url='/login/')
 def add_assumptions(request):
     if request.method == "POST":
@@ -115,18 +120,18 @@ def add_assumptions(request):
 
     return render(request, 'ppa/add_assumptions.html', {})
 
+
 # Sessions Menu
 # All sessions
 @login_required(login_url='/login/')
 def user_sessions(request):
-
     documents = Session.objects.order_by('-updated_at').all()
     context = serializers.serialize('json', documents)
-    return render(request, 'ppa/sessions/sessions.html', { "context": context})
+    return render(request, 'ppa/sessions/sessions.html', {"context": context})
+
 
 @login_required(login_url='/login/')
 def download_datasheet(request):
-
     id = request.GET['i']
     session = Session.objects.get(id=id)
 
@@ -136,11 +141,12 @@ def download_datasheet(request):
         filepath = os.path.join(settings.BASE_DIR, session_datasheet)
         print("file path", filepath)
         return FileResponse(open(filepath, 'rb'), content_type='application/vnd. ms-excel')
-        
+
     except FileNotFoundError:
         print("File not found")
-    
+
     return redirect('/paa/sessions')
+
 
 @login_required(login_url='/login/')
 def aggregated_results(request):
@@ -215,33 +221,37 @@ def aggregated_results(request):
     monthly_df = MonthlyResults(etag.auto_paa, measurement_date).results(selected_group)
     # for i in etag.groups.index.tolist():
     #     print(MonthlyResults(etag.auto_paa, measurement_date).results(i))
-    print(monthly_df)
+    # print(monthly_df)
+
+    monthly_columns = monthly_df.columns.values.tolist()
     import json
     d = monthly_df.to_json(orient='records')
+    # e = monthly_columns.JSONEncoder(orient='records2')
     j = json.dumps(d)
+    k = json.dumps(monthly_columns, cls=NumpyArrayEncoder)
     print(j)
-    # "context": j
+    print(k)
+    # , {"context2": k}
 
-    return render(request, 'ppa/aggregated_results.html', {})
+    return render(request, 'ppa/aggregated_results.html', {"context": j, "columns": k})
+
 
 @login_required(login_url='/login/')
 def get_session(request):
-
     session_id = request.GET['i']
     request.session['selected_session'] = session_id
     request.session['session_selected'] = True
 
     return redirect('/paa/results')
 
+
 @login_required(login_url='/login/')
 def calculation_results(request):
-
     return render(request, 'ppa/results.html', {})
 
 
 @login_required(login_url='/login/')
 def get_estimated_cashflow(request):
-
     session = None
     if request.session.get('session_selected', True):
         session_id = request.session['selected_session']
@@ -492,13 +502,16 @@ def get_group_summary(request):
 
     return render(request, 'ppa/group_summary.html', {"context": je})
 
+
 @login_required(login_url='/login/')
 def get_measurement_calculations(request):
     return render(request, 'ppa/measurement_calculation.html')
 
+
 @login_required(login_url='/login/')
 def get_reinsurance(request):
     return render(request, 'ppa/reinsurance_contracts_held.html')
+
 
 @login_required(login_url='/login/')
 def get_estimated_financial_statements(request):
