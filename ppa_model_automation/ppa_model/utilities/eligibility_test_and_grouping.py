@@ -38,7 +38,7 @@ class PAAEligibilityTestingAndGrouping:
         self.groups = self.auto_paa['Final Groups of Contracts'].value_counts()
 
     def analyze_groups(self):
-        groups = self.auto_paa.groupby('Final Groups of Contracts').agg({'Start Date': 'min',
+        groups = self.auto_paa.groupby('Final Groups of Contracts', as_index=False).agg({'Start Date': 'min',
                                                                          'Ending Date': 'max',
                                                                          'Premium Installment': 'sum',
                                                                          'Total Premium': 'sum',
@@ -48,6 +48,7 @@ class PAAEligibilityTestingAndGrouping:
                                                                          'Risk Adjustment': sum,
                                                                          'FCFs': 'sum',
                                                                          'Acquisition Costs': 'sum'})
+
         self.groups_stats = groups.assign(
             combined_loss_ratio=(groups['PV Claims'] + groups['PV Expenses'] + groups['Risk Adjustment']) / groups[
                 'PV Premiums'])
