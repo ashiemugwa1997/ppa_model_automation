@@ -48,7 +48,7 @@ class MonthlyResults:
         Args:
             group_name: the name of the group to be filtered
         """
-        return self.df.groupby('Final Groups of Contracts').get_group(group_name)
+        return self.df.groupby('Final Groups of Contracts', as_index=False).get_group(group_name)
 
 
     def prems_or_acquisition_costs_in_the_period(self,typ,start, end, group):

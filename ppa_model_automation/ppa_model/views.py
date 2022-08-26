@@ -102,92 +102,6 @@ def download_datasheet(request):
 def calculation_results(request):
     return render(request, 'ppa/results.html', {})
 
-def aggregated_results(request):
-    if request.method == "POST":
-        selected_group = request.POST['selected_group']
-    else:
-        selected_group = '2021.101.0'
-
-    session = Session.objects.latest('updated_at')
-    print("session: ", session.session_name)
-    xls = pd.ExcelFile(session.session_datasheet)
-    source_data_df = pd.read_excel(xls, 'SourceData')
-    combined_ratio_df = pd.read_excel(xls, 'CombinedRatios')
-    class_of_business_df = pd.read_excel(xls, 'ClassOfBusiness')
-
-    # Source Data Checks
-    floats = ['Premium Installment', 'Total Premium']
-    ints = ['Payment Frequency']
-
-    required_source_data_columns = ['Class of Business', 'Name of Policyholder',
-                                    'Surname', 'Policy Number', 'Start Date',
-                                    'Ending Date', 'Expected Date of Premium Payment',
-                                    'Date of Premium Payment', 'Premium Installment',
-                                    'Payment Frequency', 'Total Premium']
-
-    source_data_checks = data_checks.DataChecks(source_data_df, required_source_data_columns, 'SourceData', floats,
-                                                ints)
-    source_data_checks.data_check_report(request)
-
-    # Combined Ratio Data Checks
-    floats = ['Claims Ratio', 'Expense Ratio', 'Acquisistion costs (Commissions)']
-    ints = []
-
-    required_combined_ratio_columns = ['Class of Business', 'Claims Ratio', 'Expense Ratio',
-                                       'Acquisition costs (Commissions)']
-
-    combined_ratio_checks = data_checks.DataChecks(combined_ratio_df, required_combined_ratio_columns, 'SourceData',
-                                                   floats,
-                                                   ints)
-    combined_ratio_checks.data_check_report(request)
-
-    # Class of Business Data Checks
-    floats = []
-    ints = ['Portfolio ID']
-
-    required_class_of_business_columns = ['Class of Business', 'Portfolio ID']
-
-    class_of_business_checks = data_checks.DataChecks(class_of_business_df, required_class_of_business_columns,
-                                                      'SourceData',
-                                                      floats, ints)
-    class_of_business_checks.data_check_report(request)
-
-    cashflow_estimation_df = cashflow_estimation.CashFlowEstimation(source_data_checks.df,
-                                                                    session.session_discount_rate,
-                                                                    combined_ratio_checks.df,
-                                                                    class_of_business_checks.df,
-                                                                    session.session_risk_adjustment)
-
-    cashflow_estimation_df.estimate_cashflows()
-    loss_ratio_threshold = float(session.session_loss_ratio)
-    etag = eligibility_test_and_grouping.PAAEligibilityTestingAndGrouping(cashflow_estimation_df.data,
-                                                                          loss_ratio_threshold)
-    # print(cashflow_estimation_df.data)
-    etag.test_and_group()
-    etag.analyze_groups()
-    etag.groups.index.tolist()
-
-    measurement_date1 = session.session_measurement_date
-    measurement_date = pd.Timestamp(measurement_date1)
-
-    print(selected_group)
-    monthly_df = MonthlyResults(etag.auto_paa, measurement_date).results(selected_group)
-    # for i in etag.groups.index.tolist():
-    #     print(MonthlyResults(etag.auto_paa, measurement_date).results(i))
-    # print(monthly_df)
-
-    monthly_columns = monthly_df.columns.values.tolist()
-    import json
-    d = monthly_df.to_json(orient='records')
-    # e = monthly_columns.JSONEncoder(orient='records2')
-    j = json.dumps(d)
-    k = json.dumps(monthly_columns, cls=NumpyArrayEncoder)
-    print(j)
-    print(k)
-    # , {"context2": k}
-
-    return render(request, 'ppa/aggregated_results.html', {"context": j, "columns": k})
-
 @login_required(login_url='/login/')
 def get_session(request):
     session_id = request.GET['i']
@@ -264,7 +178,7 @@ def get_estimated_cashflow(request):
 @login_required(login_url='/login/')
 def get_groupings(request):
     session = None
-    if request.session.get('session_selected', True):
+    if request.session.get('session_selected'):
         session_id = request.session['selected_session']
         session = Session.objects.get(id=session_id)
     else:
@@ -353,7 +267,7 @@ def get_groupings(request):
 def get_group_summary(request):
     
     session = None
-    if request.session.get('session_selected', True):
+    if request.session.get('session_selected'):
         session_id = request.session['selected_session']
         session = Session.objects.get(id=session_id)
     else:
@@ -442,7 +356,8 @@ def get_group_summary(request):
 def aggregated_results(request):
 
     session = None
-    if request.session.get('session_selected', True):
+    print("session data: ", request.session.get('session_selected'))
+    if request.session.get('session_selected'):
         session_id = request.session['selected_session']
         session = Session.objects.get(id=session_id)
     else:
@@ -451,9 +366,8 @@ def aggregated_results(request):
     if request.method == "POST":
         selected_group = request.POST['selected_group']
     else:
-        selected_group = '2021.101.0'
+        selected_group = '2021.100.0'
 
-    session = Session.objects.latest('updated_at')
     print("session: ", session.session_name)
     xls = pd.ExcelFile(session.session_datasheet)
     source_data_df = pd.read_excel(xls, 'SourceData')
@@ -512,28 +426,35 @@ def aggregated_results(request):
     etag.analyze_groups()
     etag.groups.index.tolist()
 
-    print(etag.groups)
+    groups_df = etag.groups.to_frame()
+    groups_index= groups_df.index
+    print(groups_index)
 
     measurement_date1 = session.session_measurement_date
     measurement_date = pd.Timestamp(measurement_date1)
 
-    print(selected_group)
     monthly_df = MonthlyResults(etag.auto_paa, measurement_date).results(selected_group)
     # for i in etag.groups.index.tolist():
     #     print(MonthlyResults(etag.auto_paa, measurement_date).results(i))
-    # print(monthly_df)
+    monthly_df['labels'] = monthly_df.index
 
     monthly_columns = monthly_df.columns.values.tolist()
     import json
     d = monthly_df.to_json(orient='records')
     # e = monthly_columns.JSONEncoder(orient='records2')
     j = json.dumps(d)
-    k = json.dumps(monthly_columns, cls=NumpyArrayEncoder)
     print(j)
-    print(k)
-    # , {"context2": k}
+    k = json.dumps(monthly_columns, cls=NumpyArrayEncoder)
+    groups_json = json.dumps(groups_index.tolist(), cls=NumpyArrayEncoder)
 
-    return render(request, 'ppa/aggregated_results.html', {"context": j, "columns": k})
+    return render(
+        request, 
+        'ppa/aggregated_results.html', 
+        {"context": j, 
+        "columns": k, 
+        "groups": groups_index.tolist(), 
+        "groups_json": groups_json
+        })
 
 @login_required(login_url='/login/')
 def get_group_analysis(request):

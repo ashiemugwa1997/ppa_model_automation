@@ -45,7 +45,9 @@
                 <div class="">
                   <select class="form-control" name="selected_group" id="selected_group">
                     <option value="">--Please choose an option--</option>
-                    <option value="1">1</option>
+                    {% for group in groups %}
+                      <option value="{{group}}">{{group}}</option>
+                    {% endfor %}
                   </select>
                 </div>
               </td>
@@ -80,6 +82,12 @@
             </tr>
             </tbody>
             </form>
+          </table>
+          <table
+          id="fresh-table"
+          class="table display nowrap"
+          style="width: 100%"
+            >
           </table>
         </div>
       </div>
@@ -300,56 +308,26 @@
 {% endblock content %}
 {% block scripts %}
 <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-
-<!--<script>-->
-<!--  $(document).ready( function () {-->
-<!--    $('#fresh-table').DataTable({-->
-<!--      scrollX: true,-->
-<!--      "bInfo": false, //Dont display info e.g. "Showing 1 to 4 of 4 entries"-->
-<!--      "paging": false,//Dont want paging                -->
-<!--      "bPaginate": false,//Dont want paging -->
-<!--    });-->
-<!--} );-->
-
-<!--</script>-->
 <script>
   $(document).ready( function () {
     let data = JSON.parse("{{context|escapejs}}")
-    let columns = JSON.parse["{{context2|escapejs}}"]
+    let columns_to = JSON.parse("{{columns|escapejs}}")
+    let groups = JSON.parse("{{groups_json|escapejs}}")
     let newJson = JSON.parse(data)
+    console.log(columns_to)
+    cols = columns_to.map((element) => {
+      return {
+        data: element
+      }
+    })
+    console.log(cols)
     console.log(newJson)
     $('#fresh-table').DataTable({
       scrollX: true,
       data: newJson,
-      columns: [
-        // { data: 'January 2021' },
-        // { data: 'February 2021' },
-        // { data: 'March 2021' },
-        // { data: 'April 2021' },
-        // { data: 'May 2021' },
-        // { data: 'June 2021' },
-        // { data: 'July 2021' },
-        // { data: 'August 2021' },
-        // { data: 'September 2021' },
-        // { data: 'October 2021' },
-        // { data: 'November 2021' },
-        // {data: 'December 2021'},
-        // {data: 'January 2021'},
-        // {data: 'February 2021'},
-        // {data: 'March 2021'},
-        // {data: 'April 2021'},
-        // {data: 'May 2021'},
-        // {data: 'June 2021'},
-        // {data: 'July 2021'},
-        // {data: 'August 2021'},
-        // {data: 'September 2021'},
-        // {data: 'October 2021'},
-
-
-      ],
-
+      columns: cols,
     });
-  } );
+  });
 
 </script>
 {% comment %} {% endcomment %}
