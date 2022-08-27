@@ -169,6 +169,10 @@ def get_estimated_cashflow(request):
                                                                     session.session_risk_adjustment)
 
     cashflow_estimation_df.estimate_cashflows()
+    cashflow_estimation_df.df['Start Date'] = cashflow_estimation_df.df['Start Date'].dt.strftime('%m/%d/%Y')
+    cashflow_estimation_df.df['Ending Date'] = cashflow_estimation_df.df['Ending Date'].dt.strftime('%m/%d/%Y')
+    cashflow_estimation_df.df['Expected Date of Premium Payment'] = cashflow_estimation_df.df['Expected Date of Premium Payment'].dt.strftime('%m/%d/%Y')
+    cashflow_estimation_df.df['Date of Premium Payment'] = cashflow_estimation_df.df['Date of Premium Payment'].dt.strftime('%m/%d/%Y')
     import json
     d = cashflow_estimation_df.df.to_json(orient='records')
     j = json.dumps(d)
@@ -256,6 +260,10 @@ def get_groupings(request):
     print(etag.groups)
 
     etag2 = etag.auto_paa
+    etag2['Start Date'] = etag2['Start Date'].dt.strftime('%m/%d/%Y')
+    etag2['Ending Date'] = etag2['Ending Date'].dt.strftime('%m/%d/%Y')
+    etag2['Expected Date of Premium Payment'] = etag2['Expected Date of Premium Payment'].dt.strftime('%m/%d/%Y')
+    etag2['Date of Premium Payment'] = etag2['Date of Premium Payment'].dt.strftime('%m/%d/%Y')
 
     import json
     de = etag2.to_json(orient='records')
@@ -344,8 +352,12 @@ def get_group_summary(request):
     # Contracts per group
     # print(etag.groups)
 
+    summary_of_groups_df = etag.groups_stats
+    summary_of_groups_df['Start Date'] = summary_of_groups_df['Start Date'].dt.strftime('%m/%d/%Y')
+    summary_of_groups_df['Ending Date'] = summary_of_groups_df['Ending Date'].dt.strftime('%m/%d/%Y')
+    
     import json
-    de = etag.groups_stats.to_json(orient='records')
+    de = summary_of_groups_df.to_json(orient='records')
     print(de)
     je = json.dumps(de)
 
