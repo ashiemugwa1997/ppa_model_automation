@@ -314,7 +314,7 @@
     let columns_to = JSON.parse("{{columns|escapejs}}")
     let groups = JSON.parse("{{groups_json|escapejs}}")
     let newJson = JSON.parse(data)
-    console.log(columns_to)
+    console.log(columns_to, groups)
     cols = columns_to.map((element) => {
       return {
         data: element
