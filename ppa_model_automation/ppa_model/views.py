@@ -366,7 +366,7 @@ def aggregated_results(request):
     if request.method == "POST":
         selected_group = request.POST['selected_group']
     else:
-        selected_group = '2021.100.0'
+        selected_group = 'all'
 
     print("session: ", session.session_name)
     xls = pd.ExcelFile(session.session_datasheet)
@@ -428,15 +428,21 @@ def aggregated_results(request):
 
     groups_df = etag.groups.to_frame()
     groups_index= groups_df.index
-    print(groups_index)
 
     measurement_date1 = session.session_measurement_date
     measurement_date = pd.Timestamp(measurement_date1)
 
-    monthly_df = MonthlyResults(etag.auto_paa, measurement_date).results(selected_group)
-    # for i in etag.groups.index.tolist():
-    #     print(MonthlyResults(etag.auto_paa, measurement_date).results(i))
-    # monthly_df['labels'] = monthly_df.index
+    monthly_df = pd.DataFrame()
+    if selected_group == "all":
+        first_group = groups_index[0]
+        monthly_df = MonthlyResults(etag.auto_paa, measurement_date).results(first_group)
+        # for i in etag.groups.index.tolist():
+        #     df = MonthlyResults(etag.auto_paa, measurement_date).results(i)
+        #     monthly_df.add(df, axis='columns', level=None, fill_value=None)
+
+    else:
+        monthly_df = MonthlyResults(etag.auto_paa, measurement_date).results(selected_group)
+
     monthly_df.insert(loc=0, column='labels', value=monthly_df.index)
 
     monthly_columns = monthly_df.columns.values.tolist()

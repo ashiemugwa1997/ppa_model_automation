@@ -45,6 +45,7 @@
                 <div class="">
                   <select class="form-control" name="selected_group" id="selected_group">
                     <option value="">--Please choose an option--</option>
+                    <option value="all">All Groups</option>
                     {% for group in groups %}
                       <option value="{{group}}">{{group}}</option>
                     {% endfor %}
