@@ -436,7 +436,8 @@ def aggregated_results(request):
     monthly_df = MonthlyResults(etag.auto_paa, measurement_date).results(selected_group)
     # for i in etag.groups.index.tolist():
     #     print(MonthlyResults(etag.auto_paa, measurement_date).results(i))
-    monthly_df['labels'] = monthly_df.index
+    # monthly_df['labels'] = monthly_df.index
+    monthly_df.insert(loc=0, column='labels', value=monthly_df.index)
 
     monthly_columns = monthly_df.columns.values.tolist()
     import json
@@ -452,6 +453,7 @@ def aggregated_results(request):
         'ppa/aggregated_results.html', 
         {"context": j, 
         "columns": k, 
+        "cols": monthly_columns,
         "groups": groups_index.tolist(), 
         "groups_json": groups_json
         })

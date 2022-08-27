@@ -88,6 +88,11 @@
           class="table display nowrap"
           style="width: 100%"
             >
+            <thead>
+              {% for column in cols %}
+              <th>{{column}}</option>
+            {% endfor %}
+            </thead>
           </table>
         </div>
       </div>
