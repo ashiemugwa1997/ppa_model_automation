@@ -22,7 +22,7 @@ from django.views.generic import RedirectView
 from . import views as ppa_views
 
 urlpatterns = [
-    path('paa/', include('ppa_model.urls')),
+    path('', include('ppa_model.urls')),
     path('admin/', admin.site.urls),
     path('login/', auth_views.LoginView.as_view(), name='login'),
     path('logout/', ppa_views.logout_view, name='logout'),

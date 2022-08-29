@@ -94,14 +94,26 @@
           </li>
           <li class="">
             <a href="/paa/add_assumptions">
-              <i class="nc-icon nc-app"></i>
-              <p>PAA</p>
+              <i class="nc-icon nc-simple-add"></i>
+              <p>New Session</p>
             </a>
           </li>
           <li class="">
             <a href="/paa/sessions">
-              <i class="nc-icon nc-app"></i>
+              <i class="nc-icon nc-tile-56"></i>
               <p>Sessions</p>
+            </a>
+          </li>
+          <li class="">
+            <a href="/paa/results">
+              <i class="nc-icon nc-chart-bar-32"></i>
+              <p>View Results</p>
+            </a>
+          </li>
+          <li class="">
+            <a href="/admin/">
+              <i class="nc-icon nc-single-02"></i>
+              <p>Manage Users</p>
             </a>
           </li>
         </ul>
@@ -119,7 +131,9 @@
                 <span class="navbar-toggler-bar bar3"></span>
               </button>
             </div>
-            <a class="navbar-brand" href="javascript:;">Dashboard</a>
+            <div>
+              <a class="navbar-brand" href="javascript:;">{{title}}</a>
+            </div>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -127,6 +141,7 @@
             <span class="navbar-toggler-bar navbar-kebab"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end" id="navigation">
+            <a class="navbar-brand" href="/admin/logout">Logout</a>
           </div>
         </div>
       </nav>

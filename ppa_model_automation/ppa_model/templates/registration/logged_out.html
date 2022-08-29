@@ -1,35 +1,10 @@
-<!doctype html>
-<html lang="en">
-{% load static %}
-<head>
-  <link rel="icon" type="image/png" href="{%  static 'favicon.ico' %}">
-
-  <meta charset="utf-8" />
-  {% comment %} <link rel="apple-touch-icon" sizes="76x76" href="{%  static 'favicon.ico' %}">
-  <link rel="icon" type="image/png" href="{%  static 'favicon.ico' %}"> {% endcomment %}
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>
-    Claxon Actuaries
-  </title>
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-  <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet">
-  
-  <link href="/static/assets/demo/demo.css" rel="stylesheet" />
-  <link href="/static/assets/css/login.css" rel="stylesheet" />
-  <script src="/static/assets/js/registration/login.js"></script>
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
-
-  <style>
-    p {
-        margin-bottom: 0px;
-    }
-  </style>
-</head>
-
-<body class="">
 <!-- templates/registration/login.html -->
+{% block styles %}
+<link href="/static/assets/css/login.css" rel="stylesheet" />
+<script src="/static/assets/js/registration/login.js"></script>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
+{% endblock styles %}
+{% block content %}
 <h2>Claxon Actuaries</h2>
 <div class="container" id="container">
     <div class="form-container sign-up-container">
@@ -51,18 +26,18 @@
         <form method="post">
 
             <h1>Sign in</h1>
-            {% comment %} <div class="social-container">
+            <div class="social-container">
                 <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
                 <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-            </div> {% endcomment %}
-            {% comment %} <span>or use your account</span> {% endcomment %}
+            </div>
+            <span>or use your account</span>
             {% csrf_token %}
             {{ form.as_p }}
 <!--            <input type="email" placeholder="Email" />-->
 <!--            <input type="password" placeholder="Password" />-->
-            {% comment %} <a href="#">Forgot your password?</a> {% endcomment %}
-            <button type="submit" style="margin-top: 20px">Sign In</button>
+            <a href="#">Forgot your password?</a>
+            <button type="submit">Sign In</button>
         </form>
     </div>
     <div class="overlay-container">
@@ -74,13 +49,13 @@
             </div>
             <div class="overlay-panel overlay-right">
                 <h1>Hello, Partner!</h1>
-                <p>Welcome to Claxon Actuaries PAA System</p>
+                <p>Enter your personal details and start journey with us</p>
+                <button class="ghost" id="signUp">Sign Up</button>
             </div>
         </div>
     </div>
 </div>
+{% endblock content %} {% block scripts %}
+<script src="https://unpkg.com/bootstrap-table/dist/bootstrap-table.js"></script>
 <script src="/static/assets/js/registration/login.js"></script>
-
-</body>
-
-</html>
+{% endblock scripts %}

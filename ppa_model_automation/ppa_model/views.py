@@ -1,11 +1,13 @@
 import random
 import os
+import csv
 import random
 import string
 from json import JSONEncoder
 import  json
 from datetime import datetime
 
+from django.http import HttpResponse
 import numpy
 import pandas as pd
 from django.conf import settings
@@ -16,6 +18,10 @@ from django.core.files.storage import FileSystemStorage
 from django.http import FileResponse
 from django.shortcuts import render, redirect
 from ppa_model.datasheets.file_handler import save_file
+
+import django_tables2 as tables
+from django_tables2.config import RequestConfig
+from django_tables2.export.export import TableExport
 
 from .models import Session, Assumptions, Upload_Doc
 from .utilities import cashflow_estimation, data_checks, eligibility_test_and_grouping
@@ -36,8 +42,12 @@ class NumpyArrayEncoder(JSONEncoder):
         return JSONEncoder.default(self, obj)
 
 @login_required(login_url='/login/')
+def index(request):
+    return redirect('/paa')
+
+@login_required(login_url='/login/')
 def dashboard(request):
-    return render(request, 'ppa/dashboard.html', {})
+    return render(request, 'ppa/dashboard.html', {"title": "Dashboard"})
 
 @login_required(login_url='/login/')
 def add_assumptions(request):
@@ -67,7 +77,7 @@ def add_assumptions(request):
 
         return redirect('/paa/results')
 
-    return render(request, 'ppa/add_assumptions.html', {})
+    return render(request, 'ppa/add_assumptions.html', {"title": "New Session"})
 
 # Sessions Menu
 # All sessions
@@ -78,7 +88,7 @@ def user_sessions(request):
     current_user_id = current_user.id
     documents = Session.objects.filter(session_user_id=current_user_id).order_by('-updated_at').all()
     context = serializers.serialize('json', documents)
-    return render(request, 'ppa/sessions/sessions.html', {"context": context})
+    return render(request, 'ppa/sessions/sessions.html', {"context": context, "title": "Your Sessions"})
 
 @login_required(login_url='/login/')
 def download_datasheet(request):
@@ -100,7 +110,7 @@ def download_datasheet(request):
 
 @login_required(login_url='/login/')
 def calculation_results(request):
-    return render(request, 'ppa/results.html', {})
+    return render(request, 'ppa/results.html', {"title": "View Results"})
 
 @login_required(login_url='/login/')
 def get_session(request):
@@ -113,7 +123,7 @@ def get_session(request):
 @login_required(login_url='/login/')
 def get_estimated_cashflow(request):
     session = None
-    if request.session.get('session_selected', True):
+    if request.session.get('session_selected'):
         session_id = request.session['selected_session']
         session = Session.objects.get(id=session_id)
     else:
@@ -177,7 +187,86 @@ def get_estimated_cashflow(request):
     d = cashflow_estimation_df.df.to_json(orient='records')
     j = json.dumps(d)
     print(j)
-    return render(request, 'ppa/cashflow_estimations.html', {"context": j})
+    return render(request, 'ppa/cashflow_estimations.html', {"context": j, "title": "Cashflows"})
+
+
+@login_required(login_url='/login/')
+def export_estimated_cashflow(request):
+    session = None
+    if request.session.get('session_selected'):
+        session_id = request.session['selected_session']
+        session = Session.objects.get(id=session_id)
+    else:
+        session = Session.objects.latest('updated_at')
+
+    print("session: ", session.session_name)
+    xls = pd.ExcelFile(session.session_datasheet)
+    source_data_df = pd.read_excel(xls, 'SourceData')
+    combined_ratio_df = pd.read_excel(xls, 'CombinedRatios')
+    class_of_business_df = pd.read_excel(xls, 'ClassOfBusiness')
+
+    # Source Data Checks
+    floats = ['Premium Installment', 'Total Premium']
+    ints = ['Payment Frequency']
+
+    required_source_data_columns = ['Class of Business', 'Name of Policyholder',
+                                    'Surname', 'Policy Number', 'Start Date',
+                                    'Ending Date', 'Expected Date of Premium Payment',
+                                    'Date of Premium Payment', 'Premium Installment',
+                                    'Payment Frequency', 'Total Premium']
+
+    source_data_checks = data_checks.DataChecks(source_data_df, required_source_data_columns, 'SourceData', floats,
+                                                ints)
+    source_data_checks.data_check_report(request)
+
+    # Combined Ratio Data Checks
+    floats = ['Claims Ratio', 'Expense Ratio', 'Acquisistion costs (Commissions)']
+    ints = []
+
+    required_combined_ratio_columns = ['Class of Business', 'Claims Ratio', 'Expense Ratio',
+                                       'Acquisition costs (Commissions)']
+
+    combined_ratio_checks = data_checks.DataChecks(combined_ratio_df, required_combined_ratio_columns, 'SourceData',
+                                                   floats,
+                                                   ints)
+    combined_ratio_checks.data_check_report(request)
+
+    # Class of Business Data Checks
+    floats = []
+    ints = ['Portfolio ID']
+
+    required_class_of_business_columns = ['Class of Business', 'Portfolio ID']
+
+    class_of_business_checks = data_checks.DataChecks(class_of_business_df, required_class_of_business_columns,
+                                                      'SourceData',
+                                                      floats, ints)
+    class_of_business_checks.data_check_report(request)
+
+    cashflow_estimation_df = cashflow_estimation.CashFlowEstimation(source_data_checks.df,
+                                                                    session.session_discount_rate,
+                                                                    combined_ratio_checks.df,
+                                                                    class_of_business_checks.df,
+                                                                    session.session_risk_adjustment)
+
+    cashflow_estimation_df.estimate_cashflows()
+    cashflow_estimation_df.df['Start Date'] = cashflow_estimation_df.df['Start Date'].dt.strftime('%m/%d/%Y')
+    cashflow_estimation_df.df['Ending Date'] = cashflow_estimation_df.df['Ending Date'].dt.strftime('%m/%d/%Y')
+    cashflow_estimation_df.df['Expected Date of Premium Payment'] = cashflow_estimation_df.df['Expected Date of Premium Payment'].dt.strftime('%m/%d/%Y')
+    cashflow_estimation_df.df['Date of Premium Payment'] = cashflow_estimation_df.df['Date of Premium Payment'].dt.strftime('%m/%d/%Y')
+
+    data = cashflow_estimation_df.df.to_dict('records')
+
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachement; filename="report.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['Class of Business', 'Name of Policyholder', 'Surname', 'Policy Number', 'Start Date', 'Ending Date', 'Expected Date of Premium Payment', 'Date of Premium Payment', 'Premium Installment', 'Total Premium'])
+
+    for row in data:
+        writer.writerow([row['Class of Business'], row['Name of Policyholder'], row['Surname'], row['Policy Number'], row['Start Date'], row['Ending Date'], row['Expected Date of Premium Payment'], row['Date of Premium Payment'], row['Premium Installment'], row['Total Premium']])
+
+    return response
+
 
 @login_required(login_url='/login/')
 def get_groupings(request):
@@ -246,17 +335,6 @@ def get_groupings(request):
     etag.test_and_group()
 
     etag.analyze_groups()
-
-    # Cashflow Estimation
-    # print(cashflow_estimation_df.data)
-
-    # Grouped Data
-    # print(etag.auto_paa) # Groupings
-
-    # Summary of groupings
-    # print(etag.groups_stats) # Summarized Groups
-
-    # Contracts per group
     print(etag.groups)
 
     etag2 = etag.auto_paa
@@ -269,7 +347,97 @@ def get_groupings(request):
     de = etag2.to_json(orient='records')
     je = json.dumps(de)
 
-    return render(request, 'ppa/grouping.html', {"context": je})
+    return render(request, 'ppa/grouping.html', {"context": je, "title": "Groups"})
+
+@login_required(login_url='/login/')
+def export_groupings(request):
+    session = None
+    if request.session.get('session_selected'):
+        session_id = request.session['selected_session']
+        session = Session.objects.get(id=session_id)
+    else:
+        session = Session.objects.latest('updated_at')
+
+    print("session: ", session.session_name)
+    xls = pd.ExcelFile(session.session_datasheet)
+    source_data_df = pd.read_excel(xls, 'SourceData')
+    combined_ratio_df = pd.read_excel(xls, 'CombinedRatios')
+    class_of_business_df = pd.read_excel(xls, 'ClassOfBusiness')
+
+    # Source Data Checks
+    floats = ['Premium Installment', 'Total Premium']
+    ints = ['Payment Frequency']
+
+    required_source_data_columns = ['Class of Business', 'Name of Policyholder',
+                                    'Surname', 'Policy Number', 'Start Date',
+                                    'Ending Date', 'Expected Date of Premium Payment',
+                                    'Date of Premium Payment', 'Premium Installment',
+                                    'Payment Frequency', 'Total Premium']
+
+    source_data_checks = data_checks.DataChecks(source_data_df, required_source_data_columns, 'SourceData', floats,
+                                                ints)
+    source_data_checks.data_check_report(request)
+
+    # Combined Ratio Data Checks
+    floats = ['Claims Ratio', 'Expense Ratio', 'Acquisistion costs (Commissions)']
+    ints = []
+
+    required_combined_ratio_columns = ['Class of Business', 'Claims Ratio', 'Expense Ratio',
+                                       'Acquisition costs (Commissions)']
+
+    combined_ratio_checks = data_checks.DataChecks(combined_ratio_df, required_combined_ratio_columns, 'SourceData',
+                                                   floats,
+                                                   ints)
+    combined_ratio_checks.data_check_report(request)
+
+    # Class of Business Data Checks
+    floats = []
+    ints = ['Portfolio ID']
+
+    required_class_of_business_columns = ['Class of Business', 'Portfolio ID']
+
+    class_of_business_checks = data_checks.DataChecks(class_of_business_df, required_class_of_business_columns,
+                                                      'SourceData',
+                                                      floats, ints)
+    class_of_business_checks.data_check_report(request)
+
+    cashflow_estimation_df = cashflow_estimation.CashFlowEstimation(source_data_checks.df,
+                                                                    session.session_discount_rate,
+                                                                    combined_ratio_checks.df,
+                                                                    class_of_business_checks.df,
+                                                                    session.session_risk_adjustment)
+
+    cashflow_estimation_df.estimate_cashflows()
+    loss_ratio_threshold = float(session.session_loss_ratio)
+
+    etag = eligibility_test_and_grouping.PAAEligibilityTestingAndGrouping(cashflow_estimation_df.data,
+                                                                          loss_ratio_threshold)
+    # etag - eligibility test and grouping object
+    etag.test_and_group()
+
+    etag.analyze_groups()
+
+    print(etag.groups)
+
+    etag2 = etag.auto_paa
+    etag2['Start Date'] = etag2['Start Date'].dt.strftime('%m/%d/%Y')
+    etag2['Ending Date'] = etag2['Ending Date'].dt.strftime('%m/%d/%Y')
+    etag2['Expected Date of Premium Payment'] = etag2['Expected Date of Premium Payment'].dt.strftime('%m/%d/%Y')
+    etag2['Date of Premium Payment'] = etag2['Date of Premium Payment'].dt.strftime('%m/%d/%Y')
+
+    data = etag2.to_dict('records')
+
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachement; filename="report.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['Class of Business', 'Name of Policyholder', 'Surname', 'Policy Number', 'Start Date', 'Ending Date', 'Expected Date of Premium Payment', 'Date of Premium Payment', 'Premium Installment', 'Payment Frequency', 'Total Premium', 'Claims Ratio', 'Expense Ratio', 'Acquisistion costs (Commissions)', 'Portfolio ID', 'duration', 'PV Premiums', 'PV Claims', 'PV Expenses', 'Risk Adjustment', 'FCFs', 'Acquisition Costs', 'Combined Loss Ratio', 'Automatic PAA Eligibility Test', 'Final Groups of Contracts'])
+
+    for row in data:
+        writer.writerow([row['Class of Business'], row['Name of Policyholder'], row['Surname'], row['Policy Number'], row['Start Date'], row['Ending Date'], row['Expected Date of Premium Payment'], row['Date of Premium Payment'], row['Premium Installment'], row['Payment Frequency'], row['Total Premium'], row['Claims Ratio'], row['Expense Ratio'], row['Acquisistion costs (Commissions)'], row['Portfolio ID'], row['duration'], row['PV Premiums'], row['PV Claims'], row['PV Expenses'], row['Risk Adjustment'], row['FCFs'], row['Acquisition Costs'], row['Combined Loss Ratio'], row['Automatic PAA Eligibility Test'], row['Final Groups of Contracts']])
+
+    return response
+
 
 @login_required(login_url='/login/')
 def get_group_summary(request):
@@ -361,7 +529,100 @@ def get_group_summary(request):
     print(de)
     je = json.dumps(de)
 
-    return render(request, 'ppa/group_summary.html', {"context": je})
+    return render(request, 'ppa/group_summary.html', {"context": je, "title": "Summarized Groups"})
+
+
+@login_required(login_url='/login/')
+def export_group_summary(request):
+    
+    session = None
+    if request.session.get('session_selected'):
+        session_id = request.session['selected_session']
+        session = Session.objects.get(id=session_id)
+    else:
+        session = Session.objects.latest('updated_at')
+
+    print("session: ", session.session_name)
+    xls = pd.ExcelFile(session.session_datasheet)
+    source_data_df = pd.read_excel(xls, 'SourceData')
+    combined_ratio_df = pd.read_excel(xls, 'CombinedRatios')
+    class_of_business_df = pd.read_excel(xls, 'ClassOfBusiness')
+
+    # Source Data Checks
+    floats = ['Premium Installment', 'Total Premium']
+    ints = ['Payment Frequency']
+
+    required_source_data_columns = ['Class of Business', 'Name of Policyholder',
+                                    'Surname', 'Policy Number', 'Start Date',
+                                    'Ending Date', 'Expected Date of Premium Payment',
+                                    'Date of Premium Payment', 'Premium Installment',
+                                    'Payment Frequency', 'Total Premium']
+
+    source_data_checks = data_checks.DataChecks(source_data_df, required_source_data_columns, 'SourceData', floats,
+                                                ints)
+    source_data_checks.data_check_report(request)
+
+    # Combined Ratio Data Checks
+    floats = ['Claims Ratio', 'Expense Ratio', 'Acquisistion costs (Commissions)']
+    ints = []
+
+    required_combined_ratio_columns = ['Class of Business', 'Claims Ratio', 'Expense Ratio',
+                                       'Acquisition costs (Commissions)']
+
+    combined_ratio_checks = data_checks.DataChecks(combined_ratio_df, required_combined_ratio_columns, 'SourceData',
+                                                   floats,
+                                                   ints)
+    combined_ratio_checks.data_check_report(request)
+
+    # Class of Business Data Checks
+    floats = []
+    ints = ['Portfolio ID']
+
+    required_class_of_business_columns = ['Class of Business', 'Portfolio ID']
+
+    class_of_business_checks = data_checks.DataChecks(class_of_business_df, required_class_of_business_columns,
+                                                      'SourceData',
+                                                      floats, ints)
+    class_of_business_checks.data_check_report(request)
+
+    cashflow_estimation_df = cashflow_estimation.CashFlowEstimation(source_data_checks.df,
+                                                                    session.session_discount_rate,
+                                                                    combined_ratio_checks.df,
+                                                                    class_of_business_checks.df,
+                                                                    session.session_risk_adjustment)
+
+    cashflow_estimation_df.estimate_cashflows()
+    loss_ratio_threshold = float(session.session_loss_ratio)
+
+    etag = eligibility_test_and_grouping.PAAEligibilityTestingAndGrouping(cashflow_estimation_df.data,
+                                                                          loss_ratio_threshold)
+    # etag - eligibility test and grouping object
+    etag.test_and_group()
+
+    etag.analyze_groups()
+
+    # Summary of groupings
+    print(etag.groups_stats)  # Summarized Groups
+
+    # Contracts per group
+    # print(etag.groups)
+
+    summary_of_groups_df = etag.groups_stats
+    summary_of_groups_df['Start Date'] = summary_of_groups_df['Start Date'].dt.strftime('%m/%d/%Y')
+    summary_of_groups_df['Ending Date'] = summary_of_groups_df['Ending Date'].dt.strftime('%m/%d/%Y')
+    
+    data = summary_of_groups_df.to_dict('records')
+
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachement; filename="report.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['Final Groups of Contracts', 'Start Date', 'Ending Date', 'Premium Installment', 'Total Premium', 'PV Premiums', 'PV Claims', 'PV Expenses' , 'Risk Adjustment', 'FCFs', 'Acquisition Costs', 'combined_loss_ratio'])
+
+    for row in data:
+        writer.writerow([row['Final Groups of Contracts'], row['Start Date'], row['Ending Date'], row['Premium Installment'], row['Total Premium'], row['PV Premiums'], row['PV Claims'], row['PV Expenses' ], row['Risk Adjustment'], row['FCFs'], row['Acquisition Costs'], row['combined_loss_ratio']])
+
+    return response
 
 
 @login_required(login_url='/login/')
@@ -473,7 +734,8 @@ def aggregated_results(request):
         "columns": k, 
         "cols": monthly_columns,
         "groups": groups_index.tolist(), 
-        "groups_json": groups_json
+        "groups_json": groups_json,
+        "title": "Groups"
         })
 
 @login_required(login_url='/login/')
