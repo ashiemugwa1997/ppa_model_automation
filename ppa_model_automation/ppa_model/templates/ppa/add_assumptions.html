@@ -4,8 +4,6 @@
 
 {% endblock styles %}
 {% block content %}
-<form action="/paa/add_assumptions" enctype="multipart/form-data" method="POST">
-  {% csrf_token %}
   <div class="row">
     <div class="col-12">
       <div class="card" style="background: #bbbbe9">
@@ -19,6 +17,8 @@
           </div>
         </div>
         <div class="card-body">
+          <form action="/paa/add_assumptions" enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
           <div class="table-responsive">
             <table class="table">
               <thead class="text-dark"></thead>
@@ -41,11 +41,12 @@
                           name="session__name"
                           class="form-control"
                           placeholder="Session Name"
+                          required
                         />
                     </div>
                   </td>
                   <td class="assumptions-text text-center">
-                    <div class="input-group input-group-sm"></div>
+                    
                   </td>
                 </tr>
                 <tr>
@@ -63,6 +64,7 @@
                   >
                   <div class="">
                       <input
+                        required
                         name="datasheet"
                         class="form-control text-info"
                         type="file"
@@ -88,7 +90,9 @@
                   >
                     <div class="">
                         <input
-                          type="text"
+                          required
+                          type="number"
+                          step="any"
                           name="discount_rate"
                           class="form-control"
                           placeholder="Discount Rate"
@@ -113,6 +117,7 @@
                   >
                     <div class="">
                         <input
+                          required
                           type="date"
                           name="measurement_date"
                           class="form-control"
@@ -138,6 +143,9 @@
                   >
                     <div class="">
                         <input
+                          required
+                          type="number"
+                          step="any"
                           type="text"
                           name="risk_adjustment"
                           class="form-control"
@@ -163,6 +171,9 @@
                   >
                     <div class="">
                         <input
+                          required
+                          type="number"
+                          step="any"
                           type="text"
                           name="loss_ratio"
                           class="form-control"
@@ -192,7 +203,7 @@
                       style="background: #f99400"
                     >
                       <i class="nc-icon nc-send"></i>
-                      Submit
+                      Start Session
                     </button>
                   </td>
                   <td class="assumptions-text text-center">
@@ -201,12 +212,12 @@
                 </tr>
               </tbody>
             </table>
+          </form>
           </div>
         </div>
       </div>
     </div>
   </div>
-</form>
 {% endblock content %}
 {% block scripts %}
 

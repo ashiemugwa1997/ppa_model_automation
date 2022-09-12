@@ -6,6 +6,11 @@
 <div class="row">
   <div class="col-12">
     <div class="card" style="background: #bbbbe9;">
+      <div class="card-header">
+        <a class="btn btn-link" style="text-decoration: none;" href="{{request.META.HTTP_REFERER|escape}}">
+          <i class="fa-solid fa-arrow-left-long"></i>
+        </a>
+      </div>
       <div class="card-body">
         <div class="fresh-table" style="background: #bbbbe9;">
           <table id="fresh-table" class="table display nowrap" style="width:100%">

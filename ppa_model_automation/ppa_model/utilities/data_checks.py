@@ -87,46 +87,46 @@ class DataChecks:
         self.validate_data_missing_values()
         self.validate_data_types()
         self.validate_data_dates()
-        if len(self.missing_columns) > 0:
-            messages.add_message(request, messages.WARNING,
-                                 f"The following columns are missing from the {self.df_name} dataframe:\n{self.missing_columns}")
-        else:
-            messages.add_message(request, messages.SUCCESS, f'Required Columns Validation for {self.df_name} Completed')
+        # if len(self.missing_columns) > 0:
+        #     messages.add_message(request, messages.WARNING,
+        #                          f"The following columns are missing from the {self.df_name} dataframe:\n{self.missing_columns}")
+        # else:
+        #     messages.add_message(request, messages.SUCCESS, f'Required Columns Validation for {self.df_name} Completed')
 
-        if len(self.missing_data_df) > 0:
-            messages.add_message(request, messages.WARNING,
-                                 f'The below rows in the {self.df_name} dataframe contains missing values. Fill in '
-                                 f'the missing '
-                                 f'value for the model to work')
-            # st.write(self.missing_data_df.loc[:,self.missing_data_df.isnull().any()])
-        else:
-            messages.add_message(request, messages.SUCCESS,
-                                 f'Missing Information Validation for {self.df_name} Completed')
+        # if len(self.missing_data_df) > 0:
+        #     messages.add_message(request, messages.WARNING,
+        #                          f'The below rows in the {self.df_name} dataframe contains missing values. Fill in '
+        #                          f'the missing '
+        #                          f'value for the model to work')
+        #     # st.write(self.missing_data_df.loc[:,self.missing_data_df.isnull().any()])
+        # else:
+        #     messages.add_message(request, messages.SUCCESS,
+        #                          f'Missing Information Validation for {self.df_name} Completed')
 
-        if len(self.float_failed_conversion) > 0:
-            messages.add_message(request, messages.WARNING,
-                                 f'The columns {self.float_failed_conversion} have some values which are not numeric '
-                                 f'and cannot '
-                                 f'be converted to floats')
-        else:
-            messages.add_message(request, messages.SUCCESS, 'Checks on float columns done')
+        # if len(self.float_failed_conversion) > 0:
+        #     messages.add_message(request, messages.WARNING,
+        #                          f'The columns {self.float_failed_conversion} have some values which are not numeric '
+        #                          f'and cannot '
+        #                          f'be converted to floats')
+        # else:
+        #     messages.add_message(request, messages.SUCCESS, 'Checks on float columns done')
 
-        if len(self.ints_failed_conversion) > 0:
-            messages.add_message(request, messages.WARNING,
-                                 f'The columns {self.ints_failed_conversion} have some values which are not numeric '
-                                 f'and cannot '
-                                 f'be converted to integers')
-        else:
-            messages.add_message(request, messages.SUCCESS, 'Checks on Integer columns done')
+        # if len(self.ints_failed_conversion) > 0:
+        #     messages.add_message(request, messages.WARNING,
+        #                          f'The columns {self.ints_failed_conversion} have some values which are not numeric '
+        #                          f'and cannot '
+        #                          f'be converted to integers')
+        # else:
+        #     messages.add_message(request, messages.SUCCESS, 'Checks on Integer columns done')
 
-        if len(self.invalid_dates) > 0:
-            messages.add_message(request, messages.WARNING,
-                                 f'The following columns are not being recognised as dates. Check and Change the '
-                                 f'format of all '
-                                 f'the dates to dd/mm/yyyy \n{self.invalid_dates}')
-        else:
-            messages.add_message(request, messages.SUCCESS, f'Dates Validation for {self.df_name} Completed')
+        # if len(self.invalid_dates) > 0:
+        #     messages.add_message(request, messages.WARNING,
+        #                          f'The following columns are not being recognised as dates. Check and Change the '
+        #                          f'format of all '
+        #                          f'the dates to dd/mm/yyyy \n{self.invalid_dates}')
+        # else:
+        #     messages.add_message(request, messages.SUCCESS, f'Dates Validation for {self.df_name} Completed')
 
-        if len(self.missing_columns) > 0 or len(self.missing_data_df) > 0 or len(self.invalid_dates) > 0 or len(
-                self.float_failed_conversion) > 0 or len(self.ints_failed_conversion) > 0:
-            messages.add_message(request, messages.ERROR, "Error occurred")
+        # if len(self.missing_columns) > 0 or len(self.missing_data_df) > 0 or len(self.invalid_dates) > 0 or len(
+        #         self.float_failed_conversion) > 0 or len(self.ints_failed_conversion) > 0:
+        #     messages.add_message(request, messages.ERROR, "Error occurred")

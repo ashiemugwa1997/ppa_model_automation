@@ -1,6 +1,9 @@
+from io import StringIO
+import io
 import random
 import os
 import csv
+import xlsxwriter
 import random
 import string
 from json import JSONEncoder
@@ -256,14 +259,21 @@ def export_estimated_cashflow(request):
 
     data = cashflow_estimation_df.df.to_dict('records')
 
-    response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachement; filename="report.csv"'
+    ext = request.GET['ext']
 
-    writer = csv.writer(response)
-    writer.writerow(['Class of Business', 'Name of Policyholder', 'Surname', 'Policy Number', 'Start Date', 'Ending Date', 'Expected Date of Premium Payment', 'Date of Premium Payment', 'Premium Installment', 'Total Premium'])
+    if ext == "csv":
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachement; filename="cashflow-estimates.csv"'
+        writer = csv.writer(response)
+        writer.writerow(['Class of Business', 'Name of Policyholder', 'Surname', 'Policy Number', 'Start Date', 'Ending Date', 'Expected Date of Premium Payment', 'Date of Premium Payment', 'Premium Installment', 'Total Premium'])
 
-    for row in data:
-        writer.writerow([row['Class of Business'], row['Name of Policyholder'], row['Surname'], row['Policy Number'], row['Start Date'], row['Ending Date'], row['Expected Date of Premium Payment'], row['Date of Premium Payment'], row['Premium Installment'], row['Total Premium']])
+        for row in data:
+            writer.writerow([row['Class of Business'], row['Name of Policyholder'], row['Surname'], row['Policy Number'], row['Start Date'], row['Ending Date'], row['Expected Date of Premium Payment'], row['Date of Premium Payment'], row['Premium Installment'], row['Total Premium']])
+
+    elif ext == "xls":
+        response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+        response['Content-Disposition'] = 'attachment; filename="cashflow-estimates.xlsx"'                                        
+        cashflow_estimation_df.df.to_excel(response)
 
     return response
 
@@ -426,15 +436,21 @@ def export_groupings(request):
     etag2['Date of Premium Payment'] = etag2['Date of Premium Payment'].dt.strftime('%m/%d/%Y')
 
     data = etag2.to_dict('records')
+    ext = request.GET['ext']
 
-    response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachement; filename="report.csv"'
+    if ext == "csv":
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachement; filename="groupings.csv"'
+        writer = csv.writer(response)
+        writer.writerow(['Class of Business', 'Name of Policyholder', 'Surname', 'Policy Number', 'Start Date', 'Ending Date', 'Expected Date of Premium Payment', 'Date of Premium Payment', 'Premium Installment', 'Payment Frequency', 'Total Premium', 'Claims Ratio', 'Expense Ratio', 'Acquisistion costs (Commissions)', 'Portfolio ID', 'duration', 'PV Premiums', 'PV Claims', 'PV Expenses', 'Risk Adjustment', 'FCFs', 'Acquisition Costs', 'Combined Loss Ratio', 'Automatic PAA Eligibility Test', 'Final Groups of Contracts'])
 
-    writer = csv.writer(response)
-    writer.writerow(['Class of Business', 'Name of Policyholder', 'Surname', 'Policy Number', 'Start Date', 'Ending Date', 'Expected Date of Premium Payment', 'Date of Premium Payment', 'Premium Installment', 'Payment Frequency', 'Total Premium', 'Claims Ratio', 'Expense Ratio', 'Acquisistion costs (Commissions)', 'Portfolio ID', 'duration', 'PV Premiums', 'PV Claims', 'PV Expenses', 'Risk Adjustment', 'FCFs', 'Acquisition Costs', 'Combined Loss Ratio', 'Automatic PAA Eligibility Test', 'Final Groups of Contracts'])
+        for row in data:
+            writer.writerow([row['Class of Business'], row['Name of Policyholder'], row['Surname'], row['Policy Number'], row['Start Date'], row['Ending Date'], row['Expected Date of Premium Payment'], row['Date of Premium Payment'], row['Premium Installment'], row['Payment Frequency'], row['Total Premium'], row['Claims Ratio'], row['Expense Ratio'], row['Acquisistion costs (Commissions)'], row['Portfolio ID'], row['duration'], row['PV Premiums'], row['PV Claims'], row['PV Expenses'], row['Risk Adjustment'], row['FCFs'], row['Acquisition Costs'], row['Combined Loss Ratio'], row['Automatic PAA Eligibility Test'], row['Final Groups of Contracts']])
 
-    for row in data:
-        writer.writerow([row['Class of Business'], row['Name of Policyholder'], row['Surname'], row['Policy Number'], row['Start Date'], row['Ending Date'], row['Expected Date of Premium Payment'], row['Date of Premium Payment'], row['Premium Installment'], row['Payment Frequency'], row['Total Premium'], row['Claims Ratio'], row['Expense Ratio'], row['Acquisistion costs (Commissions)'], row['Portfolio ID'], row['duration'], row['PV Premiums'], row['PV Claims'], row['PV Expenses'], row['Risk Adjustment'], row['FCFs'], row['Acquisition Costs'], row['Combined Loss Ratio'], row['Automatic PAA Eligibility Test'], row['Final Groups of Contracts']])
+    elif ext == "xls":
+        response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+        response['Content-Disposition'] = 'attachment; filename="groupings.xlsx"'                                        
+        etag2.to_excel(response)
 
     return response
 
@@ -621,6 +637,21 @@ def export_group_summary(request):
 
     for row in data:
         writer.writerow([row['Final Groups of Contracts'], row['Start Date'], row['Ending Date'], row['Premium Installment'], row['Total Premium'], row['PV Premiums'], row['PV Claims'], row['PV Expenses' ], row['Risk Adjustment'], row['FCFs'], row['Acquisition Costs'], row['combined_loss_ratio']])
+
+    ext = request.GET['ext']
+    if ext == "csv":
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachement; filename="summary-of-groups.csv"'
+        writer = csv.writer(response)
+        writer.writerow(['Final Groups of Contracts', 'Start Date', 'Ending Date', 'Premium Installment', 'Total Premium', 'PV Premiums', 'PV Claims', 'PV Expenses' , 'Risk Adjustment', 'FCFs', 'Acquisition Costs', 'combined_loss_ratio'])
+
+        for row in data:
+            writer.writerow([row['Final Groups of Contracts'], row['Start Date'], row['Ending Date'], row['Premium Installment'], row['Total Premium'], row['PV Premiums'], row['PV Claims'], row['PV Expenses' ], row['Risk Adjustment'], row['FCFs'], row['Acquisition Costs'], row['combined_loss_ratio']])
+
+    elif ext == "xls":
+        response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+        response['Content-Disposition'] = 'attachment; filename="summary-of-groups.xlsx"'                                        
+        summary_of_groups_df.to_excel(response)
 
     return response
 
